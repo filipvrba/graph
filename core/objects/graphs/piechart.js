@@ -31,7 +31,7 @@ class PieChart extends Object2D {
             const degrees = Mathf.per2deg(percentage);
             const endRadian = Mathf.radians(degrees + this.endDegrees);
 
-            this.createPiece(i, endRadian);
+            this.createPiece(i, endRadian, this.pieArray[i]);
 
             // For loop is added values, that true calculate angles.
             this.startRadian = endRadian;
@@ -52,14 +52,19 @@ class PieChart extends Object2D {
         }
     }
 
-    createPiece( id, endRadian ) {
+    createPiece( id, endRadian, values) {
 
         const piece = new Piece(this.startRadian, endRadian);
         piece.position = this.position;
         piece.scale = this.scale;
         piece.id = id;
         //piece.addRenderer(this.renderer);
-
+        
+        piece.text = `${values.name} (${values.value})`;
+        piece.textCirRadius = (this.scale.x / 100) * 5;
+        piece.positionText = new Vector2(this.position.x + this.scale.x + 30,
+            this.position.y);
+        
         // Add all the objects for the scene identity
         this.add(piece);
 
@@ -91,14 +96,29 @@ class Piece extends Object2D {
 
         this.colorStyle = Color.ranColorStyle();
 
+        this.positionText = Vector2.ZERO;
+        this.positionTextAnim = Vector2.ZERO;
+        this.text = "";
+        this.textCirRadius = 0;
+        this.textCirRadiusAnim = 0;
+
     }
 
     ready() {
+
+        const halfRad = this.endRadian / 2 + this.startRadian / 2;
+        const posRad = new Vector2(Math.cos(halfRad),
+            Math.sin(halfRad));
+        this.positionTextAnim = new Vector2(this.position.x, this.position.y);
+        this.positionTextAnim.x += (this.scale.x / 2) * posRad.x;
+        this.positionTextAnim.y += (this.scale.x / 2) * posRad.y;
+
         this.draw();
+
     }
 
     update(dt) {
-        // Animate scale
+        // Animate scale Piece
         if ( this.endRadianAnim < this.endRadian - 0.01 ) {
 
             this.endRadianAnim += Mathf.lerp(this.endRadianAnim, this.endRadian, this.scale.y * dt);
@@ -119,10 +139,26 @@ class Piece extends Object2D {
             this.scaleAnim += Mathf.lerp(this.scaleAnim, this.scale.length(), this.scale.y * dt);
         }
 
+        // Animate position and scale Text
+        this.positionTextAnim.lerp(this.positionText, this.scale.y * dt);
+        this.textCirRadiusAnim += Mathf.lerp(this.textCirRadiusAnim, this.textCirRadius, (this.scale.y / 3) * dt);
+
+        // Set defaul end position [y] on a Text
+        const circleRadius = this.textCirRadius * 3;
+        const height = (this.parent.children.length / 2) * circleRadius;
+        this.positionText.y = (this.position.y - height) + (circleRadius * this.id);
+
         this.draw();
     }
 
     draw() {
+
+        this.drawPiece();
+        this.drawText();
+
+    }
+
+    drawPiece() {
 
         this.parent.renderer.beginPath();
 
@@ -136,26 +172,18 @@ class Piece extends Object2D {
         this.parent.renderer.fill();
 
     }
-}
 
-class List extends Object2D {
+    drawText() {
 
-    constructor() {
-        super();
-    }
+        this.parent.renderer.arc(this.positionTextAnim.x, this.positionTextAnim.y, this.textCirRadiusAnim,
+            0, Math.PI * 2);
+        this.parent.renderer.fill();
 
-    ready() {
-        
-    }
-
-    draw() {
+        this.parent.renderer.fillStyle = 'black';
+        this.parent.renderer.font = `bold ${this.textCirRadiusAnim * 2}px Arial`;
+        this.parent.renderer.fillText(this.text, this.positionTextAnim.x + 12, this.positionTextAnim.y + 7);
 
     }
-
-    update() {
-
-    }
-
 }
 
 export { PieChart };

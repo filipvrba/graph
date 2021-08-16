@@ -6,7 +6,6 @@ canvas.height = window.innerHeight;
 
 const ctx = canvas.getContext('2d');
 const clock = new engine.Clock();
-
 /**
  * Scene
  */
@@ -28,7 +27,7 @@ const pieChart = new engine.PieChart([
     },
     {
         value: 500,
-        name: "tablet"
+        name: "other"
     }
 ]);
 pieChart.position = new engine.Vector2(canvas.width / 2, canvas.height / 2);
@@ -41,11 +40,12 @@ scene.add(pieChart);
  * Loop
  */
  function tick() {
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-     // Update
-     pieChart.update(clock.getDT);
+    // Update
+    pieChart.update(clock.getDT);
  
-     requestAnimationFrame(tick);
+    requestAnimationFrame(tick);
      
  }
  
