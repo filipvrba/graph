@@ -8,215 +8,32 @@ class Vector2 {
 	}
 
 	static get ZERO() {
+
 		return new Vector2(0, 0);
-	}
-
-	get width() {
-
-		return this.x;
 
 	}
 
-	set width( value ) {
+	static get ONE() {
 
-		this.x = value;
-
-	}
-
-	get height() {
-
-		return this.y;
+		return new Vector2(1, 1);
 
 	}
 
-	set height( value ) {
+	add( v ) {
 
-		this.y = value;
+		const x = this.x + v.x;
+		const y = this.y + v.y;
 
-	}
-
-	set( x, y ) {
-
-		this.x = x;
-		this.y = y;
-
-		return this;
-
-	}
-
-	setScalar( scalar ) {
-
-		this.x = scalar;
-		this.y = scalar;
-
-		return this;
-
-	}
-
-	setX( x ) {
-
-		this.x = x;
-
-		return this;
-
-	}
-
-	setY( y ) {
-
-		this.y = y;
-
-		return this;
-
-	}
-
-	setComponent( index, value ) {
-
-		switch ( index ) {
-
-			case 0: this.x = value; break;
-			case 1: this.y = value; break;
-			default: throw new Error( 'index is out of range: ' + index );
-
-		}
-
-		return this;
-
-	}
-
-	getComponent( index ) {
-
-		switch ( index ) {
-
-			case 0: return this.x;
-			case 1: return this.y;
-			default: throw new Error( 'index is out of range: ' + index );
-
-		}
-
-	}
-
-	clone() {
-
-		return new this.constructor( this.x, this.y );
-
-	}
-
-	copy( v ) {
-
-		this.x = v.x;
-		this.y = v.y;
-
-		return this;
-
-	}
-
-	add( v, w ) {
-
-		if ( w !== undefined ) {
-
-			console.warn( 'THREE.Vector2: .add() now only accepts one argument. Use .addVectors( a, b ) instead.' );
-			return this.addVectors( v, w );
-
-		}
-
-		this.x += v.x;
-		this.y += v.y;
-
-		return this;
-
-	}
-
-	addScalar( s ) {
-
-		this.x += s;
-		this.y += s;
-
-		return this;
-
-	}
-
-	addVectors( a, b ) {
-
-		this.x = a.x + b.x;
-		this.y = a.y + b.y;
-
-		return this;
-
-	}
-
-	addScaledVector( v, s ) {
-
-		this.x += v.x * s;
-		this.y += v.y * s;
-
-		return this;
-
-	}
-
-	sub( v, w ) {
-
-		if ( w !== undefined ) {
-
-			console.warn( 'THREE.Vector2: .sub() now only accepts one argument. Use .subVectors( a, b ) instead.' );
-			return this.subVectors( v, w );
-
-		}
-
-		this.x -= v.x;
-		this.y -= v.y;
-
-		return this;
-
-	}
-
-	subScalar( s ) {
-
-		this.x -= s;
-		this.y -= s;
-
-		return this;
-
-	}
-
-	subVectors( a, b ) {
-
-		this.x = a.x - b.x;
-		this.y = a.y - b.y;
-
-		return this;
-
-	}
-
-	multiply( v ) {
-
-		this.x *= v.x;
-		this.y *= v.y;
-
-		return this;
+		return new this.constructor(x, y);
 
 	}
 
 	multiplyScalar( scalar ) {
 
-		this.x *= scalar;
-		this.y *= scalar;
+		const x = this.x * scalar;
+		const y = this.y * scalar;
 
-		return this;
-
-	}
-
-	divide( v ) {
-
-		this.x /= v.x;
-		this.y /= v.y;
-
-		return this;
-
-	}
-
-	divideScalar( scalar ) {
-
-		return this.multiplyScalar( 1 / scalar );
+		return new this.constructor(x, y);
 
 	}
 
@@ -475,7 +292,5 @@ class Vector2 {
 	}
 
 }
-
-Vector2.prototype.isVector2 = true;
 
 export { Vector2 };

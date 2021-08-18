@@ -1,8 +1,12 @@
-class Rendering {
+import { Object2D } from "../engine.js";
+
+class Scene extends Object2D{
     #ctx;
 
     constructor() {
-        this.#ctx = undefined;
+        super();
+
+        this.#ctx = null;
     }
 
     addRenderer(ctx) {
@@ -14,4 +18,4 @@ class Rendering {
     }
 }
 
-export { Rendering };
+export { Scene };
