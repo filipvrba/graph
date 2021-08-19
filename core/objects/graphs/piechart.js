@@ -137,6 +137,10 @@ class Piece extends Object2D {
         if (this.scaleAnim < this.scale.length()) {
 
             this.scaleAnim += Mathf.lerp(this.scaleAnim, this.scale.length(), this.scale.y * dt);
+        } else {
+
+            this.scaleAnim = this.scale.length();
+
         }
 
         // Animate position and scale Text
