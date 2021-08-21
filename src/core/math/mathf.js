@@ -3,6 +3,12 @@ class Mathf {
         return degrees * Math.PI / 180;
     }
 
+    static degrees(radians) {
+
+        return radians * 180 / Math.PI;
+
+    }
+
     static per2deg(percentage) {
         return (percentage / 100) * 360;
     }
