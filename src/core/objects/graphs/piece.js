@@ -13,13 +13,15 @@ class Piece extends Object2D {
 
         this.values = { };
 
+        this.scene = null;
+
     }
 
     ready() {
 
-        const scene = this.parent.parent;
+        this.scene = this.getScene();
 
-        scene.connect('update', signal => {
+        this.connect('update', signal => {
 
             this.draw();
             this.update(signal.dt);
@@ -30,7 +32,6 @@ class Piece extends Object2D {
 
     update(dt) {
         
-
 
     }
 

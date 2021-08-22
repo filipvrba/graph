@@ -1,5 +1,6 @@
 import { Dispatcher } from '../dispatcher.js';
 import { Vector2 } from '../math/vector2.js';
+import { NAME_SCENE } from '../constants.js'
 
 class Object2D extends Dispatcher {
 
@@ -73,6 +74,21 @@ class Object2D extends Dispatcher {
 
 		this.#globalPosition = this.parent.globalPosition.clone();
 		this.#globalPosition.add( this.position );
+	}
+
+	getScene() {
+
+		let objectParent = this.parent;
+
+		while (true) {
+
+			if (objectParent == null) return this;
+			if (objectParent.constructor.name == NAME_SCENE) return objectParent;
+
+			objectParent = objectParent.parent;
+
+		}
+
 	}
 
 }

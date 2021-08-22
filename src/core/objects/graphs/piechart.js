@@ -12,6 +12,7 @@ class PieChart extends Object2D {
 
         this.startRadian = 0;
         this.endDegrees = 0;
+        this.widthRadius = 0;
 
         this.totalValue = this.countTotalValue();
 
@@ -78,7 +79,10 @@ class PieChart extends Object2D {
 
         const piece = new Piece(this.startRadian, values.angles.endRadian);
         piece.id = values.id;
+        
         piece.values = values.pieceValue;
+        piece.values['widthRadius'] = this.widthRadius;
+        piece.values['angles'] = values.angles;
 
         // Add all the objects for the scene identity
         this.add(piece);

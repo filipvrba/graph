@@ -32,6 +32,7 @@ const pieChart = new engine.PieChart([
     }
 ]);
 pieChart.position = new engine.Vector2(canvas.width / 2, canvas.height / 2);
+pieChart.widthRadius = 200;
 
 scene.add(pieChart);
 
