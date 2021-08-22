@@ -10,7 +10,9 @@ const clock = new engine.Clock();
  * Scene
  */
 const scene = new engine.Scene();
-scene.addRenderer(ctx)
+scene.addRenderer(ctx);
+scene.position = new engine.Vector2(10, 10);
+scene.ready();
 
 // Create pie and add to group for custom transformace
 const pieChart = new engine.PieChart([

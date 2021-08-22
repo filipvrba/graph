@@ -94,6 +94,12 @@ class Vector2 {
 		return this;
 
 	}
+
+	equals( x, y ) {
+
+		return ( ( x === this.x ) && ( y === this.y ) );
+
+	}
 }
 
 export { Vector2 };

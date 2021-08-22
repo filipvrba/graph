@@ -7,6 +7,13 @@ class Scene extends Object2D{
         super();
 
         this.#ctx = null;
+
+    }
+
+    ready() {
+
+        this.globalPosition = this.position;
+
     }
 
     addRenderer(ctx) {

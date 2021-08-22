@@ -37,7 +37,7 @@ class Piece extends Object2D {
 
     draw() {
 
-        //this.drawPiece();
+        this.drawPiece();
         //this.drawText();
 
     }
@@ -58,6 +58,8 @@ class Piece extends Object2D {
     }
 
     drawText() {
+
+        //const globalPosition = this.globalPosition
 
         this.renderer.arc(this.positionTextAnim.x, this.positionTextAnim.y, this.textCirRadiusAnim,
             0, Math.PI * 2);

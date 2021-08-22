@@ -1,4 +1,5 @@
 import { Mathf } from '../../math/mathf.js';
+import { Vector2 } from '../../math/vector2.js';
 import { Object2D } from '../object2d.js';
 import { Piece } from './piece.js';
 
@@ -16,18 +17,19 @@ class PieChart extends Object2D {
 
         this.totalValue = this.countTotalValue();
 
+        this.pieces = new Object2D();
+        this.texts = new Object2D();
+
+        //this.add(this.pieces, 'pieces');
+        //this.add(this.texts, 'texts');
+
     }
 
     ready() {
 
-        const scene = this.parent;
-        scene.connect('update', signal => {
-
-            this.update(signal.dt);
-
-        });
-
         this.createPie();
+
+        //const pieces = this.findChildren('pieces');
 
     }
 
@@ -38,8 +40,6 @@ class PieChart extends Object2D {
 
             // Calculate angles
             const angleValues = this.pieceAngleValues(i);
-
-            
 
             this.createPiece({
                 id: i,

@@ -8,18 +8,18 @@ class Object2D extends Dispatcher {
 
 	constructor() {
 		super();
-		this.position = new Vector2(0, 0);
 
+		this.position = new Vector2(0, 0);
 		this.#globalPosition = new Vector2(0, 0);
 
-		this.id = 0;
+		this.id = undefined;
 		this.parent = null;
 		this.children = [];
 
 		this.animations = [];
 	}
 
-	add(object) {
+	add(object, id = undefined) {
 		if (object === this) {
 			console.error('THREE.Object3D.add: object can\'t be added as a child of itself.', object);
 			return this;
@@ -31,6 +31,7 @@ class Object2D extends Dispatcher {
 			}
 
 			object.parent = this;
+			object.id = id;
 			this.children.push(object);
 
 			object.updateGlobalPosition();
@@ -63,18 +64,46 @@ class Object2D extends Dispatcher {
 
 	}
 
+	set globalPosition( vector ) {
+
+		this.#globalPosition = vector;
+
+	}
+
 	updateGlobalPosition() {
 
-		if (this.parent === null) {
+		if (this.parent === null) return;
 
-			this.#globalPosition = this.position.clone();
-			return;
+		const addX = this.position.x + this.parent.#globalPosition.x;
+		const addY = this.position.y + this.parent.#globalPosition.y;
+
+		if ( this.#globalPosition.equals( addX, addY ) ) {
+
+			return this.#globalPosition;
 
 		}
 
-		this.#globalPosition = this.parent.globalPosition.clone();
+		this.#globalPosition = this.parent.#globalPosition.clone();
 		this.#globalPosition.add( this.position );
+		
 	}
+
+	// updateGlobalPosition() {
+
+	// 	if (this.parent === null) {
+
+	// 		this.#globalPosition = this.position.clone();
+	// 		return;
+
+	// 	}
+
+	// 	this.parent.updateGlobalPosition();
+
+	// 	//if ( this.#globalPosition.equals( testVec.x, testVec.y) ) return;
+
+	// 	this.#globalPosition = this.parent.globalPosition.clone();
+	// 	this.#globalPosition.add( this.position );
+	// }
 
 	getScene() {
 
@@ -88,6 +117,22 @@ class Object2D extends Dispatcher {
 			objectParent = objectParent.parent;
 
 		}
+
+	}
+
+	findChildren( id ) {
+
+		for (let i = 0; i < this.children.length; i++) {
+
+			if ( this.children[i].id === id ) {
+				
+				return this.children[i];
+
+			}
+
+		}
+
+		return null;
 
 	}
 
