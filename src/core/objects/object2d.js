@@ -7,6 +7,7 @@ class Object2D extends Dispatcher {
 	#globalPosition;
 
 	constructor() {
+
 		super();
 
 		this.position = new Vector2(0, 0);
@@ -17,6 +18,7 @@ class Object2D extends Dispatcher {
 		this.children = [];
 
 		this.animations = [];
+		
 	}
 
 	add(object, id = undefined) {
@@ -31,7 +33,9 @@ class Object2D extends Dispatcher {
 			}
 
 			object.parent = this;
-			object.id = id;
+
+			if (object.id === undefined) object.id = id;
+
 			this.children.push(object);
 
 			object.updateGlobalPosition();
@@ -77,33 +81,12 @@ class Object2D extends Dispatcher {
 		const addX = this.position.x + this.parent.#globalPosition.x;
 		const addY = this.position.y + this.parent.#globalPosition.y;
 
-		if ( this.#globalPosition.equals( addX, addY ) ) {
-
-			return this.#globalPosition;
-
-		}
+		if ( this.#globalPosition.equals( addX, addY ) ) return;
 
 		this.#globalPosition = this.parent.#globalPosition.clone();
 		this.#globalPosition.add( this.position );
-		
+
 	}
-
-	// updateGlobalPosition() {
-
-	// 	if (this.parent === null) {
-
-	// 		this.#globalPosition = this.position.clone();
-	// 		return;
-
-	// 	}
-
-	// 	this.parent.updateGlobalPosition();
-
-	// 	//if ( this.#globalPosition.equals( testVec.x, testVec.y) ) return;
-
-	// 	this.#globalPosition = this.parent.globalPosition.clone();
-	// 	this.#globalPosition.add( this.position );
-	// }
 
 	getScene() {
 

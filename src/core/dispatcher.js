@@ -58,13 +58,11 @@ class Dispatcher {
         const signals = this.#signals;
         const signalArray = signals[signal.type];
 
-        
-
         if (signalArray !== undefined) {
 
             signal.target = this;
 
-            if ( typeof signal.target.ready === 'undefined' ) {
+            if ( signal.type === 'added' && typeof signal.target.ready === 'undefined' ) {
 
                 // console.error('Signal not find the ready function in ' +
                 //     `the class ${signal.target.constructor.name}!`);

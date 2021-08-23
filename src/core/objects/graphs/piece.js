@@ -1,9 +1,9 @@
 import { Object2D } from '../object2d.js';
 import { Color } from '../../math/color.js';
-import { Mathf } from '../../math/mathf.js';
-import { Vector2 } from '../../math/vector2.js';
+import { PieceAnimationComponent } from './components/PieceAnimationComponent.js'
 
 class Piece extends Object2D {
+
     constructor( startRadian, endRadian ) {
 
         super();
@@ -21,55 +21,59 @@ class Piece extends Object2D {
 
         this.scene = this.getScene();
 
-        this.connect('update', signal => {
+        this.scene.connect('update', signal => {
 
             this.draw();
             this.update(signal.dt);
 
         });
 
+        this.animationComponent = new PieceAnimationComponent( this );
+
     }
 
     update(dt) {
-        
+
+        this.animationComponent.update( dt );
 
     }
 
     draw() {
 
         this.drawPiece();
-        //this.drawText();
+
+    }
+
+    start() {
+
+        // Select state machine - Start view graph
+        this.animationComponent.stateID = 1;
+
+    }
+
+    stop() {
+
+        // Select state machine - Stop view graph
+        this.animationComponent.stateID = 2;
 
     }
 
     drawPiece() {
 
-        this.renderer.beginPath();
+        this.scene.renderer.beginPath();
 
-        this.renderer.arc(this.position.x, this.position.y, this.scaleAnim,
-            this.startRadian, this.endRadianAnim, false);
-        this.renderer.lineTo(this.position.x, this.position.y);
+        this.scene.renderer.arc(this.globalPosition.x, this.globalPosition.y,
+            this.animations[this.animationComponent.animID].widthRadius,
+        this.startRadian, this.animations[this.animationComponent.animID].endRadian, false);
+        this.scene.renderer.lineTo(this.globalPosition.x, this.globalPosition.y);
 
-        this.renderer.closePath();
+        this.scene.renderer.closePath();
         
-        this.renderer.fillStyle = this.colorStyle;
-        this.renderer.fill();
+        this.scene.renderer.fillStyle = this.colorStyle;
+        this.scene.renderer.fill();
 
     }
 
-    drawText() {
-
-        //const globalPosition = this.globalPosition
-
-        this.renderer.arc(this.positionTextAnim.x, this.positionTextAnim.y, this.textCirRadiusAnim,
-            0, Math.PI * 2);
-        this.renderer.fill();
-
-        this.renderer.fillStyle = 'black';
-        this.renderer.font = `bold ${this.textCirRadiusAnim * 2}px Arial`;
-        this.renderer.fillText(this.text, this.positionTextAnim.x + 12, this.positionTextAnim.y + 7);
-
-    }
 }
 
 export { Piece };

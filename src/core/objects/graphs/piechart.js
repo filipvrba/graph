@@ -1,5 +1,4 @@
 import { Mathf } from '../../math/mathf.js';
-import { Vector2 } from '../../math/vector2.js';
 import { Object2D } from '../object2d.js';
 import { Piece } from './piece.js';
 
@@ -17,19 +16,44 @@ class PieChart extends Object2D {
 
         this.totalValue = this.countTotalValue();
 
-        this.pieces = new Object2D();
-        this.texts = new Object2D();
-
-        //this.add(this.pieces, 'pieces');
-        //this.add(this.texts, 'texts');
-
+        
     }
 
     ready() {
 
+        this.pieces = new Object2D();
+        this.texts = new Object2D();
+
+        this.add(this.pieces, 'pieces');
+        this.add(this.texts, 'texts');
+
+        this.pieces.connect('animFinish', (signal) => {
+            this.animFinish( signal.state, signal.id );
+        });
+
         this.createPie();
 
-        //const pieces = this.findChildren('pieces');
+    }
+
+    /**
+     * Finished animation from piece animation component.
+     * @param {Animation id from state machine} state 
+     * @param {Object id for identification piece} id 
+     */
+    animFinish( state, id ) {
+        
+        switch( state ) {
+            case 1:
+                    if (id + 1 < this.pieArray.length)
+                        this.pieces.children[id + 1].start();
+                break;
+            
+            case 2:
+                    if (id - 1 >= 0)
+                        this.pieces.children[id - 1].stop();
+                break;
+
+        }
 
     }
 
@@ -49,6 +73,13 @@ class PieChart extends Object2D {
 
             // For loop is added values, that true calculate angles.
             this.addRadDeg(angleValues);
+
+        }
+
+        if (this.pieces.children.length > 0) {
+
+
+            this.pieces.children[0].start();
 
         }
 
@@ -79,13 +110,14 @@ class PieChart extends Object2D {
 
         const piece = new Piece(this.startRadian, values.angles.endRadian);
         piece.id = values.id;
-        
+
         piece.values = values.pieceValue;
         piece.values['widthRadius'] = this.widthRadius;
         piece.values['angles'] = values.angles;
 
         // Add all the objects for the scene identity
-        this.add(piece);
+        this.pieces.add(piece);
+    
     }
 
     countTotalValue() {

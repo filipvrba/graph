@@ -6,4 +6,5 @@ export { Color } from './math/color.js';
 export { Object2D } from './objects/object2d.js';
 export { Dispatcher } from './dispatcher';
 export { Scene } from './objects/scene.js';
-export { Piece } from './objects/graphs/piece.js'
+export { Piece } from './objects/graphs/piece.js';
+export { AnimationPlayer } from './animation/animationplayer.js';

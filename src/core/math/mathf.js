@@ -19,10 +19,6 @@ class Mathf {
 
     static lerp(value1, value2, alpha) {
 
-        if (value1 >= value2 - 0.001) {
-            return 0;
-        }
-
 		return( value2 - value1 ) * alpha;
 	}
 }
