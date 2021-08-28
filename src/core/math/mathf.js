@@ -21,6 +21,12 @@ class Mathf {
 
 		return( value2 - value1 ) * alpha;
 	}
+
+    static lerp2( a, b, t ) {
+
+		return a + ( b - a ) * t;
+
+	}
 }
 
 export { Mathf };

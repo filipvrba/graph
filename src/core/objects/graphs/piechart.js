@@ -16,16 +16,15 @@ class PieChart extends Object2D {
 
         this.totalValue = this.countTotalValue();
 
-        
     }
 
     ready() {
 
         this.pieces = new Object2D();
-        this.texts = new Object2D();
+        this.list = new Object2D();
 
         this.add(this.pieces, 'pieces');
-        this.add(this.texts, 'texts');
+        this.add(this.list, 'list');
 
         this.pieces.connect('animFinish', (signal) => {
             this.animFinish( signal.state, signal.id );
@@ -57,6 +56,16 @@ class PieChart extends Object2D {
 
     }
 
+    createList() {
+
+        for (let i = 0; i < this.pieArray.length; i++) {
+
+
+
+        }
+
+    }
+
     createPie() {
 
         // Look on the list and write defined values for pieces.
@@ -76,8 +85,8 @@ class PieChart extends Object2D {
 
         }
 
+        // Let's go play animation
         if (this.pieces.children.length > 0) {
-
 
             this.pieces.children[0].start();
 

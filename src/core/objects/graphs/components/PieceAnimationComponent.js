@@ -39,9 +39,10 @@ class PieceAnimationComponent {
 
     }
 
-    animFinish( endPoint ) {
+    animFinish( value1, value2 ) {
 
-        if ( this.valuesAnimation.endRadian === endPoint ) {
+        //this.valuesAnimation.endRadian >= endPoint
+        if ( value1 >= value2 ) {
 
             if ( !this.valuesAnimation.isFinish ) {
 
@@ -56,11 +57,11 @@ class PieceAnimationComponent {
 
     startProgress( dt ) {
 
-        this.animFinish( this.piece.endRadian );
+        this.animFinish( this.valuesAnimation.endRadian, this.piece.endRadian - 0.1 );
 
         if (this.valuesAnimation.widthRadius <= this.piece.values.widthRadius - 0.005) {
             this.valuesAnimation.widthRadius += Mathf.lerp(this.valuesAnimation.widthRadius,
-                this.piece.values.widthRadius, dt * this.valuesAnimation.speed);
+                this.piece.values.widthRadius, dt * (this.valuesAnimation.speed * 0.5));
         } else {
             this.valuesAnimation.widthRadius = this.piece.values.widthRadius;
         }
@@ -76,11 +77,11 @@ class PieceAnimationComponent {
 
     stopProgress( dt ) {
 
-        this.animFinish(this.piece.startRadian);
+        this.animFinish( this.piece.startRadian + 0.1, this.valuesAnimation.endRadian );
 
         if (this.valuesAnimation.widthRadius >= 0.005) {
             this.valuesAnimation.widthRadius += Mathf.lerp(this.valuesAnimation.widthRadius,
-                0, dt * this.valuesAnimation.speed);
+                0, dt * (this.valuesAnimation.speed * 0.5));
         } else {
             this.valuesAnimation.widthRadius = 0;
         }
