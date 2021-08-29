@@ -27,7 +27,7 @@ class PieChart extends Object2D {
         this.add(this.list, 'list');
 
         this.pieces.connect('animFinish', (signal) => {
-            this.animFinish( signal.state, signal.id );
+            this.animFinish( signal.id );
         });
 
         this.createPie();
@@ -39,18 +39,11 @@ class PieChart extends Object2D {
      * @param {Animation id from state machine} state 
      * @param {Object id for identification piece} id 
      */
-    animFinish( state, id ) {
+    animFinish( id ) {
         
-        switch( state ) {
-            case 1:
-                    if (id + 1 < this.pieArray.length)
-                        this.pieces.children[id + 1].start();
-                break;
-            
-            case 2:
-                    if (id - 1 >= 0)
-                        this.pieces.children[id - 1].stop();
-                break;
+        if (id + 1 < this.pieArray.length) {
+
+            this.pieces.children[ id + 1 ].start();
 
         }
 

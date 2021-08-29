@@ -19,19 +19,19 @@ const pieChart = new engine.PieChart([
     {
         value: 40,
         name: "pc"
+    },
+    {
+        value: 200,
+        name: "mobile"
+    },
+    {
+        value: 500,
+        name: "tablet"
+    },
+    {
+        value: 500,
+        name: "other"
     }
-    // {
-    //     value: 200,
-    //     name: "mobile"
-    // },
-    // {
-    //     value: 500,
-    //     name: "tablet"
-    // },
-    // {
-    //     value: 500,
-    //     name: "other"
-    // }
 ]);
 pieChart.position = new engine.Vector2(canvas.width / 2, canvas.height / 2);
 pieChart.widthRadius = 200;

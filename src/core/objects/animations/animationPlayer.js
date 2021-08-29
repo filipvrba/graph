@@ -127,7 +127,7 @@ class AnimationPlayer extends BasicObject {
 
     defStopAnim( object ) {
 
-        if ( Math.floor( this.time ) >= object.values.time &&
+        if ( this.time >= object.values.time &&
             ( this.valuesMask[ STOP ][ object.attribute.id ] & this.getUniqueID( object ) ) === 0 ) {
 
             const applyString = `this.parent.${ object.attribute.name } = ${ object.values.value };`;
