@@ -3,6 +3,7 @@ import { Color } from '../../math/color.js';
 import { PieceAnimationComponent } from './components/PieceAnimationComponent.js'
 import { Animation } from '../animations/animation.js';
 import { AnimationPlayer } from '../animations/animationPlayer.js';
+import { Vector2 } from '../../math/vector2.js';
 
 class Piece extends Object2D {
 
@@ -36,15 +37,13 @@ class Piece extends Object2D {
 
         const animation = new Animation();
         let trackID = animation.addTrack( 'widthRadius' );
-        //animation.addInsertKey(trackID, 0, 0);
-        animation.addInsertKey(trackID, 0, this.values.widthRadius);
-        //animation.addInsertKey(trackID, 6, 0);
+        animation.addInsertKey(trackID, 0, 0);
+        animation.addInsertKey(trackID, 2, this.values.widthRadius);
+        animation.addInsertKey(trackID, 6, 0);
 
         trackID = animation.addTrack( 'endRadian' );
         animation.addInsertKey(trackID, 0, this.startRadian);
         animation.addInsertKey(trackID, 3, this.endRadian);
-        animation.addInsertKey(trackID, 4, this.startRadian);
-        animation.addInsertKey(trackID, 6, this.endRadian);
 
         this.animationPlayer = new AnimationPlayer();
         this.animationPlayer.addAnimation('start', animation);
@@ -92,7 +91,7 @@ class Piece extends Object2D {
         this.scene.renderer.beginPath();
 
         this.scene.renderer.arc(this.globalPosition.x, this.globalPosition.y,
-            this.widthRadius,
+            Math.abs( this.widthRadius ),
         this.startRadian, this.endRadian, false);
         this.scene.renderer.lineTo(this.globalPosition.x, this.globalPosition.y);
 

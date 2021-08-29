@@ -18,6 +18,7 @@ class AnimationPlayer extends BasicObject {
 
         this.valuesMask = new Array();
         this.animation = new Map();
+        this.historyAnim = { };
 
         this.time = 0;
         this.lastTime = 0;
@@ -42,7 +43,7 @@ class AnimationPlayer extends BasicObject {
         this.time += dt;
 
         let attributeID = 0;
-        this.animation.forEach( ( attributeValues, attributeName ) => {
+        this.animation.tracks.forEach( ( attributeValues, attributeName ) => {
 
             this.updateAnimation( dt, { values: attributeValues,
                 name: attributeName, id: attributeID } );
@@ -114,12 +115,13 @@ class AnimationPlayer extends BasicObject {
 
     processAnim( dt, object ) {
 
-        const time = ( object.values.value - this.valueZERO ) / ( object.values.time - this.lastTime ) * dt;
+        const arrayAttributeValues = Array.from( this.animation.tracks.get( object.attribute.name ) );
+        const lastValues = arrayAttributeValues[ object.values.id - 1 ];
+
+        const time = ( object.values.value - lastValues[ 1 ] ) / ( object.values.time - lastValues[ 0 ] ) * dt;
 
         const applyString = `this.parent.${ object.attribute.name } += ${ time };`;
         eval( applyString );
-
-        console.log( eval(`this.parent.${ object.attribute.name }`) );
 
     }
 
@@ -128,18 +130,11 @@ class AnimationPlayer extends BasicObject {
         if ( Math.floor( this.time ) >= object.values.time &&
             ( this.valuesMask[ STOP ][ object.attribute.id ] & this.getUniqueID( object ) ) === 0 ) {
 
-            //if ( object.values.id === 0 ) {
-
-                const applyString = `this.parent.${ object.attribute.name } = ${ object.values.value };`;
-                eval( applyString );
-
-            //}
+            const applyString = `this.parent.${ object.attribute.name } = ${ object.values.value };`;
+            eval( applyString );
 
             this.valuesMask[ STOP ][ object.attribute.id ] |= this.getUniqueID( object );
             this.valuesMask[ PROCESS ][ object.attribute.id ] |= this.getUniqueID( object, 1 );
-
-            this.valueZERO = object.values.value;
-            this.lastTime = object.values.time;
 
         }
 
@@ -162,7 +157,7 @@ class AnimationPlayer extends BasicObject {
         if ( ! this.animations.has(name) ) return;
 
         this.currentAnimation = name;
-        this.animation = this.animations.get(name).tracks;
+        this.animation = this.animations.get(name);
 
         // Define BitMask on values for attribute
         // 0 - Process
@@ -172,7 +167,7 @@ class AnimationPlayer extends BasicObject {
 
         for ( let i = 0; i < this.valuesMask.length; i++ ) {
 
-            this.valuesMask[ i ] = new Array( this.animation.size );
+            this.valuesMask[ i ] = new Array( this.animation.tracks.size );
 
         }
 
@@ -186,7 +181,7 @@ class AnimationPlayer extends BasicObject {
     defStartAnim() {
 
         let attributeID = 0;
-        this.animation.forEach( ( attributeValues ) => {
+        this.animation.tracks.forEach( ( attributeValues ) => {
 
             let valuesID = 0;
             attributeValues.forEach( ( values ) => {
