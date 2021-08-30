@@ -1,3 +1,4 @@
+import { Color } from '../../math/color.js';
 import { Mathf } from '../../math/mathf.js';
 import { Vector2 } from '../../math/vector2.js';
 import { Object2D } from '../object2d.js';
@@ -18,6 +19,8 @@ class PieChart extends Object2D {
         this.widthRadius = 0;
 
         this.totalValue = this.countTotalValue();
+
+        this.color = new Color();
 
     }
 
@@ -63,16 +66,21 @@ class PieChart extends Object2D {
             // Calculate angles
             const angleValues = this.pieceAngleValues(i);
 
+            // Random color
+            const color = this.color.getRandomPalettte();
+
             this.createPiece({
                 id: i,
                 angles: angleValues,
-                pieceValue: this.pieArray[i]
+                pieceValue: this.pieArray[i],
+                color: color
             });
 
             this.list.createLabel( {
                 
                 id: i,
-                text: `${ this.pieArray[ i ].name } (${ this.pieArray[i].value })`
+                text: `${ this.pieArray[ i ].name } (${ this.pieArray[i].value })`,
+                color: color
 
             });
 

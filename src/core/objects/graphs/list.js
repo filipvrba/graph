@@ -72,6 +72,7 @@ class List extends Object2D {
         label.widthRadius = this.labelWidthRadius;
         label.position = new Vector2( this.parent.widthRadius,
             (this.circleWidth + this.space) * values.id );
+        label.colorStyle = values.color;
 
         this.add( label );
 

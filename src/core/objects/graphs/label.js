@@ -56,9 +56,9 @@ class Label extends Object2D {
 
     draw() {
 
-        this.scene.renderer.fillStyle = 'green';
         this.scene.renderer.arc(this.globalPosition.x, this.globalPosition.y, Math.abs( this.widthRadius ),
             0, Math.PI * 2);
+        this.scene.renderer.fillStyle = this.colorStyle;
         this.scene.renderer.fill();
 
         this.scene.renderer.fillStyle = 'black';

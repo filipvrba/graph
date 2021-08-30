@@ -20,6 +20,7 @@ class Piece extends Object2D {
     ready() {
 
         this.scene = this.getScene();
+        this.colorStyle = this.values.color;
 
         this.createAnimation();
 
