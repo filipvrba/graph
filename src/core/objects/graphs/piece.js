@@ -21,12 +21,6 @@ class Piece extends Object2D {
 
         this.scene = this.getScene();
 
-        this.scene.connect('update', signal => {
-
-            this.draw();
-
-        });
-
         this.createAnimation();
 
         this.animationPlayer.connect( 'animFinish', ( signal ) => {
@@ -46,7 +40,7 @@ class Piece extends Object2D {
 
         trackID = animation.addTrack( 'endRadian' );
         animation.addInsertKey(trackID, 0, this.startRadian);
-        animation.addInsertKey(trackID, 0.2, this.endRadian);
+        animation.addInsertKey(trackID, 0.1, this.endRadian);
 
         this.animationPlayer = new AnimationPlayer();
         this.animationPlayer.addAnimation('start', animation);
@@ -71,7 +65,7 @@ class Piece extends Object2D {
     drawPiece() {
 
         this.scene.renderer.beginPath();
-
+        
         this.scene.renderer.arc(this.globalPosition.x, this.globalPosition.y,
             Math.abs( this.widthRadius ),
         this.startRadian, this.endRadian, false);

@@ -62,6 +62,8 @@ class Dispatcher {
 
             signal.target = this;
 
+            
+
             if ( signal.type === 'added' && typeof signal.target.ready === 'undefined' ) {
 
                 // console.error('Signal not find the ready function in ' +

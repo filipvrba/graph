@@ -36,8 +36,24 @@ class BasicObject extends Dispatcher {
 
 			}
 
-			object.connect('added', object.ready);
+			object.connect('added', object.ready );
 			object.emitSignal({ type: 'added' });
+
+			this.getScene().connect( 'update', (signal) => {
+
+				if ( typeof object.update !== 'undefined' ) {
+					
+					object.update( signal.dt );
+
+				}
+
+				if ( typeof object.draw !== 'undefined' ) {
+
+					object.draw( );
+
+				}
+
+			} );
 
 		} else {
 			console.error('THREE.Object3D.add: object not an instance of THREE.Object3D.', object);

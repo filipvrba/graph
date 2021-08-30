@@ -1,5 +1,8 @@
 import { Mathf } from '../../math/mathf.js';
+import { Vector2 } from '../../math/vector2.js';
 import { Object2D } from '../object2d.js';
+import { Label } from './label.js';
+import { List } from './list.js';
 import { Piece } from './piece.js';
 
 class PieChart extends Object2D {
@@ -21,10 +24,13 @@ class PieChart extends Object2D {
     ready() {
 
         this.pieces = new Object2D();
-        this.list = new Object2D();
+        this.list = new List( this.pieArray.length, 13 );
+        this.list.position.x = this.widthRadius + 30;
+
+        this.scene = this.getScene();
 
         this.add(this.pieces, 'pieces');
-        this.add(this.list, 'list');
+        this.add(this.list);
 
         this.pieces.connect('animFinish', (signal) => {
             this.animFinish( signal.id );
@@ -36,24 +42,14 @@ class PieChart extends Object2D {
 
     /**
      * Finished animation from piece animation component.
-     * @param {Animation id from state machine} state 
      * @param {Object id for identification piece} id 
      */
     animFinish( id ) {
-        
+
+        // Go start animation for piece
         if (id + 1 < this.pieArray.length) {
 
-            this.pieces.children[ id + 1 ].start();
-
-        }
-
-    }
-
-    createList() {
-
-        for (let i = 0; i < this.pieArray.length; i++) {
-
-
+            this.visiblePiece( id + 1 );
 
         }
 
@@ -73,6 +69,13 @@ class PieChart extends Object2D {
                 pieceValue: this.pieArray[i]
             });
 
+            this.list.createLabel( {
+                
+                id: i,
+                text: `${ this.pieArray[ i ].name } (${ this.pieArray[i].value })`
+
+            });
+
             // For loop is added values, that true calculate angles.
             this.addRadDeg(angleValues);
 
@@ -81,9 +84,17 @@ class PieChart extends Object2D {
         // Let's go play animation
         if (this.pieces.children.length > 0) {
 
-            this.pieces.children[0].start();
+            this.visiblePiece( 0 );
 
         }
+
+    }
+
+    visiblePiece( id ) {
+
+        this.pieces.children[ id ].start();
+
+        this.emitSignal( { type: 'visible', id: id } );
 
     }
 
