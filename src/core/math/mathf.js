@@ -3,6 +3,12 @@ class Mathf {
         return degrees * Math.PI / 180;
     }
 
+    static degrees(radians) {
+
+        return radians * 180 / Math.PI;
+
+    }
+
     static per2deg(percentage) {
         return (percentage / 100) * 360;
     }
@@ -13,11 +19,13 @@ class Mathf {
 
     static lerp(value1, value2, alpha) {
 
-        if (value1 >= value2 - 0.001) {
-            return 0;
-        }
-
 		return( value2 - value1 ) * alpha;
+	}
+
+    static lerp2( a, b, t ) {
+
+		return a + ( b - a ) * t;
+
 	}
 }
 
