@@ -1,6 +1,4 @@
-import { Object2D } from '../object2d.js';
-import { Animation } from '../animations/animation.js';
-import { AnimationPlayer } from '../animations/animationPlayer.js';
+import { AnimationPlayer, Animation, Object2D } from "../core/index.js";
 
 class Piece extends Object2D {
 

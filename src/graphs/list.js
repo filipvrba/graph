@@ -1,8 +1,5 @@
-import { Vector2 } from "../../math/vector2";
-import { Animation } from "../animations/animation";
-import { AnimationPlayer } from "../animations/animationPlayer";
-import { Object2D } from "../object2d";
-import { Label } from "./label";
+import { AnimationPlayer, Animation, Object2D, Vector2 } from "../core/index.js";
+import { Label } from './index.js'
 
 class List extends Object2D {
 

@@ -1,4 +1,6 @@
-import * as engine from './core/engine.js'
+import * as engine from './core/index.js'
+import * as graphs from './graphs/index.js'
+
 const canvas = document.querySelector('canvas');
 
 canvas.width = window.innerWidth;
@@ -15,7 +17,7 @@ scene.position = new engine.Vector2(10, 10);
 scene.ready();
 
 // Create pie and add to group for custom transformace
-const pieChart = new engine.PieChart([
+const pieChart = new graphs.PieChart([
     {
         value: 40,
         name: "pc"

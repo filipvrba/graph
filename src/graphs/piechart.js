@@ -1,10 +1,5 @@
-import { Color } from '../../math/color.js';
-import { Mathf } from '../../math/mathf.js';
-import { Vector2 } from '../../math/vector2.js';
-import { Object2D } from '../object2d.js';
-import { Label } from './label.js';
-import { List } from './list.js';
-import { Piece } from './piece.js';
+import { Color, Mathf, Object2D } from "../core/index.js";
+import { List, Piece } from './index.js'
 
 class PieChart extends Object2D {
 

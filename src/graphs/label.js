@@ -1,6 +1,4 @@
-import { AnimationPlayer } from "../animations/animationPlayer";
-import { Animation } from "../animations/animation";
-import { Object2D } from "../object2d";
+import { AnimationPlayer, Animation, Object2D } from "../core/index.js";
 
 class Label extends Object2D {
 
