@@ -41,7 +41,6 @@ pieChart.widthRadius = 200;
 scene.add(pieChart);
 
 
-
 /**
  * Loop
  */

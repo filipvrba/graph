@@ -12,6 +12,7 @@ class PieChart extends Object2D {
         this.startRadian = 0;
         this.endDegrees = 0;
         this.widthRadius = 0;
+        this.isScaletable = false;
 
         this.totalValue = this.countTotalValue();
 
@@ -44,10 +45,18 @@ class PieChart extends Object2D {
      */
     animFinish( id ) {
 
+        
+
         // Go start animation for piece
         if (id + 1 < this.pieArray.length) {
 
             this.visiblePiece( id + 1 );
+
+        }
+        
+        if ( id + 1 === this.pieArray.length ) {
+
+            this.isScaletable = true;
 
         }
 

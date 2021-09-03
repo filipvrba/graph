@@ -1,4 +1,5 @@
 import { AnimationPlayer, Animation, Object2D } from "../core/index.js";
+import { SelectCompoment } from './components/selectCompoment.js'
 
 class Label extends Object2D {
 
@@ -7,7 +8,6 @@ class Label extends Object2D {
         super();
 
         this.text = text;
-
         this.scene = null;
 
     }
@@ -17,6 +17,10 @@ class Label extends Object2D {
         this.scene = this.getScene();
 
         this.createAnimation();
+
+        // Add the select component to the scene tree
+        this.selectComp = new SelectCompoment( this.widthRadius, 5 );
+        this.add( this.selectComp, 'selectComponent' );
 
         this.widthRadius = 0;
 

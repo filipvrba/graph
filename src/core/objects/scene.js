@@ -1,3 +1,4 @@
+import { Input } from "../input.js";
 import { Object2D } from "./object2d.js";
 
 class Scene extends Object2D{
@@ -13,6 +14,9 @@ class Scene extends Object2D{
     ready() {
 
         this.globalPosition = this.position;
+
+        this.input = new Input();
+        this.add( this.input );
 
     }
 

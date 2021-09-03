@@ -48,17 +48,28 @@ class Vector2 {
 		let x = this.x;
 		let y = this.y;
 
-		const l = x * x + y * y;
-		
+		let l = x * x + y * y;
 
+		
+		
 		if (l !== 0) {
 
-			x /= l;
-			y /= l;
+			l = Math.sqrt( l );
+			this.x /= l;
+			this.y /= l;
 
 		}
 
 		return this;
+
+	}
+
+	normalized() {
+
+		const v = this.clone();
+		v.normalize();
+
+		return v;
 
 	}
 
@@ -98,6 +109,34 @@ class Vector2 {
 	equals( x, y ) {
 
 		return ( ( x === this.x ) && ( y === this.y ) );
+
+	}
+
+	distanceTo( vector ) {
+
+		return Math.sqrt( this.distanceToSquared( vector ) );
+
+	}
+
+	distanceToSquared( v ) {
+
+		const dx = this.x - v.x, dy = this.y - v.y;
+		return dx * dx + dy * dy;
+
+	}
+
+	dot( v ) {
+
+		return this.x * v.x + this.y * v.y;
+
+	}
+
+	sub( v ) {
+
+		this.x -= v.x;
+		this.y -= v.y;
+
+		return this;
 
 	}
 }

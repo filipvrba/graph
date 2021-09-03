@@ -32,6 +32,28 @@ class List extends Object2D {
 
         this.createAnimation();
 
+        const pieces = this.parent.findChildren( 'pieces' );
+        pieces.connect( 'pieceEntered', ( signal ) => this.pieceEntered( signal.piece ) );
+        pieces.connect( 'pieceExited', ( signal ) => this.pieceExited( signal.piece ) );
+
+    }
+
+    pieceEntered( piece ) {
+
+        const label = this.findChildren( piece.id );
+        const selectComp = label.findChildren( 'selectComponent' );
+
+        selectComp.on();
+
+    }
+
+    pieceExited( piece ) {
+
+        const label = this.findChildren( piece.id );
+        const selectComp = label.findChildren( 'selectComponent' );
+
+        selectComp.off();
+
     }
 
     createAnimation() {

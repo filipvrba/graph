@@ -1,3 +1,5 @@
+import { Vector2 } from "./vector2";
+
 class Mathf {
     static radians(degrees) {
         return degrees * Math.PI / 180;
@@ -25,6 +27,12 @@ class Mathf {
     static lerp2( a, b, t ) {
 
 		return a + ( b - a ) * t;
+
+	}
+
+    static radianToVector( radian ) {
+
+        return new Vector2( Math.cos( radian ), Math.sin( radian ) );
 
 	}
 }

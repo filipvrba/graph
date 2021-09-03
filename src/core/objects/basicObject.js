@@ -55,6 +55,16 @@ class BasicObject extends Dispatcher {
 
 			} );
 
+			this.getScene().input.connect( 'input', ( signal ) => {
+
+				if ( typeof object.input !== 'undefined' ) {
+
+					object.input( signal.mousePosition );
+
+				}
+
+			});
+
 		} else {
 			console.error('THREE.Object3D.add: object not an instance of THREE.Object3D.', object);
 		}

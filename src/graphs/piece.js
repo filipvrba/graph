@@ -1,4 +1,5 @@
-import { AnimationPlayer, Animation, Object2D } from "../core/index.js";
+import { AnimationPlayer, Animation, Object2D, Vector2, Mathf, Collision } from "../core/index.js";
+import { SelectCompoment } from "./components/selectCompoment.js";
 
 class Piece extends Object2D {
 
@@ -13,6 +14,8 @@ class Piece extends Object2D {
 
         this.scene = null;
 
+        this.collision = new Collision();
+
     }
 
     ready() {
@@ -24,9 +27,37 @@ class Piece extends Object2D {
 
         this.animationPlayer.connect( 'animFinish', ( signal ) => {
 
-            this.parent.emitSignal( { type: 'animFinish', id: this.id } );
+            if ( signal.name === 'start' ) this.parent.emitSignal( { type: 'animFinish', id: this.id } );
 
         } );
+
+        this.add( this.collision );
+
+        this.selectComp = new SelectCompoment( this.values.widthRadius );
+        this.add( this.selectComp );
+        
+        this.collision.connect( 'mouseEntered', () => this.mouseEntered() );
+        this.collision.connect( 'mouseExited', () => this.mouseExited() );
+
+    }
+
+    mouseEntered() {
+
+        if ( !this.parent.parent.isScaletable ) return;
+
+        this.selectComp.on()
+
+        this.parent.emitSignal( { type: 'pieceEntered', piece: this } );
+
+    }
+
+    mouseExited() {
+
+        if ( !this.parent.parent.isScaletable ) return;
+
+        this.selectComp.off()
+
+        this.parent.emitSignal( { type: 'pieceExited', piece: this } );
 
     }
 
@@ -54,14 +85,7 @@ class Piece extends Object2D {
 
     }
 
-
     draw() {
-
-        this.drawPiece();
-
-    }
-
-    drawPiece() {
 
         this.scene.renderer.beginPath();
         
