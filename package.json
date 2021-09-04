@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "webpack --config ./bundler/webpack.prod.js",
-    "dev": "webpack serve --config ./bundler/webpack.dev.js"
+    "dev": "webpack serve --config ./bundler/webpack.dev.js",
+    "raw": "python3 ./bundler/build.py"
   },
   "dependencies": {
     "@babel/core": "^7.14.6",
