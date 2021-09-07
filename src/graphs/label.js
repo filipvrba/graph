@@ -24,11 +24,13 @@ class Label extends Object2D {
 
         this.widthRadius = 0;
 
-        this.animationPlayer.connect( 'animFinish', ( ) => {
+        this.animFinisHandler = ( ) => {
 
             this.parent.emitSignal( { type: 'animFinish', id: this.id } );
 
-        } );
+        }
+
+        this.animationPlayer.connect( 'animFinish', this.animFinisHandler );
 
     }
 
@@ -66,6 +68,14 @@ class Label extends Object2D {
         this.scene.renderer.fillStyle = 'black';
         this.scene.renderer.font = `bold ${ Math.abs( this.widthRadius ) * 2 }px Arial`;
         this.scene.renderer.fillText(this.text, this.globalPosition.x + 12, this.globalPosition.y + 7);
+
+    }
+
+    free() {
+
+        super.free();
+
+        this.animationPlayer.disconect( 'animFinish', this.animFinisHandler );
 
     }
 

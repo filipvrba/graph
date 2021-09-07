@@ -31,11 +31,20 @@ class PieChart extends Object2D {
         this.add(this.pieces, 'pieces');
         this.add(this.list);
 
-        this.pieces.connect('animFinish', (signal) => {
+        this.animFinishHandler = (signal) => {
             this.animFinish( signal.id );
-        });
+        }
+        this.pieces.connect( 'animFinish', this.animFinishHandler );
 
         this.createPie();
+
+    }
+
+    free() {
+
+        super.free();
+        
+        this.pieces.disconect( 'animFinish', this.animFinishHandler );
 
     }
 

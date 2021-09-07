@@ -25,19 +25,33 @@ class Piece extends Object2D {
 
         this.createAnimation();
 
-        this.animationPlayer.connect( 'animFinish', ( signal ) => {
+        this.animFinishHandler = ( signal ) => {
 
             if ( signal.name === 'start' ) this.parent.emitSignal( { type: 'animFinish', id: this.id } );
 
-        } );
+        }
+        this.animationPlayer.connect( 'animFinish', this.animFinishHandler );
 
         this.add( this.collision );
 
         this.selectComp = new SelectCompoment( this.values.widthRadius );
         this.add( this.selectComp );
         
-        this.collision.connect( 'mouseEntered', () => this.mouseEntered() );
-        this.collision.connect( 'mouseExited', () => this.mouseExited() );
+        this.mouseEnteredHandler = () => this.mouseEntered();
+        this.collision.connect( 'mouseEntered', this.mouseEnteredHandler );
+
+        this.mouseExitedHandler = () => this.mouseExited();
+        this.collision.connect( 'mouseExited', this.mouseExitedHandler );
+
+    }
+
+    free() {
+
+        super.free();
+        
+        this.animationPlayer.disconect( 'animFinish', this.animFinishHandler );
+        this.collision.disconect( 'mouseEntered', this.mouseEnteredHandler );
+        this.collision.disconect( 'mouseExited', this.mouseExitedHandler );
 
     }
 

@@ -1,4 +1,4 @@
-import { BasicObject } from "./objects/basicObject";
+import { BasicObject } from "./objects/basicObject.js";
 
 class Collision extends BasicObject {
 
@@ -41,7 +41,7 @@ class Collision extends BasicObject {
     isCollide( mousePos ) {
 
         const distanceRoot = mousePos.distanceTo( this.parent.globalPosition );
-        
+
         if ( distanceRoot <= this.parent.values.widthRadius ) {
 
             const mousePosition = mousePos.clone();

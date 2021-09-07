@@ -4,19 +4,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Graph</title>
-        <style type="text/css">
-            canvas {
-                border: 1px solid black;
-                position: fixed;
-            }
-
-            body {
-                margin: 0;
-            }
-        </style>
     </head>
     <body>
-        <canvas></canvas>
-        <!--<script type="module" src="script.js"></script>-->
+        <button>Free</button>
+        <pie-chart widthRadius="200"></pie-chart>
+    
+        <script type="module" src="./elements/piechartElement.js"></script>
+        <script>
+            const button = document.querySelector( 'button' );
+            button.addEventListener( 'click', () => {
+
+                const pieChart = document.querySelector( 'pie-chart' );
+                pieChart.remove();
+
+            } );
+        </script>
     </body>
 </html>

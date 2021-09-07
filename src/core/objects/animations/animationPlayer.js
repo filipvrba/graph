@@ -28,14 +28,6 @@ class AnimationPlayer extends BasicObject {
         
     }
 
-    ready() {
-
-        // this.getScene().connect('update', (signal) => {
-        //     this.update( signal.dt )
-        // });
-
-    }
-
     update( dt ) {
 
         if ( ! this.playbackActive ) return;

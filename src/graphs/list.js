@@ -18,7 +18,7 @@ class List extends Object2D {
 
     ready( ) {
 
-        this.parent.connect( 'visible', ( signal ) => {
+        this.visibleHandler = ( signal ) => {
 
             this.findChildren( signal.id ).start();
 
@@ -28,13 +28,28 @@ class List extends Object2D {
 
             }
 
-        });
+        }
+        this.parent.connect( 'visible', this.visibleHandler );
 
         this.createAnimation();
 
-        const pieces = this.parent.findChildren( 'pieces' );
-        pieces.connect( 'pieceEntered', ( signal ) => this.pieceEntered( signal.piece ) );
-        pieces.connect( 'pieceExited', ( signal ) => this.pieceExited( signal.piece ) );
+        this.pieces = this.parent.findChildren( 'pieces' );
+
+        this.pieceEnteredHandler = ( signal ) => this.pieceEntered( signal.piece );
+        this.pieces.connect( 'pieceEntered', this.pieceEnteredHandler );
+
+        this.pieceExitedHandler = ( signal ) => this.pieceExited( signal.piece );
+        this.pieces.connect( 'pieceExited', this.pieceExitedHandler );
+
+    }
+
+    free() {
+
+        super.free();
+
+        this.parent.disconect( 'visible', this.visibleHandler );
+        this.pieces.disconect( 'pieceEntered', this.pieceEnteredHandler );
+        this.pieces.disconect( 'pieceExited', this.pieceExitedHandler );
 
     }
 

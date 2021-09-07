@@ -7,7 +7,7 @@ class Scene extends Object2D{
     constructor() {
         super();
 
-        this.#ctx = null;
+        this.#ctx = null
 
     }
 
@@ -21,7 +21,9 @@ class Scene extends Object2D{
     }
 
     addRenderer(ctx) {
+
         this.#ctx = ctx;
+
     }
 
     get renderer() {

@@ -48,8 +48,20 @@ class Dispatcher {
                 signalArray.splice(index, 1);
 
             }
+            
         }
+
     }
+
+    hasSignal( type, listener ) {
+
+		if ( this.#signals === undefined ) return false;
+
+		const listeners = this.#signals;
+
+		return listeners[ type ] !== undefined && listeners[ type ].indexOf( listener ) !== - 1;
+
+	}
 
     emitSignal( signal ) {
 
@@ -62,12 +74,8 @@ class Dispatcher {
 
             signal.target = this;
 
-            
-
             if ( signal.type === 'added' && typeof signal.target.ready === 'undefined' ) {
 
-                // console.error('Signal not find the ready function in ' +
-                //     `the class ${signal.target.constructor.name}!`);
                 return;
 
             }

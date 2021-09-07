@@ -3,7 +3,7 @@ export { Mathf } from './math/mathf.js';
 export { Clock } from './objects/clock.js';
 export { Color } from './math/color.js';
 export { Object2D } from './objects/object2d.js';
-export { Dispatcher } from './dispatcher';
+export { Dispatcher } from './dispatcher.js';
 export { Scene } from './objects/scene.js';
 export { BasicObject } from './objects/basicObject.js'
 export { AnimationPlayer } from './objects/animations/animationPlayer.js';
