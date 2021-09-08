@@ -1,13 +1,11 @@
 import { Input } from "../input.js";
 import { Object2D } from "./object2d.js";
 
-class Scene extends Object2D{
-    #ctx;
+class Scene extends Object2D {
 
     constructor() {
+        
         super();
-
-        this.#ctx = null
 
     }
 
@@ -18,16 +16,6 @@ class Scene extends Object2D{
         this.input = new Input();
         this.add( this.input );
 
-    }
-
-    addRenderer(ctx) {
-
-        this.#ctx = ctx;
-
-    }
-
-    get renderer() {
-        return this.#ctx;
     }
 }
 

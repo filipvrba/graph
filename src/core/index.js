@@ -9,3 +9,4 @@ export { BasicObject } from './objects/basicObject.js'
 export { AnimationPlayer } from './objects/animations/animationPlayer.js';
 export { Animation } from './objects/animations/animation.js';
 export { Collision } from './collision.js'
+export { TDRenderer } from './tdRenderer.js'

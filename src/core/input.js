@@ -17,9 +17,13 @@ class Input extends BasicObject {
 
     ready() {
 
-        this.canvasRect = this.parent.renderer.canvas.getBoundingClientRect();
-
         document.addEventListener( 'mousemove', this.mouseMoveHandler );
+
+    }
+
+    draw( renderer ) {
+
+        this.canvasRect = renderer.canvas.getBoundingClientRect();
 
     }
 

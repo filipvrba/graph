@@ -44,6 +44,33 @@ class Object2D extends BasicObject {
 
 	}
 
+	updateWord() {
+
+		if ( this.children.length > 0 ) {
+
+			for ( let i = 0; i < this.children.length; i++ ) {
+
+				if ( typeof this.children[i].updateGlobalPosition !== 'undefined' ) {
+
+					this.children[i].updateGlobalPosition();
+					this.children[i].updateWord();
+
+				}
+
+			}
+
+		} else {
+
+			if ( typeof this.updateGlobalPosition !== 'undefined' ) {
+
+				this.updateGlobalPosition();
+
+			}
+
+		}
+    
+    }
+
 }
 
 export { Object2D };

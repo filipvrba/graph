@@ -1,4 +1,4 @@
-import { Scene, Clock, Vector2 } from '../core/index.js'
+import { Scene, Clock, Vector2, TDRenderer } from '../core/index.js'
 import { PieChart } from '../graphs/index.js'
 
 class PieChartElement extends HTMLElement {
@@ -8,10 +8,22 @@ class PieChartElement extends HTMLElement {
         super();
 
         this.initRoot();
-        this.initCanvas();
-        this.initScene();
+        this.initRenderer();
+        
+        this.scene = new Scene();
+        this.scene.ready();
 
-        this.clock = new Clock();
+        this.resizeHandler = () => {
+
+            this.renderer.setSize( window.innerWidth, window.innerHeight );
+
+            this.pieChart.position = new Vector2( this.renderer.canvas.width / 2,
+                this.renderer.canvas.height / 2 );
+                
+            this.scene.updateWord();
+
+        }
+        window.addEventListener( 'resize', this.resizeHandler );
 
     }
 
@@ -33,19 +45,12 @@ class PieChartElement extends HTMLElement {
 
     }
 
-    initCanvas() {
+    initRenderer() {
 
-        this.canvas = this.shadowRoot.querySelector( 'canvas' );
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        const canvas = this.shadowRoot.querySelector( 'canvas' );
 
-    }
-
-    initScene() {
-
-        this.scene = new Scene();
-        this.scene.addRenderer( this.canvas.getContext( '2d' ) );
-        this.scene.ready();
+        this.renderer = new TDRenderer( canvas );
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
 
     }
 
@@ -69,8 +74,8 @@ class PieChartElement extends HTMLElement {
                 name: "other"
             }
         ]);
-        this.pieChart.position = new Vector2( this.canvas.width / 2,
-            this.canvas.height / 2 );
+        this.pieChart.position = new Vector2( this.renderer.canvas.width / 2,
+            this.renderer.canvas.height / 2 );
         this.pieChart.widthRadius = parseInt( this.getAttribute( 'widthRadius' ) );
 
         this.scene.add( this.pieChart );
@@ -79,11 +84,7 @@ class PieChartElement extends HTMLElement {
 
     tick() {
 
-       this.scene.renderer.clearRect( 0, 0, this.canvas.width,
-            this.canvas.height );
-
-        // Call Update method for connect class
-        this.scene.emitSignal( { type: 'update', dt: this.clock.getDT } );
+        this.renderer.render( this.scene );
 
         requestAnimationFrame( () => this.tick() );
 
@@ -99,6 +100,8 @@ class PieChartElement extends HTMLElement {
     disconnectedCallback() {
 
         this.scene.free();
+        
+        window.removeEventListener( 'resize', this.resizeHandler );
 
     }
 

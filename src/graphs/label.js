@@ -58,16 +58,16 @@ class Label extends Object2D {
 
     }
 
-    draw() {
+    draw( renderer ) {
 
-        this.scene.renderer.arc(this.globalPosition.x, this.globalPosition.y, Math.abs( this.widthRadius ),
+        renderer.arc(this.globalPosition.x, this.globalPosition.y, Math.abs( this.widthRadius ),
             0, Math.PI * 2);
-        this.scene.renderer.fillStyle = this.colorStyle;
-        this.scene.renderer.fill();
+        renderer.fillStyle = this.colorStyle;
+        renderer.fill();
 
-        this.scene.renderer.fillStyle = 'black';
-        this.scene.renderer.font = `bold ${ Math.abs( this.widthRadius ) * 2 }px Arial`;
-        this.scene.renderer.fillText(this.text, this.globalPosition.x + 12, this.globalPosition.y + 7);
+        renderer.fillStyle = 'black';
+        renderer.font = `bold ${ Math.abs( this.widthRadius ) * 2 }px Arial`;
+        renderer.fillText(this.text, this.globalPosition.x + 12, this.globalPosition.y + 7);
 
     }
 

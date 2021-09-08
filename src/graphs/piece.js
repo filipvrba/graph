@@ -99,19 +99,19 @@ class Piece extends Object2D {
 
     }
 
-    draw() {
+    draw( renderer ) {
 
-        this.scene.renderer.beginPath();
+        renderer.beginPath();
         
-        this.scene.renderer.arc(this.globalPosition.x, this.globalPosition.y,
+        renderer.arc(this.globalPosition.x, this.globalPosition.y,
             Math.abs( this.widthRadius ),
         this.startRadian, this.endRadian, false);
-        this.scene.renderer.lineTo(this.globalPosition.x, this.globalPosition.y);
+        renderer.lineTo(this.globalPosition.x, this.globalPosition.y);
 
-        this.scene.renderer.closePath();
+        renderer.closePath();
         
-        this.scene.renderer.fillStyle = this.colorStyle;
-        this.scene.renderer.fill();
+        renderer.fillStyle = this.colorStyle;
+        renderer.fill();
 
     }
 

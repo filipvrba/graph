@@ -50,15 +50,19 @@ class BasicObject extends Dispatcher {
 
 				}
 
+			}
+			this.getScene().connect( 'update', object.updateHandler );
+
+			object.drawHandler = (signal) => {
+
 				if ( typeof object.draw !== 'undefined' ) {
 
-					object.draw( );
+					object.draw( signal.renderer );
 
 				}
 
 			}
-
-			this.getScene().connect( 'update', object.updateHandler );
+			this.getScene().connect( 'draw', object.drawHandler );
 
 			object.inputHandler = ( signal ) => {
 
@@ -120,6 +124,12 @@ class BasicObject extends Dispatcher {
 		if ( this.getScene().hasSignal( 'update', this.updateHandler ) ) {
 
 			this.getScene().disconect( 'update', this.updateHandler );
+
+		}
+
+		if ( this.getScene().hasSignal( 'draw', this.drawHandler ) ) {
+
+			this.getScene().disconect( 'draw', this.drawHandler );
 
 		}
 
