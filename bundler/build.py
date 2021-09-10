@@ -62,6 +62,19 @@ def remove_line( lines: list ):
     return _lines
 
 
+def get_file_lines( path ):
+    """
+        Open file from path and safe this close the open file.
+        Return all lines of the file.
+    """
+
+    open_file = open( path, 'rt' )
+    lines = open_file.readlines()
+    open_file.close()
+
+    return lines
+
+
 def read_and_change( files ):
     """ Read all files and remove unnecessary an header & footer code """
 
@@ -70,13 +83,9 @@ def read_and_change( files ):
     for file in files:
 
         # Write lines to list
-        open_file = open( file, 'rt' )
-
-        lines = open_file.readlines()
+        lines = get_file_lines( file )
         change_lines = remove_line( lines )
         files_lines.extend( change_lines )
-
-        open_file.close()
     
     return files_lines
 
@@ -95,32 +104,38 @@ def save_lines_to_file( directory_path, file_name, lines ):
     file.close()
 
 
-def check_priority_files( files: list ):
-    """ Check priority files for the build file, due to class inheritance. """
+def chnage_priority_files( files: list ):
+    """ Change priority on the files for the build file, due to class inheritance."""
+
     _files = files.copy()
 
     for file in files:
 
-        if ( str(file).find( 'dispatcher' ) != -1 ):
-            _files.remove( file )
-            _files.insert( 0, file )
-        
-        elif ( str(file).find( 'basicObject' ) != -1 ):
-            _files.remove( file )
-            _files.insert( 1, file )
-        
-        elif ( str(file).find( 'object2d' ) != -1 ):
-            _files.remove( file )
-            _files.insert( 2, file )
+        # Find elements file
+        if str(file).find( f'Element.{ FILE_TYPE }' ) == -1:
 
+            # Get last line for id position
+            lines = get_file_lines( file )
+            end_line = lines[ len( lines ) - 1 ].split( '// ' )
+            
+            if len( end_line ) >= 2:
 
+                # Remove file from list and add custom line from id position
+                _files.remove( file )
+                _files.insert( int( end_line[ 1 ] ), file )
+        else:
+
+            # Remove file from list and add on last position
+            _files.remove( file )
+            _files.insert( len( _files ), file )    
+    
     return _files
 
 
 def main():
 
     files = find_all_files( DIR_PATH, FILE_TYPE )
-    files = check_priority_files( files )
+    files = chnage_priority_files( files )
 
     new_file_lines = read_and_change( files )
     save_lines_to_file( DIR_PATH_BUILD, f'{ FILE_NAME }.{ FILE_TYPE }', new_file_lines )

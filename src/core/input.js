@@ -1,8 +1,6 @@
 import { Vector2 } from "./math/vector2.js";
 import { BasicObject } from "./objects/basicObject.js";
 
-let position = new Vector2(0, 0);
-
 class Input extends BasicObject {
 
     constructor() {
