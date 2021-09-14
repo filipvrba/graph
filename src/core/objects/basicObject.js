@@ -6,19 +6,17 @@ class BasicObject extends Dispatcher {
     constructor() {
 
 		super();
-
-        this.id = undefined;
+		
+		this.id = undefined;
 		this.parent = null;
 		this.children = [];
-
-		this.object = null;
 
     }
 
 	// Add children
     add(object, id = undefined) {
 		if (object === this) { 
-			console.error('THREE.Object3D.add: object can\'t be added as a child of itself.', object);
+			console.error('BasicObject.add: object can\'t be added as a child of itself.', object);
 			return this;
 		}
 
@@ -77,7 +75,7 @@ class BasicObject extends Dispatcher {
 			this.getScene().input.connect( 'input', object.inputHandler );
 
 		} else {
-			console.error('THREE.Object3D.add: object not an instance of THREE.Object3D.', object);
+			console.error('BasicObject.add: object not an instance of BasicObject.', object);
 		}
 
 		return this;
