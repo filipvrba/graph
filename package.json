@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "python3 ./bundler/build.py"
+    "build": "python3 ./bundler/build.py",
+    "build-netsuit": "python3 ./bundler/build.py -o './netsuit/src/FileCabinet/SuiteScripts'"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/filipvrba/graph/issues"
   },
-  "homepage": "https://github.com/filipvrba/graph#readme"
+  "homepage": "https://github.com/filipvrba/graph#readme",
+  "dependencies": {
+    "@oracle/suitecloud-cli": "file:../../../../../../usr/lib/node_modules/@oracle/suitecloud-cli"
+  }
 }

@@ -10,6 +10,8 @@ class Label extends Object2D {
         this.text = text;
         this.scene = null;
 
+        this.fontSpaceWidth = 20;
+
     }
 
     ready() {
@@ -22,6 +24,7 @@ class Label extends Object2D {
         this.selectComp = new SelectCompoment( this.widthRadius, 5 );
         this.add( this.selectComp, 'selectComponent' );
 
+        this.fontSize = this.widthRadius;
         this.widthRadius = 0;
 
         this.animFinisHandler = ( ) => {
@@ -58,6 +61,12 @@ class Label extends Object2D {
 
     }
 
+    fontStyle( size ) {
+
+        return `bold ${ Math.abs( size) * 3 }px Arial`;
+
+    }
+
     draw( renderer ) {
 
         renderer.arc(this.globalPosition.x, this.globalPosition.y, Math.abs( this.widthRadius ),
@@ -66,8 +75,8 @@ class Label extends Object2D {
         renderer.fill();
 
         renderer.fillStyle = 'black';
-        renderer.font = `bold ${ Math.abs( this.widthRadius ) * 2 }px Arial`;
-        renderer.fillText(this.text, this.globalPosition.x + 12, this.globalPosition.y + 7);
+        renderer.font = this.fontStyle( this.widthRadius >= this.fontSize ? this.fontSize : this.widthRadius );
+        renderer.fillText(this.text, this.globalPosition.x + this.fontSpaceWidth, this.globalPosition.y + 7);
 
     }
 

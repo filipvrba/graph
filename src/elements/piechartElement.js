@@ -7,6 +7,8 @@ class PieChartElement extends HTMLElement {
 
         super();
 
+        this.widthRadius = parseInt( this.getAttribute( 'widthRadius' ) );
+
         this.initRoot();
         this.initRenderer();
         
@@ -17,8 +19,7 @@ class PieChartElement extends HTMLElement {
 
             this.renderer.setSize( window.innerWidth, window.innerHeight );
 
-            this.pieChart.position = new Vector2( this.renderer.canvas.width / 2,
-                this.renderer.canvas.height / 2 );
+            this.pieChart.position = this.globalPosition;
                 
             this.scene.updateWord();
 
@@ -27,19 +28,29 @@ class PieChartElement extends HTMLElement {
 
     }
 
+    get globalPosition() {
+
+        return new Vector2( (this.renderer.canvas.width / 2 ) - this.widthRadius / 2,
+        this.renderer.canvas.height / 2 );
+    
+    }
+
     initRoot() {
 
         const template = document.createElement( 'template' );
         template.innerHTML = `
             <style type="text/css">
                 canvas {
-                    border: 1px solid black;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    outline: none;
                 }
             </style>
 
             <canvas></canvas>
         `;
-
+        
         this.attachShadow( { mode: 'open' } );
         this.shadowRoot.appendChild( template.content.cloneNode( true ) );
 
@@ -74,9 +85,8 @@ class PieChartElement extends HTMLElement {
                 name: "other"
             }
         ]);
-        this.pieChart.position = new Vector2( this.renderer.canvas.width / 2,
-            this.renderer.canvas.height / 2 );
-        this.pieChart.widthRadius = parseInt( this.getAttribute( 'widthRadius' ) );
+        this.pieChart.position = this.globalPosition;
+        this.pieChart.widthRadius = this.widthRadius;
 
         this.scene.add( this.pieChart );
 

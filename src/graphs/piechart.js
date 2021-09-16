@@ -54,8 +54,6 @@ class PieChart extends Object2D {
      */
     animFinish( id ) {
 
-        
-
         // Go start animation for piece
         if (id + 1 < this.pieArray.length) {
 

@@ -7,24 +7,6 @@ class Vector2 {
 
 	}
 
-	static get ZERO() {
-
-		return new this.constructor(0, 0);
-
-	}
-
-	static get LEFT() {
-
-		return new this.constructor(1, 0);
-
-	}
-
-	static get RIGHT() {
-
-		return new this.constructor(0, 1);
-
-	}
-
 	length() {
 
 		const x = this.x;
@@ -135,6 +117,15 @@ class Vector2 {
 
 		this.x -= v.x;
 		this.y -= v.y;
+
+		return this;
+
+	}
+
+	subScalar( scalar ) {
+
+		this.x -= scalar;
+		this.y -= scalar;
 
 		return this;
 

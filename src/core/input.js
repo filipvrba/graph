@@ -27,8 +27,8 @@ class Input extends BasicObject {
 
     mouseMove( event ) {
 
-        this.position.x = event.x - this.canvasRect.x;
-        this.position.y = event.y - this.canvasRect.y;
+        this.position.x = event.x - this.canvasRect.left;
+        this.position.y = event.y - this.canvasRect.top;
 
         this.emitSignal( { type: 'input', mousePosition: this.position } );
 
