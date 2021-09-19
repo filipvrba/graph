@@ -1,0 +1,22 @@
+[
+    {
+        "value": 40,
+        "name": "pc"
+    },
+    {
+        "value": 200,
+        "name": "mobile"
+    },
+    {
+        "value": 500,
+        "name": "tablet"
+    },
+    {
+        "value": 500,
+        "name": "other"
+    },
+    {
+        "value": 500,
+        "name": "other"
+    }
+]

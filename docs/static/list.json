@@ -1,0 +1,27 @@
+{
+
+    "files": {
+
+        "home": {
+
+            "path": "home",
+            "dir": "root"
+
+        },
+
+        "error": {
+
+            "path": "error",
+            "dir": "root"
+
+        },
+
+        "vector2": {
+
+            "path": "core/math/vector2",
+            "dir": "api"
+
+        }
+        
+    }
+}

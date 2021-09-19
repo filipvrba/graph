@@ -126,7 +126,7 @@ class PieChart extends Object2D {
 
     pieceAngleValues( idPiece ) {
 
-        const percentage = Mathf.percentage(this.pieArray[idPiece].value, this.totalValue);
+        const percentage = Mathf.percentage(parseInt(this.pieArray[idPiece].value), this.totalValue);
         const degrees = Mathf.per2deg(percentage);
         const endRadian = Mathf.radians(degrees + this.endDegrees);
 
@@ -157,7 +157,7 @@ class PieChart extends Object2D {
         let value = 0;
         for (let i = 0; i < this.pieArray.length; i++) {
 
-            value += this.pieArray[i].value;
+            value += parseInt(this.pieArray[i].value);
 
         }
 

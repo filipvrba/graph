@@ -1,0 +1,24 @@
+.github {
+
+    display: flex;
+    padding-top: 5px;
+
+}
+
+.github a {
+
+    margin: 10px;
+
+}
+
+.github .fa-github {
+
+    font-size: 22px;
+}
+
+foo-panel, .github {
+
+    text-align: center;
+    justify-content: center;
+
+}

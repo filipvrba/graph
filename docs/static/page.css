@@ -1,0 +1,146 @@
+:root {
+
+    --table-row: #f3f6f6;
+    --table-solid: #e1e4e5;
+    --code-span: #e74c3c;
+
+}
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+body {
+
+    font-family: arial, sans-serif;
+    padding: 1.618em 1.618em;
+
+}
+
+table {
+
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+tr, th {
+
+    border: 1px solid var( --table-solid );
+    text-align: left;
+    padding: 8px 16px;
+    font-weight: normal;
+
+}
+
+tr:nth-child(2n-1) {
+
+    background-color: var( --table-row );
+
+}
+
+code {
+
+    display: flex;
+    justify-content: center;
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,Courier,monospace;
+}
+
+.description code {
+
+    display: inline;
+
+}
+
+code span {
+
+    border: 1px solid var( --table-solid );
+    background-color: #fff;
+    color: var( --code-span );
+    padding: 2px 5px;
+    font-size: 16px;
+
+}
+
+p {
+
+    font-size: 18px;
+    margin: 0;
+
+}
+
+p code {
+
+    font-size: 16px;
+
+}
+
+h1 {
+
+    font-size: 175%;
+
+}
+
+h2 {
+
+    font-size: 150%;
+
+}
+
+a:link {
+
+    text-decoration: none;
+
+}
+
+a:hover {
+
+    text-decoration: underline;
+
+}
+
+.icon-home::before {
+    content: "[ ]";
+}
+
+.name li p {
+
+    display: flex;
+
+}
+
+.section p strong {
+
+    margin-left: 5px;
+
+}
+
+#property-descriptions table {
+
+    width: auto;
+    margin-bottom: 25px;
+
+}
+
+.section h2 {
+
+    margin-top: 25px;
+    margin-bottom: 25px;
+
+}
+
+.section ul {
+
+    padding-inline-start: 20px;
+    margin-bottom: 25px;
+    margin-top: 0;
+
+}
+
+/* .description {
+
+    margin-top: 25px
+
+} */

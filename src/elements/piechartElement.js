@@ -1,4 +1,4 @@
-import { Scene, Clock, Vector2, TDRenderer } from '../core/index.js'
+import { Scene, Vector2, TDRenderer } from '../core/index.js'
 import { PieChart } from '../graphs/index.js'
 
 class PieChartElement extends HTMLElement {
@@ -7,6 +7,7 @@ class PieChartElement extends HTMLElement {
 
         super();
 
+        this.data = this.getAttribute( 'data' );
         this.widthRadius = parseInt( this.getAttribute( 'widthRadius' ) );
 
         this.initRoot();
@@ -67,24 +68,17 @@ class PieChartElement extends HTMLElement {
 
     initPieChart() {
 
-        this.pieChart = new PieChart([
-            {
-                value: 40,
-                name: "pc"
-            },
-            {
-                value: 200,
-                name: "mobile"
-            },
-            {
-                value: 500,
-                name: "tablet"
-            },
-            {
-                value: 500,
-                name: "other"
-            }
-        ]);
+        if ( this.data === null ) {
+
+            console.warn( 'Please implement to component a atribute data="".\nFormatted attribute must be string and representing json.' );
+            return;
+
+        }
+
+        // Convert string (json) to object
+        this.data = JSON.parse( this.data )
+
+        this.pieChart = new PieChart( this.data );  // There implement object values
         this.pieChart.position = this.globalPosition;
         this.pieChart.widthRadius = this.widthRadius;
 
