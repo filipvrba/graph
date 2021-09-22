@@ -4,6 +4,8 @@ class PagesElements extends HTMLElement {
 
         super();
 
+        this.innerHTML = '<p>Loading page, please wait...</p>';
+
         this.init();
 
     }
