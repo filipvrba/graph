@@ -4,7 +4,7 @@ class PagesElements extends HTMLElement {
 
         super();
 
-        this.innerHTML = '<p>Loading page, please wait...</p>';
+        this.innerHTML = '<p class="fa fa-refresh loader"></p>';
 
         this.init();
 

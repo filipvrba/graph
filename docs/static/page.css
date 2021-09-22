@@ -185,3 +185,10 @@ select-color select {
     cursor: pointer;
 
 }
+
+root-page .loader {
+
+    justify-content: center;
+    display: flex;
+
+}
