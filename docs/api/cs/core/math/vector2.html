@@ -13,6 +13,20 @@
                 </p>
             </div>
 
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+// Získá veřejnou pozici z vlastní třídy a vytvoří nový konstruktor třídy Vector2.
+const positionExample = this.globalPosition.clone();
+
+// Vytváříme novou třídu Vector2 a přidáváme parametry z pozice myši, která je volána posluchačem.
+const positionMouse = new Vector2( eventMouse.x, eventMouse.y );
+
+// Zde vypíšeme do konzole vzdálenost mezi dvěma vektory.
+console.log( positionPiece.distanceTo( positionMouse ) );
+                </light-code>
+            </div>
+
             <div class="section" id="properties" >
                 <h2>Vlastnosti</h2>
                 <table>
@@ -44,7 +58,7 @@
                         </th>
                         <th>
                             <p>
-                                <a href="#property-x">y</a>
+                                <a href="#property-y">y</a>
                             </p>
                         </th>
                         <th>
@@ -59,7 +73,7 @@
             </div>
 
             <div class="section" id="methods">
-                <h2>Metody</h2>
+                <h2>Funkce</h2>
                 <table>
                     <colgroup>
                         <col style="width: 12%;">

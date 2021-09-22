@@ -21,6 +21,27 @@
             "path": "core/math/vector2",
             "dir": "api"
 
+        },
+
+        "mathf": {
+
+            "path": "core/math/mathf",
+            "dir": "api"
+
+        },
+
+        "color": {
+
+            "path": "core/math/color",
+            "dir": "api"
+
+        },
+
+        "math": {
+
+            "path": "core/math/index",
+            "dir": "api"
+
         }
         
     }

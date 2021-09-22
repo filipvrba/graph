@@ -1,18 +1,23 @@
 const HOME = 'home';
-const DOCUMENT = 'graph'
+const DOCUMENT = 'graph';
+const INDEX = 'index';
 
 let language = 'cs';  // Default language
 
-const hash = window.location.hash.replace( '#', '' );
+const hash = window.location.hash;
 const title = document.querySelector('title');
+const html = document.querySelector( 'html' );
+
+// Change language in document
+html.setAttribute( 'lang', language );
 
 function getMark() {
 
-    const hrefArray = window.location.href.split( '?' );
+    let mark = window.location.search.replace( '?', '' );
 
-    const rawMark = hrefArray[ hrefArray.length - 1 ];
-    const mark = rawMark.split( '#' );
-    return mark[ 0 ];
+    if ( mark === '' ) mark = 'home';
+
+    return mark;
 
 }
 

@@ -21,6 +21,14 @@ class NavigationElement extends HTMLElement {
         const categories = page.path.split( '/' );  // Create array
         const homeTemplate = this.getHomeTemplate();
 
+        // Remove index on path
+        const idIndex = categories.indexOf( INDEX );
+        if ( idIndex > -1 ) {
+
+            categories.splice( idIndex, 1 );
+
+        }
+
         let template = `<ul>\n${ homeTemplate }`;
         for ( let i = 0; i < categories.length; i++ ) {
 

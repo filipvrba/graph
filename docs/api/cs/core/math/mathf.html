@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <body>
+        <article>
+            <h1>Mathf</h1>
+            <p>Pomocná třída pro výpočet úhlů, procenta a interpolace.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <p>
+                    Mathf je pomocná tříta pro výpočet desetiných čísel.
+                    Zde najdeme pomocné funkce pro výpočet úhlů, procenta a interpolace.
+                    Tyto funkce jsou statické a lze u nich přistupovat přímo.
+                </p>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+const percentage = Mathf.percentage( this.value, this.totalValue );
+const degrees = Mathf.per2deg( percentage );
+const endRadian = Mathf.radians( degrees + this.endDegrees );
+                </light-code>
+            </div>
+
+            <div class="section" id="methods">
+                <h2>Statické Funkce</h2>
+                <table>
+                    <colgroup>
+                        <col style="width: 12%;">
+                        <col style="width: 88%;">
+                    </colgroup>
+                    <tr>
+                        <th class="row">
+                            <p class="fa fa-flash"></p>
+                            <obj-type type="Number">
+                        </th>
+                        <th>
+                            <p>
+                                <a href="#method-radians">radians ( degrees )</a>
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="row">
+                            <p class="fa fa-flash"></p>
+                            <obj-type type="Number">
+                        </th>
+                        <th>
+                            <p>
+                                <a href="#method-degrees">degrees ( radians )</a>
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="row">
+                            <p class="fa fa-flash"></p>
+                            <obj-type type="Number">
+                        </th>
+                        <th>
+                            <p>
+                                <a href="#method-per2deg">per2deg ( percentage )</a>
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="row">
+                            <p class="fa fa-flash"></p>
+                            <obj-type type="Number">
+                        </th>
+                        <th>
+                            <p>
+                                <a href="#method-percentage">percentage ( min, max )</a>
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="row">
+                            <p class="fa fa-flash"></p>
+                            <obj-type type="Number">
+                        </th>
+                        <th>
+                            <p>
+                                <a href="#method-lerp">lerp ( value1, value2, alpha )</a>
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="row">
+                            <p class="fa fa-flash"></p>
+                            <p>Vector2</p>
+                        </th>
+                        <th>
+                            <p>
+                                <a href="#method-radianToVector">radianToVector( radian )</a>
+                            </p>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="section name" id="method-descriptions">
+                <h2>Popis Statických Funkcí</h2>
+                <div id="method-radians">
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <p class="fa fa-flash"></p>
+                                <obj-type type="Number"></obj-type>
+                                <p>
+                                    <strong>radians ( degrees )</strong>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="description">
+                        Úhel se převede na radián.<br><br>
+                        Například <code><span>90deg = 
+                            <e-code>Mathf.radians(90).toFixed(3);</e-code>rad</span></code>.
+                    </p>
+                </div>
+                <hr>
+                <div id="method-degrees">
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <p class="fa fa-flash"></p>
+                                <obj-type type="Number"></obj-type>
+                                <p>
+                                    <strong>degrees ( radians )</strong>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="description">
+                        Radián se převede na úhel.<br><br>
+                        Například <code><span>
+                            <e-code>Mathf.radians(90).toFixed(3);</e-code>rad = 
+                            <e-code>
+                                const radian = Mathf.radians(90);
+                                Mathf.degrees(radian);
+                            </e-code>deg</span></code>.
+                    </p>
+                </div>
+                <hr>
+                <div id="method-per2deg">
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <p class="fa fa-flash"></p>
+                                <obj-type type="Number"></obj-type>
+                                <p>
+                                    <strong>per2deg ( percentage )</strong>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="description">
+                        Procento se převede do úhlu.<br><br>
+                        Například <code><span>
+                            45% = <e-code>Mathf.per2deg( 45 );</e-code>deg</span></code>.
+                    </p>
+                </div>
+                <hr>
+                <div id="method-percentage">
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <p class="fa fa-flash"></p>
+                                <obj-type type="Number"></obj-type>
+                                <p>
+                                    <strong>percentage ( min, max )</strong>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="description">
+                        <ul>
+                            <ul>
+                                <li class="p-default">
+                                    <code><span>min</span></code> je číslo, které reprezentuje aktuální hodnotu.
+                                </li>
+                                <li class="p-default">
+                                    <code><span>max</span></code> je číslem veličiny.
+                                </li>
+                            </ul>
+                        </ul>
+                        
+                        <p>
+                            Funkce porovná <code><span>min</span></code> a <code><span>max</span></code>
+                            a vrátí číselnou hodnotu v procentech.
+                        </p>
+                    </p>
+                </div>
+                <hr>
+                <div id="method-lerp">
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <p class="fa fa-flash"></p>
+                                <obj-type type="Number"></obj-type>
+                                <p>
+                                    <strong>lerp ( value1, value2, alpha )</strong>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="description">
+                        <p>
+                            Lineární interpolace mezi
+                            <code><span>value1</span></code> & <code><span>value2</span></code>,
+                            a to pomocí alpha což je procentuální vzdálenost.
+                        </p>
+                        <br>
+                        <p>
+                            Hodnota <code><span>alpha</span></code> je interpolační
+                            hodnota která je normalizována. Pohybuje se v rozmezích
+                            <code><span>0</span></code> až <code><span>1</span></code>.
+                        </p>
+                        <br>
+                        <p>
+                            Vrací časovou interpolaci, a je potřeba přičíst k dané hodnotě.
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div id="method-radianToVector">
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <p class="fa fa-flash"></p>
+                                <p>Vector2</p>
+                                <p>
+                                    <strong>radianToVector( radian )</strong>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="description">
+                        Převede <code><span>radian</span></code> na normalizovanou vektorovu pozici, s pomocí
+                        <code><span>Math.cos</code></code> & <code><span>Math.sin</span></code>.
+                    </p>
+                </div>
+            </div>
+        </article>
+    </body>
+</html>

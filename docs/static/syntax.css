@@ -1,0 +1,8 @@
+pre .str, light-code .str { color: #a31515; } /* string */
+pre .kwd, light-code .kwd { color: #0000ff; } /* keyword */
+pre .com, light-code .com { color: #008000; } /* comment */
+pre .typ, light-code .typ { color: #267f99; } /* type */
+pre .lit, light-code .lit { color: #098658; } /* literal */
+pre .pun, light-code .pun { color: #87cefa; } /* punctuation */
+pre .pln, light-code .pln { color: #001080; } /* plaintext */
+pre .dec, light-code .dec { color: #22c0c4; } /* decimal */

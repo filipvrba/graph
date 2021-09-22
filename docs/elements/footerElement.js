@@ -21,7 +21,9 @@ class FooterElement extends HTMLElement {
 
             const pageName = getPageName();
 
-            this.innerHTML = this.getTemplate( `${ this.github}/tree/master/src/${ page.path }.js`,
+            const apiPath = this.getApiPath( page.path );
+
+            this.innerHTML = this.getTemplate( `${ this.github}/tree/master/src/${ apiPath }`,
                 `${ pageName } - source code` );
 
         } else {
@@ -29,6 +31,20 @@ class FooterElement extends HTMLElement {
             this.innerHTML = this.getTemplate( this.github, `${ capitalized( DOCUMENT ) } - repository codes` );
 
         }
+
+    }
+
+    getApiPath( path ) {
+
+        const arrayPath = path.split( '/' );
+
+        if ( arrayPath.indexOf( INDEX ) > -1 ) {
+
+            return path.replace( INDEX, '' );
+
+        }
+
+        return `${ path }.js`;
 
     }
 
