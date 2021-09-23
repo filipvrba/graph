@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <body>
+        <article>
+            <h1>Color</h1>
+            <p>Třída pro náhodilost barev.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <p>
+                    Barvy jsou automaticky generovány, nebo jsou konstantně napsány,
+                    tak aby odpovídaly paletě barev. Třda nám umožní generovat náhodilost
+                    barev, která se ukládá do mezipaměti a nebude se opakovat, při budoucím
+                    volání.
+                </p>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+// Vytváříme novou třídu a potom dostáváme náhodnou barvu z palety barev.
+const color = new Color();
+const randColorPalet = color.getRandomPalettte();
+
+// Dostaneme náhodně vygenerovanou barvu.
+const randColor = Color.ranColorStyle();
+                </light-code>
+            </div>
+
+            <prop-table name="Vlastnosti">
+                <prop type='o:array'
+                    name="colors" value="<select-color></select-color>">
+                </prop>
+                <prop type='o:number'
+                    name="bitMask" value="0">
+                </prop>
+            </prop-table>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Color ()"></meth>
+                <meth type="o:string" name="getRandomPalettte ()"></meth>
+            </meth-table>
+
+            <meth-table name="Statická Funkce" static="true">
+                <meth type="o:string" name="ranColorStyle ()"></meth>
+            </meth-table>
+
+            <prop-desc name="Popis Vlastností">
+                <prop type="o:array" name="colors"
+                    value="výchozí:<select-color></select-color>">
+                    <p>
+                        Paleta <a href="https://lospec.com/palette-list/zughy-32">zughy</a> má délku
+                            <code><span>
+                            <e-code>
+                                const color = new Color();
+                                color.colors.length;
+                            </e-code></span></code> hex barev, a jsou uložené do řetězce.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:number" name="bitMask"
+                    value="výchozí:0">
+                    <p>Ukládá unikátní bit pro identifikaci použitých barev z palety.</p>
+                </prop>
+            </prop-desc>
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="Color ()">
+                    <p>
+                        Konstruktor umožní ukládat už použité barvy z
+                        palety pomocí <code><span>bitMask</span></code>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:string" name="getRandomPalettte ()">
+                    <p>
+                        Náhodně vybere barvu z palety a přiřadímu unikátní bit, pro uložení do <code><span>bitMask</span></code> vlastnosti.
+                        Použitá barva v budoucím volání se neaplikuje.<br><br>
+                        Počet volání je omezený na
+                        <code><span>
+                            <e-code>
+                                const color = new Color();
+                                color.colors.length;
+                            </e-code></span></code>,
+                        z důvodu maximální velikosti palety barev. Jinak tato metoda vyhodí podmínku chyby.
+
+                        <br><br>
+                        <div class="row">
+                            <p class="fa fa-sign-out"></p>
+                            <p>Vrací string ve formátu hex.</p>
+                        </div>
+                    </p>
+                </meth>
+            </meth-desc>
+            <hr>
+            <meth-desc name="Popis Statické Funkce" static="true">
+                <meth type="o:string" name="ranColorStyle ()">
+                    <p>
+                        Náhodně vygenerovaná barva ve formátu <code><span>rgb</span></code>.
+                        
+                        <br><br>
+                        <div class="row">
+                            <p class="fa fa-sign-out"></p>
+                            <p>Vrací string a dá se aplikovat na css barvu.</p>
+                        </div>
+                    </p>
+                </meth>
+            </meth-desc>
+        </article>
+    </body>
+</html>

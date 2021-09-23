@@ -9,7 +9,7 @@ class MDNElement extends HTMLElement {
     }
 
     init( url ) {
-
+    
         this.innerHTML = `
             <p>
                 <a href="${ this.getUrlType( url ) }">

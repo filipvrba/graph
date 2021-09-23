@@ -1,6 +1,7 @@
 const HOME = 'home';
 const DOCUMENT = 'graph';
 const INDEX = 'index';
+const STATIC = 'fa fa-flash';
 
 let language = 'cs';  // Default language
 
