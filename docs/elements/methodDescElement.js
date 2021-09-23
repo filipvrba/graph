@@ -35,8 +35,6 @@ class MethodDescElement extends ChildrenElement {
         </div>
         `;
 
-        console.log( template );
-
         this.innerHTML = template;
 
     }
