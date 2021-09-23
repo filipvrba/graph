@@ -50,7 +50,7 @@ class ChildrenElement extends HTMLElement {
                 type = `<class-type type="${ typeName }"></class-type>`;
                 break;
             case 'a':  // API
-                type = `<p><a href="?${ typeName }">${ typeName }</a></p>`;
+                type = `<p><a href="?${ typeName }">${ capitalized(typeName) }</a></p>`;
                 break;
 
         }

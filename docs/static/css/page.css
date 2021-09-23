@@ -152,7 +152,7 @@ a:hover {
 
 }
 
-.section p strong {
+.section .row strong, .section p strong {
 
     margin-left: 5px;
 

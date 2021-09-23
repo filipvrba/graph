@@ -17,20 +17,34 @@ class FooterElement extends HTMLElement {
 
         let page = await getPage();
 
-        if ( page.dir === 'api' ) {
+        const isIndex = page.path.indexOf( INDEX ) > -1;
+        const isApi = page.dir === 'api' ;
+        if ( isApi ) {
 
             const pageName = getPageName();
 
             const apiPath = this.getApiPath( page.path );
 
             this.innerHTML = this.getTemplate( `${ this.github}/tree/master/src/${ apiPath }`,
-                `${ pageName } - source code` );
+                `${ pageName } - ${ this.getLinkDescription( !isIndex ) }` );
 
         } else {
 
-            this.innerHTML = this.getTemplate( this.github, `${ capitalized( DOCUMENT ) } - repository codes` );
+            this.innerHTML = this.getTemplate( this.github, `${ capitalized( DOCUMENT ) } - ${ this.getLinkDescription( isApi ) }` );
 
         }
+
+    }
+
+    getLinkDescription( isApi ) {
+
+        if ( isApi ) {
+
+            return 'source code';
+
+        }
+
+        return 'repository codes';
 
     }
 

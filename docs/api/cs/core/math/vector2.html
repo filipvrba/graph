@@ -27,500 +27,144 @@ console.log( positionPiece.distanceTo( positionMouse ) );
                 </light-code>
             </div>
 
-            <div class="section" id="properties" >
-                <h2>Vlastnosti</h2>
-                <table>
-                    <colgroup>
-                        <col style="width: 38%;">
-                        <col style="width: 50%;">
-                        <col style="width: 13%;">
-                    </colgroup>
-                    <tr>
-                        <th>
-                            <obj-type type="Number">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#property-x">x</a>
-                            </p>
-                        </th>
-                        <th>
-                            <p>
-                                <code>
-                                    <span>0</span>
-                                </code>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="Number">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#property-y">y</a>
-                            </p>
-                        </th>
-                        <th>
-                            <p>
-                                <code>
-                                    <span>0</span>
-                                </code>
-                            </p>
-                        </th>
-                    </tr>
-                </table>
-            </div>
+            <prop-table name="Vlastnosti">
+                <prop type="o:number" name="x" value="0"></prop>
+                <prop type="o:number" name="y" value="0"></prop>
+            </prop-table>
 
-            <div class="section" id="methods">
-                <h2>Funkce</h2>
-                <table>
-                    <colgroup>
-                        <col style="width: 12%;">
-                        <col style="width: 88%;">
-                    </colgroup>
-                    <tr>
-                        <th>
-                            <class-type type="constructor"></class-type>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-vector2">Vector2 ( x, y )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-add">add ( vector )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-clone">clone ()</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="Number">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-distanceTo">distanceTo ( vector )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="Number">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-distanceToSquared">distanceToSquared ( vector )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="Number">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-dot">dot ( vector )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="Boolean">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-equals">equals ( x, y )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="Number">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-length">length ()</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-lerp">lerp ( vector, alpha )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-multiply">multiply ( vector )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-multiplyScalar">multiplyScalar ( scalar )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-normalize">normalize ()</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-normalized">normalized ()</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-sub">sub ( vector )</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <p>Vector2</p>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-subScalar">subScalar ( scalar )</a>
-                            </p>
-                        </th>
-                    </tr>
-                </table>
-            </div>
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Vector2 ( x, y )"></meth>
+                <meth type="a:vector2" name="add ( vector )"></meth>
+                <meth type="a:vector2" name="clone ()"></meth>
+                <meth type="o:number" name="distanceTo ( vector )"></meth>
+                <meth type="o:number" name="distanceToSquared ( vector )"></meth>
+                <meth type="o:number" name="dot ( vector )"></meth>
+                <meth type="o:boolean" name="equals ( x, y )"></meth>
+                <meth type="o:number" name="length ()"></meth>
+                <meth type="a:vector2" name="lerp ( vector, alpha )"></meth>
+                <meth type="a:vector2" name="multiply ( vector )"></meth>
+                <meth type="a:vector2" name="multiplyScalar ( scalar )"></meth>
+                <meth type="a:vector2" name="normalize ()"></meth>
+                <meth type="a:vector2" name="normalized ()"></meth>
+                <meth type="a:vector2" name="sub ( vector )"></meth>
+                <meth type="a:vector2" name="subScalar ( scalar )"></meth>
+            </meth-table>
 
-            <div class="section name" id="property-descriptions">
-                <h2>Popis Vlastností</h2>
-                <div id="property-x">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Number"></obj-type>
-                                <strong>x</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <table>
-                        <colgroup>
-                            <col style="width: 55%;">
-                            <col style="width: 45%;">
-                        </colgroup>
-                        <tr>
-                            <th>
-                                výchozí
-                            </th>
-                            <th>
-                                <p>
-                                    <code>
-                                        <span>0</span>
-                                    </code>
-                                </p>
-                            </th>
-                        </tr>
-                    </table>
-                    <p class="description">Vlastnost vectoru x, je částí horizontální souřadnicové geometrie.</p>
-                </div>
+            <prop-desc name="Popis Vlastností">
+                <prop type="o:number" name="x" value="výchozí:0">
+                    <p>Vlastnost vectoru x, je částí horizontální souřadnicové geometrie.</p>
+                </prop>
                 <hr>
-                <div id="property-y">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Number"></obj-type>
-                                <strong>y</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <table>
-                        <colgroup>
-                            <col style="width: 55%;">
-                            <col style="width: 45%;">
-                        </colgroup>
-                        <tr>
-                            <th>
-                                výchozí
-                            </th>
-                            <th>
-                                <p>
-                                    <code>
-                                        <span>0</span>
-                                    </code>
-                                </p>
-                            </th>
-                        </tr>
-                    </table>
-                    <p class="description">Vlastnost vectoru y, je částí vertikální souřadnicové geometrie.</p>
-                </div>
-            </div>
-
-            <div class="section name" id="method-descriptions">
-                <h2>Popis Funkcí</h2>
-                <div id="method-vector2">
-                    <ul>
-                        <li>
-                            <p>
-                                <class-type type="constructor"></class-type>
-                                <strong>Vector2 ( x, y )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">Konstruktor vytvoří Vector2 se souřadnicemi <code><span>x</span></code> a <code><span>y</span></code>.</p>
-                </div>
+                <prop type="o:number" name="y" value="výchozí:0">
+                    <p>Vlastnost vectoru y, je částí vertikální souřadnicové geometrie.</p>
+                </prop>
+            </prop-desc>
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="Vector2 ( x, y )">
+                    <p>
+                        Konstruktor vytvoří Vector2 se souřadnicemi <code><span>x</span></code> a <code><span>y</span></code>.
+                    </p>
+                </meth>
                 <hr>
-                <div id="method-add">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>add ( vector )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="add ( vector )">
+                    <p>
                         Připočtou se vektorové souřadnice a vrátí aktuální vektor.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-clone">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>clone ()</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="clone ()">
+                    <p>
                         Vytvoří novou třídu Vector2 a zkopíruje parametry <code><span>x</span></code> a <code><span>y</span></code>.
                         Vrací nový Vector2.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-distanceTo">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Number"></obj-type>
-                                <strong>distanceTo ( vector )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="o:number" name="distanceTo ( vector )">
+                    <p>
                         Vypočítá vzdálenost z aktuálního vektoru do definovaného vektoru.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-distanceToSquared">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Number"></obj-type>
-                                <strong>distanceToSquared ( vector )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <div class="description">
-                        <p>
-                            Vypočítá čtvercovou vzdálenost z aktuálního vektoru do definovaného vektoru.
-                            Tato metoda je rychleší pro výpočet než metoda <code><span>distanceTo</span></code>.
-                        </p>
-                        <br>
-                        <p>
-                            Použiteji pokud chcete porovnat vektory, nebo čtvercovou vzdálenost pro nějaký vzorec.
-                        </p>
-                    </div>
-                </div>
+                <meth type="o:number" name="distanceToSquared ( vector )">
+                    <p>
+                        Vypočítá čtvercovou vzdálenost z aktuálního vektoru do definovaného vektoru.
+                        Tato metoda je rychleší pro výpočet než metoda <code><span>distanceTo</span></code>.
+                    </p>
+                    <br>
+                    <p>
+                        Použiteji pokud chcete porovnat vektory, nebo čtvercovou vzdálenost pro nějaký vzorec.
+                    </p>
+                </meth>
                 <hr>
-                <div id="method-dot">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Number"></obj-type>
-                                <strong>dot ( vector )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="o:number" name="dot ( vector )">
+                    <p>
                         Vypočítá <a href="https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html#dot-product">dot product</a> z aktuální a definovaného vektoru.
                         Tato metoda lze uplatnit k porovnávání úhlů mezi dvěma vektory.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-equals">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Boolean"></obj-type>
-                                <strong>equals ( x, y )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="o:boolean" name="equals ( x, y )">
+                    <p>
                         Porovná souřadnice <code><span>x</span></code> a <code><span>y</span></code> s aktuálním vektorem.
                         Vrací <code><span>true</span></code> pokud, jsou souřadnice vektorů stejné.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-length">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Number"></obj-type>
-                                <strong>length ()</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="o:number" name="length ()">
+                    <p>
                         Vrátí délku z aktuálního vektoru.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-lerp">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>lerp ( vector, alpha )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <div class="description">
-                        <p>Lineárně interpoluje mezi vektorama, a to pomocí <code><span>alpha</span></code> což
-                            je procentuální vzdálenost.</p>
-                        <br>
-                        <p>Aktuální vektor interpoluje k definovanému vektoru.
-                        Hodnota <code><span>alpha</span></code> je interpolační hodnota která je normalizována. Pohybuje se v rozmezích <code><span>0</span></code> až <code><span>1</span></code>.</p>
-                    </div>
-                </div>
+                <meth type="a:vector2" name="lerp ( vector, alpha )">
+                    <p>Lineárně interpoluje mezi vektorama, a to pomocí <code><span>alpha</span></code> což
+                        je procentuální vzdálenost.</p>
+                    <br>
+                    <p>
+                        Aktuální vektor interpoluje k definovanému vektoru.
+                        Hodnota <code><span>alpha</span></code> je interpolační hodnota která je normalizována. Pohybuje se v rozmezích <code><span>0</span></code> až <code><span>1</span></code>.
+                    </p>
+                </meth>
                 <hr>
-                <div id="method-multiply">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>multiply ( vector )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="multiply ( vector )">
+                    <p>
                         Vynásobý aktuální vektor z definavaného vektoru.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-multiplyScalar">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>multiplyScalar ( scalar )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="multiplyScalar ( scalar )">
+                    <p>
                         Vynásobý aktuální vektor skalárem.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-normalize">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>normalize ()</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="normalize ()">
+                    <p>
                         Aktuální vektor se převede na jednotkový vektor.
                         Tento vektor bude mít stejný směr, ale s délkou <code><span>1</span></code>.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-normalized">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>normalized ()</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="normalized ()">
+                    <p>
                         Tato metoda vytvoří nový <code><span>Vector2</span></code>
                         a vrátí normalizovaný vektor.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-sub">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>sub ( vector )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="sub ( vector )">
+                    <p>
                         Definovaný vektor odečte aktuální souřadnice <code><span>x</span></code> & <code><span>y</span></code> vektoru.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-subScalar">
-                    <ul>
-                        <li>
-                            <p>
-                                Vector2
-                                <strong>subScalar ( scalar )</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="a:vector2" name="subScalar ( scalar )">
+                    <p>
                         Definovaná hodnota skaláru odečte aktuální souřadnice <code><span>x</span></code> & <code><span>y</span></code> vektoru.
                     </p>
-                </div>
-            </div>
+                </meth>
+            </meth-desc>
         </article>
     </body>
 </html>

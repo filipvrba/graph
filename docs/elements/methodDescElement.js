@@ -45,24 +45,11 @@ class MethodDescElement extends ChildrenElement {
 
         const nameSlim = this.getNameSlim( name );
 
-        let liType = `
-        <p>
-            ${ type }
-            <strong>${ name }</strong>
-        </p>
-        `;
+        let pStatic = '';
 
         if ( this.isStatic ) {
 
-            liType = `
-            <div class="row">
-                <p class="${ STATIC }"></p>
-                ${ type }
-                <p>
-                    <strong>${ name }</strong>
-                </p>
-            </div>
-            `;
+            pStatic = `<p class="${ STATIC }"></p>`;
 
         }
 
@@ -70,7 +57,13 @@ class MethodDescElement extends ChildrenElement {
         <div id="${ this.getAccesNodeName() }-${ nameSlim }">
             <ul>
                 <li>
-                    ${ liType }
+                    <div class="row">
+                        ${ pStatic }
+                        ${ type }
+                        <p>
+                            <strong>${ name }</strong>
+                        </p>
+                    </div>
                 </li>
             </ul>
             <div class="description">

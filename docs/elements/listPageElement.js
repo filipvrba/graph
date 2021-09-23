@@ -26,25 +26,24 @@ class ListPagesElement extends HTMLElement {
         });
 
         // Find the same parent on an files.
-        for ( const file of filesMap.values() ) {
+        filesMap.forEach( ( file, name ) => {
 
-            if ( file[ 'dir' ] === 'api' ) {
+            if ( file.dir === 'api' ) {
 
-                const path = file[ 'path' ];
-                template += this.createTemplate( path );
-
-                continue;
+                const path = file.path;
+                template += this.createTemplate( name, path );
 
             }
 
-        }
+        });
 
         this.applyTemplate( template );
         
     }
 
-    createTemplate( path ) {
+    createTemplate( nameFile, path ) {
 
+        // Path variables
         const pathArray = path.split( '/' );
 
         const parent = pathArray[ pathArray.length - 2 ];
@@ -60,8 +59,8 @@ class ListPagesElement extends HTMLElement {
             template += `
                 <li>
                     <p>
-                        <a href="?${ name }">
-                            <span>${ capitalized( name ) }</span>
+                        <a href="?${ nameFile }">
+                            <span>${ capitalized( nameFile ) }</span>
                         </a>
                     </p>
                 </li>
