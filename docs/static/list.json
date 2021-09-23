@@ -32,7 +32,7 @@
 
         "color": {
 
-            "path": "core/math/color2",
+            "path": "core/math/color",
             "dir": "api"
 
         },

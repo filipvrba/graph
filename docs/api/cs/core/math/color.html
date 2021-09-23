@@ -27,194 +27,53 @@ const randColor = Color.ranColorStyle();
                 </light-code>
             </div>
 
-            <div class="section" id="properties" >
-                <h2>Vlastnosti</h2>
-                <table>
-                    <colgroup>
-                        <col style="width: 38%;">
-                        <col style="width: 50%;">
-                        <col style="width: 13%;">
-                    </colgroup>
-                    <tr>
-                        <th>
-                            <obj-type type="Array">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#property-colors">colors</a>
-                            </p>
-                        </th>
-                        <th>
-                            <select-color></select-color>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="Number">
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#property-bitMask">bitMask</a>
-                            </p>
-                        </th>
-                        <th>
-                            <p>
-                                <code>
-                                    <span>0</span>
-                                </code>
-                            </p>
-                        </th>
-                    </tr>
-                </table>
-            </div>
+            <prop-table name="Vlastnosti">
+                <prop type='o:array'
+                    name="colors" value="<select-color></select-color>">
+                </prop>
+                <prop type='o:number'
+                    name="bitMask" value="0">
+                </prop>
+            </prop-table>
 
-            <div class="section" id="methods">
-                <h2>Funkce</h2>
-                <table>
-                    <colgroup>
-                        <col style="width: 12%;">
-                        <col style="width: 88%;">
-                    </colgroup>
-                    <tr>
-                        <th>
-                            <class-type type="constructor"></class-type>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-color">Color ()</a>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <obj-type type="String"></obj-type>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-getRandomPalettte">getRandomPalettte ()</a>
-                            </p>
-                        </th>
-                    </tr>
-                </table>
-            </div>
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Color ()"></meth>
+                <meth type="o:string" name="getRandomPalettte ()"></meth>
+            </meth-table>
 
-            <div class="section" id="methods">
-                <h2>Statické Funkce</h2>
-                <table>
-                    <colgroup>
-                        <col style="width: 12%;">
-                        <col style="width: 88%;">
-                    </colgroup>
-                    <tr>
-                        <th class="row">
-                            <p class="fa fa-flash"></p>
-                            <obj-type type="String"></obj-type>
-                        </th>
-                        <th>
-                            <p>
-                                <a href="#method-ranColorStyle">ranColorStyle ()</a>
-                            </p>
-                        </th>
-                    </tr>
-                </table>
-            </div>
+            <meth-table name="Statická Funkce" static="true">
+                <meth type="o:string" name="ranColorStyle ()"></meth>
+            </meth-table>
 
-            <div class="section name" id="property-descriptions">
-                <h2>Popis Vlastností</h2>
-                <div id="property-colors">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Array"></obj-type>
-                                <strong>colors</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <table>
-                        <colgroup>
-                            <col style="width: 55%;">
-                            <col style="width: 45%;">
-                        </colgroup>
-                        <tr>
-                            <th>
-                                výchozí
-                            </th>
-                            <th>
-                                <p>
-                                    <select-color></select-color>
-                                </p>
-                            </th>
-                        </tr>
-                    </table>
-                    <p class="description">
+            <prop-desc name="Popis Vlastností">
+                <prop type="o:array" name="colors"
+                    value="výchozí:<select-color></select-color>">
+                    <p>
                         Paleta <a href="https://lospec.com/palette-list/zughy-32">zughy</a> má délku
-                        <code><span>
+                            <code><span>
                             <e-code>
                                 const color = new Color();
                                 color.colors.length;
                             </e-code></span></code> hex barev, a jsou uložené do řetězce.
                     </p>
-                </div>
+                </prop>
                 <hr>
-                <div id="property-bitMask">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="Number"></obj-type>
-                                <strong>bitMask</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <table>
-                        <colgroup>
-                            <col style="width: 55%;">
-                            <col style="width: 45%;">
-                        </colgroup>
-                        <tr>
-                            <th>
-                                výchozí
-                            </th>
-                            <th>
-                                <p>
-                                    <code><span>0</span></code>
-                                </p>
-                            </th>
-                        </tr>
-                    </table>
-                    <p class="description">
-                        Ukládá unikátní bit pro identifikaci použitých barev z palety.
-                    </p>
-                </div>
-            </div>
-
+                <prop type="o:number" name="bitMask"
+                    value="výchozí:0">
+                    <p>Ukládá unikátní bit pro identifikaci použitých barev z palety.</p>
+                </prop>
+            </prop-desc>
             <hr>
-
-            <div class="section name" id="method-descriptions">
-                <h2>Popis Funkcí</h2>
-                <div id="method-color">
-                    <ul>
-                        <li>
-                            <p>
-                                <class-type type="constructor"></class-type>
-                                <strong>Color ()</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
-                        Konstruktor umožní ukládat už použité barvy z palety pomocí <code><span>bitMask</span></code>.
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="Color ()">
+                    <p>
+                        Konstruktor umožní ukládat už použité barvy z
+                        palety pomocí <code><span>bitMask</span></code>.
                     </p>
-                </div>
+                </meth>
                 <hr>
-                <div id="method-getRandomPalettte">
-                    <ul>
-                        <li>
-                            <p>
-                                <obj-type type="String"></obj-type>
-                                <strong>getRandomPalettte ()</strong>
-                            </p>
-                        </li>
-                    </ul>
-                    <p class="description">
+                <meth type="o:string" name="getRandomPalettte ()">
+                    <p>
                         Náhodně vybere barvu z palety a přiřadímu unikátní bit, pro uložení do <code><span>bitMask</span></code> vlastnosti.
                         Použitá barva v budoucím volání se neaplikuje.<br><br>
                         Počet volání je omezený na
@@ -231,26 +90,12 @@ const randColor = Color.ranColorStyle();
                             <p>Vrací string ve formátu hex.</p>
                         </div>
                     </p>
-                </div>
-            </div>
-
+                </meth>
+            </meth-desc>
             <hr>
-
-            <div class="section name" id="method-descriptions">
-                <h2>Popis Statické Funkce</h2>
-                <div id="method-ranColorStyle">
-                    <ul>
-                        <li>
-                            <div class="row">
-                                <p class="fa fa-flash"></p>
-                                <obj-type type="String"></obj-type>
-                                <p>
-                                    <strong>ranColorStyle ()</strong>
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                    <p class="description">
+            <meth-desc name="Popis Statické Funkce" static="true">
+                <meth type="o:string" name="ranColorStyle ()">
+                    <p>
                         Náhodně vygenerovaná barva ve formátu <code><span>rgb</span></code>.
                         
                         <br><br>
@@ -259,8 +104,8 @@ const randColor = Color.ranColorStyle();
                             <p>Vrací string a dá se aplikovat na css barvu.</p>
                         </div>
                     </p>
-                </div>
-            </div>
+                </meth>
+            </meth-desc>
         </article>
     </body>
 </html>
