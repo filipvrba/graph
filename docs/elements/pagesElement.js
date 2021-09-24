@@ -25,6 +25,9 @@ class PagesElements extends HTMLElement {
         this.applyTemplate( template );
         this.applyHash();
 
+        const event = new CustomEvent( 'loadedPage' );
+        document.dispatchEvent( event );
+
     }
 
     applyTemplate( template ) {

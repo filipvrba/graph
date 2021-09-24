@@ -65,7 +65,7 @@ class NavigationElement extends HTMLElement {
         const template = `
         <li>
             <p>
-                <a href="?${ HOME }" class="fa fa-home" style="font-size: 22px;"></a>
+                <a onclick="document.dispatchEvent( clickHomeEvent );" class="fa fa-home" style="font-size: 22px;"></a>
             </p>
         </li>
         <li><p>&raquo;<p></li>`;

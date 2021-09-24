@@ -12,6 +12,9 @@ const html = document.querySelector( 'html' );
 // Change language in document
 html.setAttribute( 'lang', language );
 
+// Events
+const clickHomeEvent = new CustomEvent( 'clickHome' );
+
 function getMark() {
 
     let mark = window.location.search.replace( '?', '' );

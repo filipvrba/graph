@@ -16,6 +16,11 @@
 body {
 
     font-family: arial, sans-serif;
+
+}
+
+#root {
+
     padding: 1.618em 1.618em;
 
 }

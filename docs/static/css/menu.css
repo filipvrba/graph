@@ -1,0 +1,91 @@
+:root {
+
+    --menu-width: 300px;
+    --menu-padding: 16px;
+    --font-size-input: 16px;
+
+}
+
+.menu {
+
+    background-color: #fafafa;
+    width: var( --menu-width );
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    padding: var( --menu-padding );
+    box-shadow: var( --box-shadow );
+    z-index: 100;
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    transition: left 0.2s ease-in-out 0s;
+    left: calc( -1 * var( --menu-width ));
+    /* left: 0px; */
+
+}
+
+.menu hr {
+
+    padding: 0 var( --menu-padding );
+
+}
+
+.menu #header h1 {
+
+    margin: 0;
+
+}
+
+.menu #inputWraper {
+
+    display: flex;
+    align-items: center;
+
+}
+
+.menu #inputWraper #filterInput {
+
+    width: 100%;
+    flex: 1;
+    margin: 0 var( --menu-padding );
+    mask-position: 0 50%;
+    mask-repeat: no-repeat;
+    font-family: arial, sans-serif;
+    font-size: var( --font-size-input );
+
+}
+
+.menu #inputWraper #language {
+
+    /* font-family: arial, sans-serif; */
+    width: 50px;
+    font-size: var( --font-size-input );
+    cursor: pointer;
+
+}
+
+.fade {
+
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    z-index: -10;
+    position: fixed;
+    display: flex;
+    transition: opacity 0.2s ease-in-out 0s;
+
+}
+
+.background {
+
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    background-color: #e1e4e5;
+
+}

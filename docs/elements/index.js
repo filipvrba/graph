@@ -9,8 +9,9 @@ import { SelectColorElement } from './selectColorElement.js';
 import { ListPagesElement } from './listPageElement.js';
 import { PropertyTableElement } from './propertyTableElement.js';
 import { MethodsTableElement } from './methodsTableElement.js';
-import { PropertyDescElement } from './propertyDescElement.js'
-import { MethodDescElement } from './methodDescElement.js'
+import { PropertyDescElement } from './propertyDescElement.js';
+import { MethodDescElement } from './methodDescElement.js';
+import { TouchMenuElement } from './touchMenuElement.js';
 
 window.customElements.define( 'obj-type', ObjectsElement );
 window.customElements.define( 'nav-panel', NavigationElement );
@@ -25,3 +26,4 @@ window.customElements.define( 'prop-table', PropertyTableElement );
 window.customElements.define( 'meth-table', MethodsTableElement );
 window.customElements.define( 'prop-desc', PropertyDescElement );
 window.customElements.define( 'meth-desc', MethodDescElement );
+window.customElements.define( 'menu-panel', TouchMenuElement );

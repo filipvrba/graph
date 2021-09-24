@@ -7,7 +7,6 @@
 body {
 
     margin: 0px;
-    background-color: #e1e4e5;
 
 }
 
@@ -35,7 +34,7 @@ hr {
     padding: 0;
 }
 
-#root {
+.board {
 
     display: flex;
     flex-direction: column;
@@ -47,5 +46,11 @@ hr {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: var( --box-shadow );
+
+}
+
+.fa-home {
+
+    cursor: pointer;
 
 }

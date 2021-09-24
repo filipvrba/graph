@@ -11,28 +11,35 @@
         <link rel="stylesheet" href="./static/css/font-awesome.min.css">
         <link rel="stylesheet" href="./static/css/syntax.css">
         <link rel="stylesheet" href="./static/css/animation.css">
+        <link rel="stylesheet" href="./static/css/menu.css">
 
         <title>Document</title>
     </head>
     <body>
+        <menu-panel></menu-panel>
+        <div class="background"></div>
         <div id="root">
-            <header>
-                <nav-panel></nav-panel>
-                <hr>
-            </header>
+            <div class="board">
+                <header>
+                    <nav-panel></nav-panel>
+                </header>
 
-            <root-page></root-page>
-
-            <footer>
                 <hr>
-                <foo-panel author="Filip Vrba" linkedin="https://www.linkedin.com/in/fvsteam/"></foo-panel>
-            </footer>
+
+                <root-page></root-page>
+
+                <footer>
+                    <hr>
+                    <foo-panel author="Filip Vrba" linkedin="https://www.linkedin.com/in/fvsteam/"></foo-panel>
+                </footer>
+            </div>
         </div>
 
         <script src="./src/script.js"></script>
         <script src="./src/dataList.js"></script>
         <script src="./prettify/prettify.js"></script>
         <script src="./src/graph-engine.js"></script>
+        
         <script type="module" src="./elements/index.js"></script>
     </body>
 </html>
