@@ -12,7 +12,7 @@ class TouchMenuElement extends MenuElement {
         this.start = new Vector2( 0, 0);
         this.distance = new Vector2( 0, 0 );
 
-        this.delay = 200;
+        this.delay = 100;
         this.distanceYMax = 30;
 
     }
