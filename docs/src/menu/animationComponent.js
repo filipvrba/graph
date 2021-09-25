@@ -3,11 +3,11 @@ class AnimationComponent {
     constructor( parent ) {
 
         this.menu = document.getElementById( 'menu' );
-
         this.fade = document.getElementById( 'fade' );
 
         this.parent = parent;
         this.isActivate = false;
+        this.speed = 0.3;
 
         this.finishEvent = new CustomEvent( 'animFinish' );
 
@@ -50,20 +50,20 @@ class AnimationComponent {
         if ( isVisible ) {
 
             // Menu in
-            this.menu.style.animation = "menuMove-in 1s forwards 0s";
+            this.menu.style.animation = `menuMove-in ${ this.speed }s forwards 0s`;
 
             // // Fade in
-            this.fade.style.animation = "fade-in 1s forwards 0s";
+            this.fade.style.animation = `fade-in ${ this.speed }s forwards 0s`;
             this.fade.style.zIndex = 10;
 
 
         } else {
 
             // Menu out
-            this.menu.style.animation = "menuMove-out 1s forwards 0s";
+            this.menu.style.animation = `menuMove-out ${ this.speed }s forwards 0s`;
 
             // // Fade out
-            this.fade.style.animation = "fade-out 1s forwards 0s";
+            this.fade.style.animation = `fade-out ${ this.speed }s forwards 0s`;
 
         }
 

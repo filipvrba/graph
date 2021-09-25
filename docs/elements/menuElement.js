@@ -10,23 +10,25 @@ class MenuElement extends HTMLElement {
 
         this.template = `
         <div class="menu" id="menu">
-            <div id="header">
-                <h1>graph</h1>
-            </div>
-            <hr>
-            <div id="contentWraper">
-                <div id="inputWraper">
-                    <p class="fa fa-search"></p>
-                    <input class="fa fa-search" placeholder type="text" id="filterInput"
-                    autocorrect="off", autocapitalize="off"
-                    spellcheck="false" maxlength="50">
-                    <select id="language">
-                        <option value="en">en</option>
-                    </select>
+            <div class="scroll">
+                <div id="header">
+                    <h1>graph</h1>
                 </div>
                 <hr>
-                <div id="content">
-                    <h2>API</h2>
+                <div id="contentWraper">
+                    <div id="inputWraper">
+                        <p class="fa fa-search"></p>
+                        <input class="fa fa-search" placeholder type="text" id="filterInput"
+                        autocorrect="off", autocapitalize="off"
+                        spellcheck="false" maxlength="50">
+                        <select id="language">
+                            <option value="en">en</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div id="content">
+                        <h2>API</h2>
+                    </div>
                 </div>
             </div>
         </div>
@@ -131,8 +133,6 @@ class MenuElement extends HTMLElement {
     }
 
     clickHome() {
-
-        console.log( this.animation.getIsActivate() );
 
         if ( this.animation.getIsActivate() ) return;
 

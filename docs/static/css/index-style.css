@@ -7,7 +7,7 @@
 body {
 
     margin: 0px;
-    background-color: #e1e4e5;
+    background-color: var( --table-solid );
 
 }
 
@@ -30,7 +30,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #e1e4e5;
+    border-top: 1px solid var( --table-solid );
     margin: 24px 0;
     padding: 0;
 }
@@ -63,6 +63,6 @@ hr {
     height: 100%;
     display: flex;
     position: fixed;
-    background-color: #e1e4e5;
+    background-color: var( --table-solid );
 
 }
