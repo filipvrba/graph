@@ -12,7 +12,7 @@ class MenuElement extends HTMLElement {
         <div class="menu" id="menu">
             <div class="scroll">
                 <div id="header">
-                    <h1>graph</h1>
+                    <h1>${ DOCUMENT }</h1>
                 </div>
                 <hr>
                 <div id="contentWraper">
@@ -27,7 +27,6 @@ class MenuElement extends HTMLElement {
                     </div>
                     <hr>
                     <div id="content">
-                        <h2>API</h2>
                     </div>
                 </div>
             </div>
@@ -71,7 +70,7 @@ class MenuElement extends HTMLElement {
 
                 docsCategory.appendChild( docCategory );
 
-                this.createDocsTemplate( file, values, docCategory );
+                this.createDocTemplate( file, values, docCategory );
 
             }
 
@@ -93,10 +92,9 @@ class MenuElement extends HTMLElement {
             divCategory.setAttribute('id', categoryID)
             content.appendChild(divCategory);
 
-
             if ( node === "h2" ) {
 
-                divCategory.innerHTML = `<${ node }>${ category }</${ node }>`;
+                divCategory.innerHTML = `<${ node }>${ capitalized( category ) }</${ node }>`;
             
             } else {
 
@@ -118,7 +116,7 @@ class MenuElement extends HTMLElement {
 
     }
 
-    createDocsTemplate( file, values, docCategory ) {
+    createDocTemplate( file, values, docCategory ) {
 
         const categories = values.path.split('/');
         const length = categories.length;
@@ -147,7 +145,7 @@ class MenuElement extends HTMLElement {
 
         const template = `
         <${ node }>
-            <a onclick="clickDoc( '${ name }' )">${ name }</a>
+            <a onclick="clickDoc( '${ name }' )">${ capitalized(name) }</a>
         </${ node }>
         `;
 

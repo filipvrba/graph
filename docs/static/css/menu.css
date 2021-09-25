@@ -1,9 +1,10 @@
 :root {
 
-    --menu-width: 400px;
+    --menu-width: 350px;
     --menu-padding: 16px;
     --font-size-input: 16px;
     --menu-radius: 20px;
+    --menu-color-font: #551a8b;
 
 }
 
@@ -69,6 +70,49 @@
 
     width: 50px;
     font-size: var( --font-size-input );
+    cursor: pointer;
+
+}
+
+.menu h1 {
+
+    font-size: 230%;
+
+}
+
+.menu h2 {
+
+    font-size: 150%;
+
+}
+
+.menu h3 {
+
+    font-size: 130%;
+
+}
+
+.menu p {
+
+    font-size: 120%;
+
+}
+
+.menu ul {
+
+    margin-block-start: 0;
+
+}
+
+.menu #content {
+
+    margin-left: 20px;
+
+}
+
+.menu a {
+
+    color: var( --menu-color-font );
     cursor: pointer;
 
 }
