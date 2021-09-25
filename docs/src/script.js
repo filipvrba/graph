@@ -1,6 +1,7 @@
 const HOME = 'home';
 const DOCUMENT = 'graph';
 const INDEX = 'index';
+const ERROR = 'error';
 const STATIC = 'fa fa-flash';
 
 let language = 'cs';  // Default language
@@ -14,6 +15,21 @@ html.setAttribute( 'lang', language );
 
 // Events
 const clickHomeEvent = new CustomEvent( 'clickHome' );
+
+function clickDoc( name ) {
+
+    const event = new CustomEvent( 'clickDoc', {
+
+        detail: {
+
+            doc: `${ name }`
+
+        }
+
+    });
+    document.dispatchEvent( event );
+
+}
 
 function getMark() {
 

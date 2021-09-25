@@ -7,6 +7,7 @@
 body {
 
     margin: 0px;
+    background-color: #e1e4e5;
 
 }
 
@@ -52,5 +53,16 @@ hr {
 .fa-home {
 
     cursor: pointer;
+
+}
+
+.background {
+
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    background-color: #e1e4e5;
 
 }

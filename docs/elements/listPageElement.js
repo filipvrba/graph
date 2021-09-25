@@ -11,22 +11,13 @@ class ListPagesElement extends HTMLElement {
     }
 
     async init() {
-
-        const data = await getData();
-        const files = data.files;
         
         let template = '';
 
-        // Object convet to map;
-        const filesMap = new Map();
-        Object.keys( files ).forEach( key => {
-
-            filesMap.set( key, files[ key ] );
-
-        });
+        const files = await getFiles();
 
         // Find the same parent on an files.
-        filesMap.forEach( ( file, name ) => {
+        files.forEach( ( file, name ) => {
 
             if ( file.dir === 'api' ) {
 

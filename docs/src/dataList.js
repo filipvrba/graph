@@ -20,6 +20,23 @@ async function getData() {
 
 }
 
+async function getFiles() {
+
+    const data = await getData();
+    const files = data.files;
+
+    // Object convet to map;
+    const filesMap = new Map();
+    Object.keys( files ).forEach( key => {
+
+        filesMap.set( key, files[ key ] );
+
+    });
+
+    return filesMap;
+
+}
+
 async function getFile( type ) {
 
     let file = await getData();

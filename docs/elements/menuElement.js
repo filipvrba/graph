@@ -1,3 +1,5 @@
+import { AnimationComponent } from "../src/menu/animationComponent.js";
+
 class MenuElement extends HTMLElement {
 
     constructor() {
@@ -32,11 +34,72 @@ class MenuElement extends HTMLElement {
         `;
 
         this.innerHTML = this.template;
+        this.animation = new AnimationComponent( this );
+        this.docNameClick = null;
 
-        this.menu = document.getElementById( 'menu' );
-        this.menuWidth = 300;
+        this.init();
 
-        this.fade = document.getElementById( 'fade' );
+    }
+
+    async init() {
+
+        const files = await getFiles();
+
+        this.menuFiles = [ ];
+
+        files.forEach( ( values, file ) =>{
+
+            if ( file !== ERROR ) {
+
+                const docsCategory = this.createDocsCategory( values.dir );
+                this.createDocsTemplate( file, values, docsCategory );
+                
+            }
+
+        });
+
+    }
+
+    createDocsCategory( dir ) {
+
+        const docsCategory = dir;
+        const content = document.getElementById( 'content' );
+        const categoryID = `docs-${ docsCategory }`;
+        let divCategory = document.getElementById( categoryID );
+
+        const isExist = divCategory === null;
+
+        if ( isExist ) {
+
+            divCategory = document.createElement("div");
+            divCategory.setAttribute( 'id', categoryID )
+            content.appendChild( divCategory );
+
+            divCategory.innerHTML = `<h2>${ docsCategory }</h2>`;
+
+            return divCategory;
+
+        }
+
+        return divCategory;
+
+    }
+
+    createDocsTemplate( file, values, docsCategory ) {
+
+        const categories = values.path.split( '/' );
+        const length = categories.length;
+
+
+        if ( docsCategory.getAttribute( 'id' ).search( values.dir ) > -1 ) {
+
+            docsCategory.innerHTML += `
+            <p>
+                <a onclick="clickDoc( '${ file }' )">${ file }</a>
+            <p>
+            `;
+
+        }
 
     }
 
@@ -45,43 +108,49 @@ class MenuElement extends HTMLElement {
         this.clickHomeHandler = () => { this.clickHome() };
         document.addEventListener( 'clickHome', this.clickHomeHandler );
 
+        this.clickDocHandler = ( event ) => {
+
+            const docName = event.detail.doc;
+            this.docNameClick = docName;
+            this.clickHome();
+
+        }
+        document.addEventListener( 'clickDoc', this.clickDocHandler );
+
+        this.animation.init();
+
     }
 
     disconnectedCallback() {
 
         document.removeEventListener( 'clickHome', this.clickHomeHandler );
+        document.removeEventListener( 'clickDoc', this.clickDocHandler );
+
+        this.animation.free();
 
     }
 
     clickHome() {
 
+        console.log( this.animation.getIsActivate() );
+
+        if ( this.animation.getIsActivate() ) return;
+
         this.isVisible = !this.isVisible;
-        this.visible( this.isVisible );
+        this.animation.visible( this.isVisible );
 
     }
 
-    visible( isVisible ) {
+    /**
+     * Animation 'animationend' call this function.
+     */
+    closedMenu() {
 
-        if ( isVisible ) {
+        if ( this.docNameClick === null ) return;
 
-            // Menu in
-            this.menu.style.left = "0px";
+        window.location.replace( `?${ this.docNameClick }` );
 
-            // Fade in
-            this.fade.style.zIndex = 10;
-            this.fade.style.opacity = 0.5;
-
-
-        } else {
-
-            // Menu out
-            this.menu.style.left = `-${ this.menuWidth }px`;
-
-            // Fade out
-            this.fade.style.zIndex = -10;
-            this.fade.style.opacity = 0;
-
-        }
+        this.docNameClick = null;
 
     }
 
