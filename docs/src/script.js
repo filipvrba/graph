@@ -15,6 +15,7 @@ html.setAttribute( 'lang', language );
 
 // Events
 const clickHomeEvent = new CustomEvent( 'clickHome' );
+const clickSearchEvent = new CustomEvent( 'clickSearch' );
 
 function clickDoc( name ) {
 
@@ -88,5 +89,31 @@ function getLocalLanguage() {
     }
 
     return langLocal;
+
+}
+
+function smallestText( values ) {
+
+    const smallest = {
+
+        length: Infinity,
+        text: ''
+
+    };
+
+    for ( const text of values ) {
+
+        const length = text.length;
+
+        if ( smallest.length > length ) {
+
+            smallest.length = length;
+            smallest.text = text
+
+        }
+
+    }
+
+    return smallest.text;
 
 }

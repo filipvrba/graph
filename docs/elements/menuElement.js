@@ -17,7 +17,9 @@ class MenuElement extends HTMLElement {
                 <hr>
                 <div id="contentWraper">
                     <div id="inputWraper">
-                        <p class="fa fa-search"></p>
+                        <button onclick="document.dispatchEvent( clickSearchEvent );">
+                            <p class="fa fa-search"></p>
+                        </button>
                         <input class="fa fa-search" placeholder type="text" id="filterInput"
                         autocorrect="off", autocapitalize="off"
                         spellcheck="false" maxlength="50">
@@ -37,6 +39,7 @@ class MenuElement extends HTMLElement {
         this.animation = new AnimationComponent(this);
         this.docNameClick = null;
         this.isLangChanged = false;
+        this.files = null;
 
         this.languages = document.getElementById( 'language' );
 
@@ -51,9 +54,9 @@ class MenuElement extends HTMLElement {
 
         this.languages.innerHTML = await this.addLanguagesTemplate();
 
-        const files = await getFiles();
+        this.files = await getFiles();
 
-        this.createCategories( files );
+        this.createCategories( this.files );
 
     }
 
@@ -177,6 +180,13 @@ class MenuElement extends HTMLElement {
         }
         document.addEventListener('clickDoc', this.clickDocHandler);
 
+        this.clickSearchHandler = () => {
+
+            this.filterEnteredSearch();
+
+        }
+        document.addEventListener( 'clickSearch', this.clickSearchHandler );
+
         this.animation.init();
 
         this.filterInput.oninput = () => {
@@ -184,6 +194,17 @@ class MenuElement extends HTMLElement {
             this.updateCategories();
 
         }
+
+        this.filterKeyUpHandler = ( event ) => {
+
+            if ( event.key === 'Enter' ) {
+                
+                this.filterEnteredSearch();
+
+            }
+
+        }
+        this.filterInput.addEventListener( 'keyup', this.filterKeyUpHandler );
 
         this.languages.onchange = () => {
 
@@ -195,7 +216,30 @@ class MenuElement extends HTMLElement {
 
     }
 
-    async updateCategories() {
+    async filterEnteredSearch() {
+
+        if ( this.filterInput.value === '' ) return;
+
+        const inputResult = await this.getInputResult();
+
+        if ( inputResult.size <= 0 ) return;
+
+        let name = null;
+        if ( inputResult.size === 1 ) {
+
+            name = Array.from( inputResult.keys() )[ 0 ];
+
+        } else {
+            
+            name = smallestText( inputResult.keys() );
+
+        }
+
+        window.location.replace( `?${ name }` );
+
+    }
+
+    async getInputResult() {
 
         const value = this.filterInput.value;
         const files = await getFiles();
@@ -213,8 +257,21 @@ class MenuElement extends HTMLElement {
 
         })
 
+        return resultFiles;
+
+    }
+
+    async updateCategories() {
+
+        const resultFiles = await this.getInputResult();
+        this.resetCategories( resultFiles );
+
+    }
+
+    resetCategories( files ) {
+
         this.content.innerHTML = '';
-        this.createCategories( resultFiles );
+        this.createCategories( files );
 
     }
 
@@ -222,8 +279,11 @@ class MenuElement extends HTMLElement {
 
         document.removeEventListener('clickHome', this.clickHomeHandler);
         document.removeEventListener('clickDoc', this.clickDocHandler);
+        document.removeEventListener( 'clickSearch', this.clickSearchHandler );
 
         this.animation.free();
+
+        this.filterInput.removeEventListener( 'keyup', this.filterKeyUpHandler );
 
     }
 
@@ -250,13 +310,21 @@ class MenuElement extends HTMLElement {
 
         }
 
-        if (this.docNameClick === null) return;
+        if (this.docNameClick === null) {
+
+            this.filterInput.value = '';
+            this.resetCategories( this.files );
+            return;
+
+        }
 
         window.location.replace(`?${this.docNameClick}`);
 
         this.docNameClick = null;
 
     }
+
+
 
     async addLanguagesTemplate() {
 

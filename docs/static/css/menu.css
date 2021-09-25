@@ -27,6 +27,20 @@
 
 }
 
+.menu button {
+
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+}
+
+.menu .fa-search {
+
+    font-size: 26px;
+
+}
+
 .menu .scroll {
 
     height: 100%;
@@ -58,7 +72,8 @@
 
     width: 100%;
     flex: 1;
-    margin: 0 var( --menu-padding );
+    margin-right: var( --menu-padding );
+    margin-left: calc( var( --menu-padding ) / 2);
     mask-position: 0 50%;
     mask-repeat: no-repeat;
     font-family: arial, sans-serif;
