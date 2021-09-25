@@ -66,3 +66,12 @@ async function getPage() {
     return file;
 
 }
+
+async function getLanguages() {
+
+    const data = await getData();
+    const languages = data.languages;
+
+    return languages;
+
+}

@@ -1,5 +1,12 @@
 {
 
+    "languages": [
+
+        "cs",
+        "en"
+
+    ],
+
     "files": {
 
         "home": {

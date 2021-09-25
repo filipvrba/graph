@@ -4,7 +4,7 @@ const INDEX = 'index';
 const ERROR = 'error';
 const STATIC = 'fa fa-flash';
 
-let language = 'cs';  // Default language
+let language = getLocalLanguage();
 
 const hash = window.location.hash;
 const title = document.querySelector('title');
@@ -61,5 +61,32 @@ function capitalized( name ) {
 function setTitle( name ) {
 
     title.innerHTML = name;
+
+}
+
+function changeLang( lang ) {
+
+    language = lang;
+    setLocalLanguage( lang );
+
+}
+
+function setLocalLanguage( lang ) {
+
+    window.localStorage.setItem( 'language', lang );
+
+}
+
+function getLocalLanguage() {
+
+    let langLocal = window.localStorage.getItem( 'language' );
+
+    if ( langLocal === null ) {
+
+        setLocalLanguage( 'cs' );  // Default language
+
+    }
+
+    return langLocal;
 
 }

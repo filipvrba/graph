@@ -22,7 +22,6 @@ class MenuElement extends HTMLElement {
                         autocorrect="off", autocapitalize="off"
                         spellcheck="false" maxlength="50">
                         <select id="language">
-                            <option value="en">en</option>
                         </select>
                     </div>
                     <hr>
@@ -37,6 +36,9 @@ class MenuElement extends HTMLElement {
         this.innerHTML = this.template;
         this.animation = new AnimationComponent(this);
         this.docNameClick = null;
+        this.isLangChanged = false;
+
+        this.languages = document.getElementById( 'language' );
 
         this.init();
 
@@ -46,6 +48,8 @@ class MenuElement extends HTMLElement {
     }
 
     async init() {
+
+        this.languages.innerHTML = await this.addLanguagesTemplate();
 
         const files = await getFiles();
 
@@ -181,6 +185,14 @@ class MenuElement extends HTMLElement {
 
         }
 
+        this.languages.onchange = () => {
+
+            changeLang( this.languages.value );
+            this.clickHome();
+            this.isLangChanged = true;
+
+        }
+
     }
 
     async updateCategories() {
@@ -229,11 +241,42 @@ class MenuElement extends HTMLElement {
      */
     closedMenu() {
 
+        // Reload page for change language.
+        if ( this.isLangChanged ) {
+
+            this.isLangChanged = false;
+            document.location.reload();
+            return;
+
+        }
+
         if (this.docNameClick === null) return;
 
         window.location.replace(`?${this.docNameClick}`);
 
         this.docNameClick = null;
+
+    }
+
+    async addLanguagesTemplate() {
+
+        const languages = await getLanguages();
+        let template = '';
+
+        for ( const lang of languages ) {
+
+            let selected = '';
+            if ( lang === language ) {
+
+                selected = 'selected';
+
+            }
+
+            template += `<option value="${ lang }" ${ selected }>${ lang }</option>\n`;
+
+        }
+
+        return template;
 
     }
 
