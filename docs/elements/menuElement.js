@@ -36,7 +36,7 @@ class MenuElement extends HTMLElement {
         `;
 
         this.innerHTML = this.template;
-        this.animation = new AnimationComponent( this );
+        this.animation = new AnimationComponent(this);
         this.docNameClick = null;
 
         this.init();
@@ -47,37 +47,68 @@ class MenuElement extends HTMLElement {
 
         const files = await getFiles();
 
-        this.menuFiles = [ ];
+        this.menuFiles = [];
 
-        files.forEach( ( values, file ) =>{
+        files.forEach((values, file) => {
 
-            if ( file !== ERROR ) {
+            if (file !== ERROR ) {
 
-                const docsCategory = this.createDocsCategory( values.dir );
-                this.createDocsTemplate( file, values, docsCategory );
-                
+                const docsCategory = this.createCategory( 'h2', 'docs', values.dir );
+
+                let category = values.path.split( '/' );
+
+                if ( category.length > 1 ) {
+
+                    category = category[ category.length - 2 ];
+
+                } else {
+
+                    category = values.path;
+
+                }
+
+                const docCategory = this.createCategory( 'h3', 'doc', category );
+
+                docsCategory.appendChild( docCategory );
+
+                this.createDocsTemplate( file, values, docCategory );
+
             }
 
         });
 
     }
 
-    createDocsCategory( dir ) {
+    createCategory( node, type, category ) {
 
-        const docsCategory = dir;
-        const content = document.getElementById( 'content' );
-        const categoryID = `docs-${ docsCategory }`;
+        const content = document.getElementById('content');
+        const categoryID = `${ type }-${ category }`;
         let divCategory = document.getElementById( categoryID );
 
         const isExist = divCategory === null;
 
-        if ( isExist ) {
+        if (isExist) {
 
             divCategory = document.createElement("div");
-            divCategory.setAttribute( 'id', categoryID )
-            content.appendChild( divCategory );
+            divCategory.setAttribute('id', categoryID)
+            content.appendChild(divCategory);
 
-            divCategory.innerHTML = `<h2>${ docsCategory }</h2>`;
+
+            if ( node === "h2" ) {
+
+                divCategory.innerHTML = `<${ node }>${ category }</${ node }>`;
+            
+            } else {
+
+                divCategory.innerHTML = `
+                <ul>
+                    <li>
+                        ${ this.docTemplate( node, category ) }
+                    </li>
+                </ul>
+                `;
+
+            }
 
             return divCategory;
 
@@ -87,37 +118,56 @@ class MenuElement extends HTMLElement {
 
     }
 
-    createDocsTemplate( file, values, docsCategory ) {
+    createDocsTemplate( file, values, docCategory ) {
 
-        const categories = values.path.split( '/' );
+        const categories = values.path.split('/');
         const length = categories.length;
 
+        if ( categories[ categories.length - 1 ] !== INDEX ) {
 
-        if ( docsCategory.getAttribute( 'id' ).search( values.dir ) > -1 ) {
+            if ( categories.length > 1 ) {
 
-            docsCategory.innerHTML += `
-            <p>
-                <a onclick="clickDoc( '${ file }' )">${ file }</a>
-            <p>
-            `;
+                docCategory.innerHTML += `
+                <ul>
+                    <ul>
+                        <li>
+                            ${ this.docTemplate( 'p', file ) }
+                        </li>
+                    </ul>
+                </ul>
+                `;
+
+            }
 
         }
+
+    }
+
+    docTemplate( node, name ) {
+
+        const template = `
+        <${ node }>
+            <a onclick="clickDoc( '${ name }' )">${ name }</a>
+        </${ node }>
+        `;
+
+        return template;
 
     }
 
     connectedCallback() {
 
         this.clickHomeHandler = () => { this.clickHome() };
-        document.addEventListener( 'clickHome', this.clickHomeHandler );
+        document.addEventListener('clickHome', this.clickHomeHandler);
 
-        this.clickDocHandler = ( event ) => {
+        this.clickDocHandler = (event) => {
 
             const docName = event.detail.doc;
             this.docNameClick = docName;
             this.clickHome();
 
         }
-        document.addEventListener( 'clickDoc', this.clickDocHandler );
+        document.addEventListener('clickDoc', this.clickDocHandler);
 
         this.animation.init();
 
@@ -125,8 +175,8 @@ class MenuElement extends HTMLElement {
 
     disconnectedCallback() {
 
-        document.removeEventListener( 'clickHome', this.clickHomeHandler );
-        document.removeEventListener( 'clickDoc', this.clickDocHandler );
+        document.removeEventListener('clickHome', this.clickHomeHandler);
+        document.removeEventListener('clickDoc', this.clickDocHandler);
 
         this.animation.free();
 
@@ -134,10 +184,10 @@ class MenuElement extends HTMLElement {
 
     clickHome() {
 
-        if ( this.animation.getIsActivate() ) return;
+        if (this.animation.getIsActivate()) return;
 
         this.isVisible = !this.isVisible;
-        this.animation.visible( this.isVisible );
+        this.animation.visible(this.isVisible);
 
     }
 
@@ -146,9 +196,9 @@ class MenuElement extends HTMLElement {
      */
     closedMenu() {
 
-        if ( this.docNameClick === null ) return;
+        if (this.docNameClick === null) return;
 
-        window.location.replace( `?${ this.docNameClick }` );
+        window.location.replace(`?${this.docNameClick}`);
 
         this.docNameClick = null;
 
