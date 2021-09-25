@@ -12,7 +12,7 @@ class MenuElement extends HTMLElement {
         <div class="menu" id="menu">
             <div class="scroll">
                 <div id="header">
-                    <h1>${ DOCUMENT }</h1>
+                    <h1>${DOCUMENT}</h1>
                 </div>
                 <hr>
                 <div id="contentWraper">
@@ -40,25 +40,32 @@ class MenuElement extends HTMLElement {
 
         this.init();
 
+        this.filterInput = document.getElementById('filterInput');
+        this.content = document.getElementById('content');
+
     }
 
     async init() {
 
         const files = await getFiles();
 
-        this.menuFiles = [];
+        this.createCategories( files );
+
+    }
+
+    createCategories( files ) {
 
         files.forEach((values, file) => {
 
-            if (file !== ERROR ) {
+            if (file !== ERROR) {
 
-                const docsCategory = this.createCategory( 'h2', 'docs', values.dir );
+                const docsCategory = this.createCategory('h2', 'docs', values.dir);
 
-                let category = values.path.split( '/' );
+                let category = values.path.split('/');
 
-                if ( category.length > 1 ) {
+                if (category.length > 1) {
 
-                    category = category[ category.length - 2 ];
+                    category = category[category.length - 2];
 
                 } else {
 
@@ -66,11 +73,11 @@ class MenuElement extends HTMLElement {
 
                 }
 
-                const docCategory = this.createCategory( 'h3', 'doc', category );
+                const docCategory = this.createCategory('h3', 'doc', category);
 
-                docsCategory.appendChild( docCategory );
+                docsCategory.appendChild(docCategory);
 
-                this.createDocTemplate( file, values, docCategory );
+                this.createDocTemplate(file, values, docCategory);
 
             }
 
@@ -78,11 +85,10 @@ class MenuElement extends HTMLElement {
 
     }
 
-    createCategory( node, type, category ) {
+    createCategory(node, type, category) {
 
-        const content = document.getElementById('content');
-        const categoryID = `${ type }-${ category }`;
-        let divCategory = document.getElementById( categoryID );
+        const categoryID = `${type}-${category}`;
+        let divCategory = document.getElementById(categoryID);
 
         const isExist = divCategory === null;
 
@@ -90,18 +96,18 @@ class MenuElement extends HTMLElement {
 
             divCategory = document.createElement("div");
             divCategory.setAttribute('id', categoryID)
-            content.appendChild(divCategory);
+            this.content.appendChild(divCategory);
 
-            if ( node === "h2" ) {
+            if (node === "h2") {
 
-                divCategory.innerHTML = `<${ node }>${ capitalized( category ) }</${ node }>`;
-            
+                divCategory.innerHTML = `<${node}>${capitalized(category)}</${node}>`;
+
             } else {
 
                 divCategory.innerHTML = `
                 <ul>
                     <li>
-                        ${ this.docTemplate( node, category ) }
+                        ${this.docTemplate(node, category)}
                     </li>
                 </ul>
                 `;
@@ -116,20 +122,20 @@ class MenuElement extends HTMLElement {
 
     }
 
-    createDocTemplate( file, values, docCategory ) {
+    createDocTemplate(file, values, docCategory) {
 
         const categories = values.path.split('/');
         const length = categories.length;
 
-        if ( categories[ categories.length - 1 ] !== INDEX ) {
+        if (categories[categories.length - 1] !== INDEX) {
 
-            if ( categories.length > 1 ) {
+            if (categories.length > 1) {
 
                 docCategory.innerHTML += `
                 <ul>
                     <ul>
                         <li>
-                            ${ this.docTemplate( 'p', file ) }
+                            ${this.docTemplate('p', file)}
                         </li>
                     </ul>
                 </ul>
@@ -141,12 +147,12 @@ class MenuElement extends HTMLElement {
 
     }
 
-    docTemplate( node, name ) {
+    docTemplate(node, name) {
 
         const template = `
-        <${ node }>
-            <a onclick="clickDoc( '${ name }' )">${ capitalized(name) }</a>
-        </${ node }>
+        <${node}>
+            <a onclick="clickDoc( '${name}' )">${capitalized(name)}</a>
+        </${node}>
         `;
 
         return template;
@@ -168,6 +174,35 @@ class MenuElement extends HTMLElement {
         document.addEventListener('clickDoc', this.clickDocHandler);
 
         this.animation.init();
+
+        this.filterInput.oninput = () => {
+
+            this.updateCategories();
+
+        }
+
+    }
+
+    async updateCategories() {
+
+        const value = this.filterInput.value;
+        const files = await getFiles();
+        const resultFiles = new Map();
+
+        files.forEach( ( values, name ) => {
+
+            const result = name.search( value );
+
+            if ( result > -1 ) {
+
+                resultFiles.set( name, values );
+
+            }
+
+        })
+
+        this.content.innerHTML = '';
+        this.createCategories( resultFiles );
 
     }
 
