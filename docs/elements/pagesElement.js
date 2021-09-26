@@ -12,11 +12,33 @@ class PagesElements extends HTMLElement {
 
     async init() {
 
-        const page = await getPage();
+        let page = await getPage();
+        // this.load( page );
 
         fetch( `${ getPath( page.dir ) }/${ page.path }.html` )
         .then( res => res.text() )
         .then( template => { this.loaded( template ) } );
+
+        
+
+    }
+
+    async load( page ) {
+
+        const url = `${ getPath( page.dir ) }/${ page.path }.html`;
+        let response = await fetch( url );
+
+        if ( response.status === 200 ) {
+
+            const template = await response.text();
+            this.loaded( template )
+
+        } else if ( response.status === 404 ) {
+
+            page = await getFile( 'error' );
+            this.load( page );
+
+        }
 
     }
 
