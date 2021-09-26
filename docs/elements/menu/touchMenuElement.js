@@ -1,4 +1,4 @@
-import { MenuElement } from "./menuElement.js";
+import { MenuElement } from "./menuElement.js"
 
 /**
  * Open menu one finger which touch move on a screen.

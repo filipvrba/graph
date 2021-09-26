@@ -29,7 +29,7 @@ class AnimationComponent {
             if ( !this.parent.isVisible ) {
 
                 this.fade.style.zIndex = -10;
-                this.parent.closedMenu();
+                document.dispatchEvent( closedMenuEvent );
 
             }
 

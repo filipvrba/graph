@@ -16,6 +16,8 @@ html.setAttribute( 'lang', language );
 // Events
 const clickHomeEvent = new CustomEvent( 'clickHome' );
 const clickSearchEvent = new CustomEvent( 'clickSearch' );
+const closedMenuEvent = new CustomEvent( 'closedMenu' );
+const resetFilterEvent = new CustomEvent( 'resetFilter' );
 
 function clickDoc( name ) {
 
