@@ -13,13 +13,7 @@ class PagesElements extends HTMLElement {
     async init() {
 
         let page = await getPage();
-        // this.load( page );
-
-        fetch( `${ getPath( page.dir ) }/${ page.path }.html` )
-        .then( res => res.text() )
-        .then( template => { this.loaded( template ) } );
-
-        
+        this.load( page );
 
     }
 
