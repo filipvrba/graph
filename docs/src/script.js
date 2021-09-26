@@ -71,6 +71,8 @@ function setTitle( name ) {
 
 function changeLang( lang ) {
 
+    if ( language === lang ) return;
+
     language = lang;
     setLocalLanguage( lang );
 

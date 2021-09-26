@@ -33,6 +33,9 @@ class LanguageElement extends HTMLElement {
 
                 selected = 'selected';
 
+                // Control the local storage
+                changeLang( lang );
+
             }
 
             template += `<option value="${ lang }" ${ selected }>${ lang }</option>\n`;
