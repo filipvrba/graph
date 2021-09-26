@@ -18,6 +18,8 @@ const clickHomeEvent = new CustomEvent( 'clickHome' );
 const clickSearchEvent = new CustomEvent( 'clickSearch' );
 const closedMenuEvent = new CustomEvent( 'closedMenu' );
 const resetFilterEvent = new CustomEvent( 'resetFilter' );
+const filterValChangeEvent = new CustomEvent( 'filterValChange' );
+const resetContentEvent = new CustomEvent( 'resetContent' );
 
 function clickDoc( name ) {
 

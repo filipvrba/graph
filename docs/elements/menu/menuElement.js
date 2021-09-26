@@ -27,6 +27,44 @@ class MenuElement extends HTMLElement {
 
         this.innerHTML = this.template;
         this.animation = new AnimationComponent(this);
+        this.docNameClick = null;
+
+    }
+
+    /**
+    * Reset content & filter values.
+    */
+    resetContentFilter() {
+
+        document.dispatchEvent( resetFilterEvent );
+        document.dispatchEvent( resetContentEvent );
+
+    }
+
+    applyPage() {
+
+        window.location.replace(`?${ this.docNameClick }`);
+        this.docNameClick = null;
+
+    }
+
+    closeMenu() {
+
+        if (this.docNameClick === null) {
+
+            this.resetContentFilter();
+            return;
+
+        }
+
+        this.applyPage();
+
+    }
+
+    clickDocument( name ) {
+
+        this.docNameClick = name;
+        document.dispatchEvent( clickHomeEvent );
 
     }
 
@@ -37,6 +75,16 @@ class MenuElement extends HTMLElement {
 
         this.animation.init();
 
+        this.closeMenuHandler = () => { this.closeMenu(); }
+        document.addEventListener( 'closedMenu', this.closeMenuHandler );
+
+        this.clickDocHandler = (event) => {
+
+            this.clickDocument( event.detail.doc );
+
+        }
+        document.addEventListener('clickDoc', this.clickDocHandler);
+
     }
 
     disconnectedCallback() {
@@ -44,6 +92,9 @@ class MenuElement extends HTMLElement {
         document.removeEventListener('clickHome', this.clickHomeHandler);
 
         this.animation.free();
+
+        document.removeEventListener( 'closedMenu', this.closeMenuHandler );
+        document.removeEventListener('clickDoc', this.clickDocHandler);
 
     }
 

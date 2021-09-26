@@ -7,7 +7,6 @@ class ContentElement extends HTMLElement {
         this.template = '<div id="content"></div>';
 
         this.innerHTML = this.template;
-        this.docNameClick = null;
         this.files = null;
         this.content = document.getElementById('content');
 
@@ -132,25 +131,6 @@ class ContentElement extends HTMLElement {
         }
     }
 
-    closeMenu() {
-
-        if (this.docNameClick === null) {
-
-            this.resetContentFilter();
-            return;
-
-        }
-
-        this.applyPage();
-
-    }
-
-    updateCategories( files ) {
-
-        this.resetCategories( files );
-
-    }
-
     resetCategories( files ) {
 
         this.content.innerHTML = '';
@@ -158,52 +138,20 @@ class ContentElement extends HTMLElement {
 
     }
 
-    /**
-     * Reset content & filter values.
-     */
-    resetContentFilter() {
-
-        document.dispatchEvent( resetFilterEvent );
-        this.resetCategories( this.files );
-
-    }
-
-    applyPage() {
-
-        window.location.replace(`?${ this.docNameClick }`);
-        this.docNameClick = null;
-
-    }
-
-    clickDocument( name ) {
-
-        this.docNameClick = name;
-        document.dispatchEvent( clickHomeEvent );
-
-    }
-
     connectedCallback() {
 
-        this.closeMenuHandler = () => { this.closeMenu(); }
-        document.addEventListener( 'closedMenu', this.closeMenuHandler );
-
-        this.clickDocHandler = (event) => {
-
-            this.clickDocument( event.detail.doc );
-
-        }
-        document.addEventListener('clickDoc', this.clickDocHandler);
-
-        this.filterValChangeHandler = ( event ) => { this.updateCategories( event.detail.files ); }
+        this.filterValChangeHandler = ( event ) => { this.resetCategories( event.detail.files ); }
         document.addEventListener( 'filterValChange', this.filterValChangeHandler );
+
+        this.resetContentHandler = () => { this.resetCategories( this.files ); }
+        document.addEventListener( 'resetContent', this.resetContentHandler );
 
     }
 
     disconnectedCallback() {
 
-        document.removeEventListener( 'closedMenu', this.closeMenuHandler );
-        document.removeEventListener('clickDoc', this.clickDocHandler);
         document.removeEventListener( 'filterValChange', this.filterValChangeHandler );
+        document.removeEventListener( 'resetContent', this.resetContentHandler );
 
     }
 
