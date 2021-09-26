@@ -4,6 +4,7 @@
     --table-solid: #e1e4e5;
     --code-span: #e74c3c;
     --page-padding: 24px;
+    --code-font: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,Courier,monospace;
 
 }
 
@@ -55,7 +56,7 @@ tr:nth-child(2n-1) {
 
 code, light-code, select-color select {
 
-    font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,Courier,monospace;
+    font-family: var( --code-font );
 }
 
 p code  {

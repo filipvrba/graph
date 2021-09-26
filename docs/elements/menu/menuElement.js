@@ -29,6 +29,8 @@ class MenuElement extends HTMLElement {
         this.animation = new AnimationComponent(this);
         this.docNameClick = null;
 
+        this.version = document.getElementById( 'version' );
+
     }
 
     /**

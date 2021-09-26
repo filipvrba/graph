@@ -22,3 +22,11 @@ foo-panel, .github {
     justify-content: center;
 
 }
+
+foo-panel version-p p {
+
+    margin-top: calc( var( --page-padding ) / 2 );
+    font-size: 100%;
+    font-family: var( --code-font );
+
+}

@@ -86,7 +86,7 @@ class FooterElement extends HTMLElement {
                     <a href="${ urlGithub }">${ nameGithub }</a>
                 </p>
             </div>
-            
+            <version-p></version-p>
         `;
 
     }
