@@ -4,6 +4,7 @@ class AnimationComponent {
 
         this.menu = document.getElementById( 'menu' );
         this.fade = document.getElementById( 'fade' );
+        this.body = document.querySelector( 'body' );
 
         this.parent = parent;
         this.isActivate = false;
@@ -56,6 +57,9 @@ class AnimationComponent {
             this.fade.style.animation = `fade-in ${ this.speed }s forwards 0s`;
             this.fade.style.zIndex = 10;
 
+            // Disabled scroll page
+            this.body.style.overflow = "hidden";
+
 
         } else {
 
@@ -64,6 +68,9 @@ class AnimationComponent {
 
             // // Fade out
             this.fade.style.animation = `fade-out ${ this.speed }s forwards 0s`;
+
+            // Activate scroll page
+            this.body.style.overflow = "auto";
 
         }
 

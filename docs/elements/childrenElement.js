@@ -7,6 +7,8 @@ class ChildrenElement extends HTMLElement {
 
         super();
 
+        this.childTemplate = '';
+
         this.loopChildren();
         this.applyTemplate();
 
@@ -19,6 +21,8 @@ class ChildrenElement extends HTMLElement {
             if ( child.localName !== this.getAccesNodeName() ||
                 child.localName === 'hr' ) {
 
+                
+
                 this.hr();
                 continue;
 
@@ -29,7 +33,7 @@ class ChildrenElement extends HTMLElement {
             const childValue = child.getAttribute( 'value' );
             const childDescription = child.innerHTML;
 
-            this.child( childType, childName, childValue, childDescription );
+            this.child( childType, childName, childValue, childDescription, child );
 
         }
 

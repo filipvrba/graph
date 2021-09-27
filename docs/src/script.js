@@ -122,3 +122,9 @@ function smallestText( values ) {
     return smallest.text;
 
 }
+
+String.prototype.insertTemplate = function( index, string ) {
+
+    return this.substring( 0, index ) + string + this.substr( ++index );
+
+}

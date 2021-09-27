@@ -1,27 +1,23 @@
-import { ChildrenElement } from "./childrenElement.js";
+import { ParametersElement } from "./parametersElement.js"
 
-class MethodDescElement extends ChildrenElement {
+class MethodDescElement extends ParametersElement {
 
     constructor() {
 
         super();
 
     }
-    
-    child( type, name, value, desc ) {
 
-        const typeTemplate = this.getTypeTemplate( type );
+    child( type, name, value, desc, child ) {
 
-        this.setDefaulChildTemplate();
-        
-        this.childTemplate += this.createChildTemplate( typeTemplate, name, desc );
+        super.child( type, name, value, desc, child );
 
     }
 
     getAccesNodeName() {
-
-        return 'meth';
         
+        return 'meth';
+
     }
 
     applyTemplate() {
@@ -29,9 +25,9 @@ class MethodDescElement extends ChildrenElement {
         const id = this.getID();
 
         const template = `
-        <div class="section name" id="${ id }">
-            <h2>${ this.getAttribute( 'name' ) }</h2>
-            ${ this.childTemplate }
+        <div class="section name" id="${id}">
+            <h2>${this.getAttribute('name')}</h2>
+            ${this.childTemplate}
         </div>
         `;
 
@@ -39,33 +35,33 @@ class MethodDescElement extends ChildrenElement {
 
     }
 
-    createChildTemplate( type, name, desc ) {
+    createChildTemplate(type, name, desc) {
 
-        const nameSlim = this.getNameSlim( name );
+        const nameSlim = this.getNameSlim(name);
 
         let pStatic = '';
 
-        if ( this.isStatic ) {
+        if (this.isStatic) {
 
-            pStatic = `<p class="${ STATIC }"></p>`;
+            pStatic = `<p class="${STATIC}"></p>`;
 
         }
 
         const template = `
-        <div id="${ this.getAccesNodeName() }-${ nameSlim }">
+        <div id="${this.getAccesNodeName()}-${nameSlim}">
             <ul>
                 <li>
                     <div class="row">
-                        ${ pStatic }
-                        ${ type }
+                        ${pStatic}
+                        ${type}
                         <p>
-                            <strong>${ name }</strong>
+                            <strong>${name}</strong>
                         </p>
                     </div>
                 </li>
             </ul>
             <div class="description">
-                ${ desc }
+                ${desc}
             </div>
         </div>
         `;
@@ -77,7 +73,7 @@ class MethodDescElement extends ChildrenElement {
     getID() {
 
         let id = 'method-descriptions';
-        if ( this.isStatic ) id += '-static';
+        if (this.isStatic) id += '-static';
 
         return id;
 
@@ -85,23 +81,13 @@ class MethodDescElement extends ChildrenElement {
 
     get isStatic() {
 
-        return this.getAttribute( 'static' ) === 'true';
+        return this.getAttribute('static') === 'true';
 
     }
 
     hr() {
 
-        this.setDefaulChildTemplate();
-
         this.childTemplate += '<hr>';
-
-    }
-
-    setDefaulChildTemplate() {
-
-        this.childTemplate = ( this.childTemplate === undefined )
-            ? ''
-            : this.childTemplate;
 
     }
 
