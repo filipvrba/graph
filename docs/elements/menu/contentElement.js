@@ -44,7 +44,7 @@ class ContentElement extends HTMLElement {
 
         files.forEach((values, file) => {
 
-            if (file !== ERROR) {
+            if ( values.visible ) {
 
                 const docsCategory = this.createCategory('h2', 'docs', values.dir);
 

@@ -2,8 +2,7 @@
 
     "languages": [
 
-        "cs",
-        "en"
+        "cs"
 
     ],
 
@@ -12,42 +11,64 @@
         "home": {
 
             "path": "home",
-            "dir": "root"
+            "dir": "root",
+            "visible": true
 
         },
 
         "error": {
 
             "path": "error",
-            "dir": "root"
+            "dir": "root",
+            "visible": false
+
+        },
+
+        "author": {
+
+            "path": "author",
+            "dir": "root",
+            "visible": false
 
         },
 
         "vector2": {
 
             "path": "core/math/vector2",
-            "dir": "api"
+            "dir": "api",
+            "visible": true
 
         },
 
         "mathf": {
 
             "path": "core/math/mathf",
-            "dir": "api"
+            "dir": "api",
+            "visible": true
 
         },
 
         "color": {
 
             "path": "core/math/color",
-            "dir": "api"
+            "dir": "api",
+            "visible": true
 
         },
 
         "math": {
 
             "path": "core/math/index",
-            "dir": "api"
+            "dir": "api",
+            "visible": true
+
+        },
+
+        "dispatcher": {
+
+            "path": "core/dispatcher",
+            "dir": "api",
+            "visible": true
 
         }
         
