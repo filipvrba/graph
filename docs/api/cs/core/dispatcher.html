@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>Dispatcher</h1>
+            <p>Zásobník signálů které budou očekávat požadavek ke zpracování.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        Použití signálu nám ulehčí přístup k třídám, které plní svoji roly.
+                        Např. když náš graf vykresluje grafiku a animaci, tak je potřeba
+                        náš kód rozdělit, podle mechanik komponent.
+                    </p>
+                    <br>
+                    <p>
+                        Pomocí signálů tyto komponenty spojímé a přistupujeme k nim
+                        v našich třídách.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+class CustomAnimation extends Dispatcher {
+    constructor() {
+        super();
+
+        this.name = 'move';
+
+        // Nastavíme čas, pro ukončení animace.
+        setTimeout( () => {
+            // Vytvoříme signál.
+            this.emitSignal( { type: 'animationFinish', name: this.name } );
+        }, 2000 );
+    }
+}
+
+const animation = new CustomAnimation();
+animation.connect( 'animationFinish', ( signal ) => {
+
+    // Tento kód se spustí, po skončení animace.
+    console.log( `Animace ${ signal.name } byla dokončena.` );
+
+});                    
+                </light-code>
+            </div>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Dispatcher ()"></meth>
+                <meth type="o:function" name="connect ( type, signal )"></meth>
+                <meth type="o:function" name="disconect ( type, signal )"></meth>
+                <meth type="o:boolean" name="hasSignal ( type, listener )"></meth>
+                <meth type="o:function" name="emitSignal ( signal )"></meth>
+            </meth-table>
+
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="o:constructor" name="Dispatcher ()">
+                    <p>
+                        Vytvoří objekt.
+                    </p>
+                    <br>
+                    <p><strong>Poznámka:</strong>
+                        Prakticky bude lepší rozšířit
+                        vlastní třídu přes tuto <code><span>Dispatcher</span></code>
+                        třídu.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="connect ( type, signal )">
+                    <p>
+                    <meth-ul>
+                        <li name="type">tohle je testovaci text.</li>
+                    </meth-ul>
+                    </p>
+                </meth>
+            </meth-desc>
+        </article>
+    </body>
+</html>
