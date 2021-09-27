@@ -78,7 +78,7 @@ class FooterElement extends HTMLElement {
     getTemplate( urlGithub, nameGithub ) {
 
         return `
-            <p>&copy; Copyright ${ this.getTime() }, <a href="${ this.linkedin }">${ this.author }</a>.
+            <p>&copy; Copyright ${ this.getTime() }, <a href="?author">${ AUTHOR }</a>.
             </p>
             <div class="github">
                 <p class="fa fa-github"></p>

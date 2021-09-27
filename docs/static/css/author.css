@@ -1,0 +1,137 @@
+.author {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.author img {
+
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 50%;
+    
+    /* Center to div */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Center horizontal */
+    margin-top: 3em;
+    margin-bottom: 3em;
+
+}
+
+.avatar {
+
+    width: 100%;
+
+}
+
+.info {
+
+    width: 100%;
+    padding-left: 5%;
+
+}
+
+.info h1 {
+
+    font-size: 40px;
+
+}
+
+.info p {
+
+    font-size: 20px;
+    margin-bottom: 5px;
+
+}
+
+.info-container {
+
+    margin-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+
+.note {
+
+    border-left: 5px solid #005282;
+
+}
+
+.info .fa {
+
+    font-size: 28px;
+
+}
+
+.info .row {
+
+    align-items: center;
+
+}
+
+.profiles {
+
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+
+}
+
+.profiles .github {
+
+    margin-right: 10%;
+
+}
+
+.client {
+
+    margin-left: 0;
+    margin-right: 0;
+
+}
+
+.client p {
+
+    font-size: 18px;
+
+}
+
+@media( max-width: 650px ) {
+
+    .author {
+
+        flex-direction: column;
+
+    }
+
+    .author img {
+
+        max-width: 50%;
+        max-height: 50%;
+
+        /* Center horizontal */
+        margin-top: 0em;
+        margin-bottom: 0em;
+
+    }
+
+    .info-container {
+
+        margin-right: 5%;
+
+    }
+
+    .client {
+
+        margin-left: 0;
+        margin-right: 0;
+    
+    }
+
+}

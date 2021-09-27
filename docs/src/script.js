@@ -3,6 +3,7 @@ const DOCUMENT = 'graph';
 const INDEX = 'index';
 const ERROR = 'error';
 const STATIC = 'fa fa-flash';
+const AUTHOR = 'Filip Vrba';
 
 let language = getLocalLanguage();
 

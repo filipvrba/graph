@@ -15,7 +15,8 @@ import { TouchMenuElement } from './menu/touchMenuElement.js';
 import { FilterElement } from './menu/filterElement.js'
 import { LanguageElement } from "./menu/languageElement.js";
 import { ContentElement } from "./menu/contentElement.js";
-import { VersionElement } from "./versionElement.js"
+import { VersionElement } from "./versionElement.js";
+import { MethodParametersElement } from './methodParametersElement.js';
 
 window.customElements.define( 'obj-type', ObjectsElement );
 window.customElements.define( 'nav-panel', NavigationElement );
@@ -35,3 +36,4 @@ window.customElements.define( 'filter-menu', FilterElement );
 window.customElements.define( 'lang-menu', LanguageElement );
 window.customElements.define( 'content-menu', ContentElement );
 window.customElements.define( 'version-p', VersionElement );
+window.customElements.define( 'meth-ul', MethodParametersElement );
