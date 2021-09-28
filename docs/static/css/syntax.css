@@ -6,3 +6,16 @@ pre .lit, light-code .lit { color: #098658; } /* literal */
 pre .pun, light-code .pun { color: #87cefa; } /* punctuation */
 pre .pln, light-code .pln { color: #001080; } /* plaintext */
 pre .dec, light-code .dec { color: #22c0c4; } /* decimal */
+
+@media ( prefers-color-scheme: dark ) {
+
+    pre .str, light-code .str { color: #ea6060; } /* string --*/
+    pre .kwd, light-code .kwd { color: #337dff; } /* keyword --*/
+    pre .com, light-code .com { color: #72ff72; } /* comment --*/
+    pre .typ, light-code .typ { color: #6bc1da; } /* type --*/
+    pre .lit, light-code .lit { color: #71f5c5; } /* literal --*/
+    pre .pun, light-code .pun { color: #7ac9f9; } /* punctuation --*/
+    pre .pln, light-code .pln { color: #7fb4ff; } /* plaintext --*/
+    pre .dec, light-code .dec { color: #4adce0; } /* decimal --*/
+
+}

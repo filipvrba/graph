@@ -63,11 +63,12 @@ animation.connect( 'animationFinish', ( signal ) => {
             </meth-table>
 
             <meth-desc name="Popis Funkcí" static="false">
-                <meth type="o:constructor" name="Dispatcher ()">
+                <meth type="c:constructor" name="Dispatcher ()">
                     <p>
                         Vytvoří objekt.
                     </p>
                     <br>
+                    <note-decs></note-decs>
                     <p><strong>Poznámka:</strong>
                         Prakticky bude lepší rozšířit
                         vlastní třídu přes tuto <code><span>Dispatcher</span></code>
@@ -84,6 +85,10 @@ animation.connect( 'animationFinish', ( signal ) => {
                         <code><span>signal</span></code>.
                         </code>
                     </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="disconect ( type, signal )">
+
                 </meth>
             </meth-desc>
         </article>

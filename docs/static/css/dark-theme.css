@@ -1,0 +1,112 @@
+:root {
+
+    --dark-white: #181a1b;
+    --dark-table-solid: #383d3f;
+    --dark-table-row: #1b2424;
+    --dark-menu-color-font: #3391ff;
+    --dark-code-span: #e95849;
+    --dark-note-color: #9f978a;
+
+}
+
+@media ( prefers-color-scheme: dark ) {
+
+    /* index-style.css */
+    body {
+
+        background-color: var( --dark-table-solid );
+
+    }
+
+    hr {
+
+        border-top: 1px solid var( --dark-table-solid );
+
+    }
+
+    .board {
+
+        background-color: var( --dark-white );
+
+    }
+
+    .background {
+
+        background-color: var( --dark-table-solid );
+
+    }
+
+    /* page.css */
+    tr {
+
+        border: 1px solid var( --dark-table-solid );
+
+    }
+
+    th {
+
+        border-left: 1px solid var( --dark-table-solid );
+
+    }
+
+    tr:nth-child(2n-1) {
+
+        background-color: var( --dark-table-row );
+    
+    }
+
+    p code span, li code span, select-color select {
+
+        border: 1px solid var( --dark-table-solid );
+        background-color: var( --dark-white );
+        color: var( --dark-code-span );
+    
+    }
+
+    light-code {
+
+        background-color: var( --dark-table-row );
+        border: 1px solid var( --dark-table-solid );
+    
+    }
+
+    .p-default .fa-caret-right {
+
+        color: var( --dark-table-solid );
+    
+    }
+
+    a {
+
+        color: var( --dark-menu-color-font );
+
+    }
+
+    /* menu.css */
+    .menu {
+
+        border-left: 5px solid var( --dark-table-solid );
+        background-color: var( --dark-white );
+
+    }
+
+    .menu a {
+
+        color: var( --dark-menu-color-font );
+    
+    }
+
+    /* author.css */
+    .info h1 .fa {
+
+        color: var( --dark-note-color );
+    
+    }
+
+    .note {
+
+        border-left: 5px solid var( --dark-note-color );
+    
+    }
+
+}
