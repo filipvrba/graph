@@ -35,7 +35,7 @@ class MethodDescElement extends ParametersElement {
 
     }
 
-    createChildTemplate(type, name, desc) {
+    createChildTemplate(type, name, parameters, desc) {
 
         const nameSlim = this.getNameSlim(name);
 
@@ -47,9 +47,17 @@ class MethodDescElement extends ParametersElement {
 
         }
 
+
+        let classPara = '';
+        if ( parameters.length > 0 ) {
+
+            classPara = 'parameters';
+
+        }
+
         const template = `
         <div id="${this.getAccesNodeName()}-${nameSlim}">
-            <ul>
+            <ul id="meth-name" class="${ classPara }">
                 <li>
                     <div class="row">
                         ${pStatic}
@@ -61,7 +69,7 @@ class MethodDescElement extends ParametersElement {
                 </li>
             </ul>
             <div class="description">
-                ${desc}
+                ${ parameters }${ desc }
             </div>
         </div>
         `;

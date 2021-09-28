@@ -18,7 +18,7 @@ class ParametersElement extends ChildrenElement {
 
         return `
         <ul>
-            <ul>
+            <ul class="line-space">
                 *
             </ul>
         </ul>
@@ -55,7 +55,12 @@ class ParametersElement extends ChildrenElement {
 
         return `
         <li class="p-default">
-            <code><span>${ name }</span></code> ${ decs }
+            <div class="row">
+                <code>
+                    <span>${ name }</span>
+                </code>
+                <p class="fa fa-caret-right"></p> ${ decs }
+            </div>
         </li>
         `;
 
@@ -98,8 +103,7 @@ class ParametersElement extends ChildrenElement {
 
         const typeTemplate = this.getTypeTemplate( type );
 
-        desc = `${ parameters }${ _desc }`;
-        this.childTemplate += this.createChildTemplate( typeTemplate, name, desc );
+        this.childTemplate += this.createChildTemplate( typeTemplate, name, parameters, _desc );
 
     }
 

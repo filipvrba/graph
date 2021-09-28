@@ -102,6 +102,25 @@ p, .p-default {
 
     font-size: 18px;
     margin: 0;
+    align-items: center;
+
+}
+
+.p-default .fa-caret-right {
+
+    color: var( --table-solid );
+
+}
+
+.line-space {
+
+    line-height: 2em;
+
+}
+
+#meth-name.parameters {
+
+    margin-bottom: 10px;
 
 }
 

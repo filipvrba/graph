@@ -73,10 +73,14 @@ animation.connect( 'animationFinish', ( signal ) => {
                 </meth>
                 <hr>
                 <meth type="o:function" name="connect ( type, signal )">
-                    <p>How are you</p>
-                    <para name="type">tohle je testovaci text.</para>
-                    <para name="type2">tohle je testovaci text.</para>
-                    <p>Hello</p>
+                    <para name="type">typ signálu, který se bude sledovat.</para>
+                    <para name="signal">zde je potřeba definovat funkci, která vrací zdroj signálu.</para>
+                    <p>
+                        Připojí se k signálu a bude poslouchat, jestli signál byl vyslán.
+                        Pokud ano, zavolá se metoda, která byla předána do atributu
+                        <code><span>signal</span></code>.
+                        </code>
+                    </p>
                 </meth>
             </meth-desc>
         </article>
