@@ -89,7 +89,8 @@ function getLocalLanguage() {
 
     if ( langLocal === null ) {
 
-        setLocalLanguage( 'cs' );  // Default language
+        langLocal = 'cs';  // Default language
+        setLocalLanguage( langLocal );
 
     }
 
