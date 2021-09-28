@@ -1,3 +1,9 @@
+:root {
+
+    --note-color: #005282;
+
+}
+
 .author {
 
     display: flex;
@@ -38,7 +44,15 @@
 
 .info h1 {
 
+    align-items:flex-start;
     font-size: 40px;
+
+}
+
+.info h1 .fa {
+
+    margin-right: 0.5em;
+    color: var( --note-color );
 
 }
 
@@ -59,7 +73,7 @@
 
 .note {
 
-    border-left: 5px solid #005282;
+    border-left: 5px solid var( --note-color );
 
 }
 
