@@ -217,3 +217,21 @@ root-page .loader {
     display: flex;
 
 }
+
+.space {
+
+    margin-left: 0.5em;
+
+}
+
+#rss {
+
+    font-size: 25px;
+
+}
+
+.row {
+
+    align-items: center;
+
+}
