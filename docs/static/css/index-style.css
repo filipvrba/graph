@@ -56,6 +56,12 @@ hr {
 
 }
 
+a {
+
+    color: var( --menu-color-font );
+
+}
+
 .background {
 
     z-index: -1;
