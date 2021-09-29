@@ -1,4 +1,4 @@
-import { ChildrenElement } from './childrenElement.js'
+import { ChildrenElement } from '../childrenElement.js'
 
 class PropertyTableElement extends ChildrenElement {
 
@@ -8,7 +8,11 @@ class PropertyTableElement extends ChildrenElement {
 
     }
 
-    child( type, name, value ) {
+    initChild( child ) {
+
+        const type = child.getAttribute( 'type' );
+        const name = child.getAttribute( 'name' );
+        const value = child.getAttribute( 'value' );
 
         const typeTemplate = this.getTypeTemplate( type );
         const valueTemplate = this.getValueTemplate( value );
@@ -22,7 +26,7 @@ class PropertyTableElement extends ChildrenElement {
 
     }
 
-    getAccesNodeName() {
+    getNodeName() {
 
         return 'prop';
 
@@ -79,7 +83,7 @@ class PropertyTableElement extends ChildrenElement {
             </th>
             <th>
                 <p>
-                    <a href="#${ this.getAccesNodeName() }-${ nameSlim }">${ name }</a>
+                    <a href="#${ this.getNodeName() }-${ nameSlim }">${ name }</a>
                 </p>
             </th>
             <th>

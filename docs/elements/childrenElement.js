@@ -9,6 +9,7 @@ class ChildrenElement extends HTMLElement {
 
         this.childTemplate = '';
 
+        this.init();
         this.loopChildren();
         this.applyTemplate();
 
@@ -18,22 +19,15 @@ class ChildrenElement extends HTMLElement {
 
         for ( const child of this.children ) {
 
-            if ( child.localName !== this.getAccesNodeName() ||
+            if ( child.localName !== this.getNodeName() ||
                 child.localName === 'hr' ) {
-
-                
 
                 this.hr();
                 continue;
 
             }
 
-            const childType = child.getAttribute( 'type' );
-            const childName = child.getAttribute( 'name' );
-            const childValue = child.getAttribute( 'value' );
-            const childDescription = child.innerHTML;
-
-            this.child( childType, childName, childValue, childDescription, child );
+            this.initChild( child );
 
         }
 
@@ -73,12 +67,18 @@ class ChildrenElement extends HTMLElement {
 
     }
 
+    hr() {
+
+        this.childTemplate += '<hr>';
+
+    }
+
     /**
      * This is abstract method.
      */
-    child( type, name, value, desc ) {
+     initChild( type, name, value, desc ) {
 
-        throw 'Abstract class child( ... ) must by implemented.';
+        throw 'Abstract class initChild( ... ) must by implemented.';
         
     }
 
@@ -86,9 +86,9 @@ class ChildrenElement extends HTMLElement {
      * This is abstract method.
      * She should get the constant node name from child.
      */
-    getAccesNodeName() {
+     getNodeName() {
 
-        throw 'Abstract class getAccesNodeName() must by implemented.';
+        throw 'Abstract class getNodeName() must by implemented.';
         
     }
 
@@ -104,7 +104,7 @@ class ChildrenElement extends HTMLElement {
     /**
      * This is abstract method.
      */
-    hr() { }
+    init() { }
 
 }
 

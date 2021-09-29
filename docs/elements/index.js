@@ -1,3 +1,17 @@
+// Menu
+import { TouchMenuElement } from './menu/touchMenuElement.js';
+import { FilterElement } from './menu/filterElement.js'
+import { LanguageElement } from "./menu/languageElement.js";
+import { ContentElement } from "./menu/contentElement.js";
+
+// Property
+import { PropertyTableElement } from './property/propertyTableElement.js';
+import { PropertyDescElement } from './property/propertyDescElement.js';
+
+// Method
+import { MethodDescElement } from './method/methodDescElement.js';
+import { MethodsTableElement } from './method/methodsTableElement.js';
+
 import { ObjectsElement } from "./objectsElement.js";
 import { NavigationElement } from "./navigationElement.js";
 import { PagesElements } from "./pagesElement.js";
@@ -7,15 +21,8 @@ import { HighlighterElement } from "./highlighterElement.js"
 import { ExamplesElement } from "./examplesElement.js"
 import { SelectColorElement } from './selectColorElement.js';
 import { ListPagesElement } from './listPageElement.js';
-import { PropertyTableElement } from './propertyTableElement.js';
-import { MethodsTableElement } from './methodsTableElement.js';
-import { PropertyDescElement } from './propertyDescElement.js';
-import { MethodDescElement } from './methodDescElement.js';
-import { TouchMenuElement } from './menu/touchMenuElement.js';
-import { FilterElement } from './menu/filterElement.js'
-import { LanguageElement } from "./menu/languageElement.js";
-import { ContentElement } from "./menu/contentElement.js";
 import { VersionElement } from "./versionElement.js";
+import { NoteElement } from "./noteElement.js";
 
 window.customElements.define( 'obj-type', ObjectsElement );
 window.customElements.define( 'nav-panel', NavigationElement );
@@ -35,3 +42,4 @@ window.customElements.define( 'filter-menu', FilterElement );
 window.customElements.define( 'lang-menu', LanguageElement );
 window.customElements.define( 'content-menu', ContentElement );
 window.customElements.define( 'version-p', VersionElement );
+window.customElements.define( 'note-info', NoteElement );

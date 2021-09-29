@@ -1,4 +1,4 @@
-import { ChildrenElement } from "./childrenElement.js";
+import { ChildrenElement } from "../childrenElement.js";
 
 class PropertyDescElement extends ChildrenElement {
 
@@ -8,13 +8,18 @@ class PropertyDescElement extends ChildrenElement {
 
     }
 
-    getAccesNodeName() {
+    getNodeName() {
 
         return 'prop';
 
     }
 
-    child( type, name, value, desc ) {
+    initChild( child ) {
+
+        const type = child.getAttribute( 'type' );
+        const name = child.getAttribute( 'name' );
+        const value = child.getAttribute( 'value' );
+        const desc = child.innerHTML;
 
         const typeTemplate = this.getTypeTemplate( type );
 
@@ -85,7 +90,7 @@ class PropertyDescElement extends ChildrenElement {
         const valueTemplate = this.getValueTemplate( value );
 
         const template = `
-        <div id="${ this.getAccesNodeName() }-${ nameSlim }">
+        <div id="${ this.getNodeName() }-${ nameSlim }">
             <ul>
                 <li>
                     <p>

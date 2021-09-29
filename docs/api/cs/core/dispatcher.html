@@ -68,12 +68,11 @@ animation.connect( 'animationFinish', ( signal ) => {
                         Vytvoří objekt.
                     </p>
                     <br>
-                    <note-decs></note-decs>
-                    <p><strong>Poznámka:</strong>
+                    <note-info>
                         Prakticky bude lepší rozšířit
                         vlastní třídu přes tuto <code><span>Dispatcher</span></code>
                         třídu.
-                    </p>
+                    </note-info>
                 </meth>
                 <hr>
                 <meth type="o:function" name="connect ( type, signal )">
@@ -88,7 +87,38 @@ animation.connect( 'animationFinish', ( signal ) => {
                 </meth>
                 <hr>
                 <meth type="o:function" name="disconect ( type, signal )">
+                    <para name="type">pro jaký typ signálu, se má odpojit.</para>
+                    <para name="signal">funkce signálu.</para>
+                    <p>
+                        Předaná funkce, se odpojí, když určíme typ signálu.
+                    </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Bude lepší, když se do atributu předá definovaná
+                            <code><span>handler</span></code> anonymní funkce.
+                        </p>
+                        <br>
+                        <light-code>
+this.animationFinishHandler = ( signal ) => {
+    console.log( `Animace ${ signal.name } byla dokončena.` );
+};
+animation.connect('animationFinish', this.animationFinishHandler);
 
+animation.disconect('animationFinish', this.animationFinishHandler);
+                        </light-code>
+                    </note-info>
+                </meth>
+                <hr>
+                <meth type="o:boolean" name="hasSignal ( type, signal )">
+                    <para name="type">v jakém signálu se bude kontrolovat.</para>
+                    <para name="signal">funkce signálu, pro kontrolu.</para>
+                    <p>
+                        Naladí se na signál a bude kontrolovat,
+                        jestli už definovaná funkce existuje.
+                    </p>
+                    <br>
+                    <return>vrací <code><span>true</span></code>, pokud funkce v signálu existuje.</return>
                 </meth>
             </meth-desc>
         </article>

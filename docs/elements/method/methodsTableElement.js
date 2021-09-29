@@ -1,4 +1,4 @@
-import { ChildrenElement } from './childrenElement.js';
+import { ChildrenElement } from '../childrenElement.js';
 
 class MethodsTableElement extends ChildrenElement {
 
@@ -8,7 +8,10 @@ class MethodsTableElement extends ChildrenElement {
 
     }
 
-    child( type, name ) {
+    initChild( child ) {
+
+        const type = child.getAttribute( 'type' );
+        const name = child.getAttribute( 'name' );
 
         const typeTemplate = this.getTypeTemplate( type );
 
@@ -21,7 +24,7 @@ class MethodsTableElement extends ChildrenElement {
 
     }
 
-    getAccesNodeName() {
+    getNodeName() {
 
         return 'meth';
 
@@ -74,7 +77,7 @@ class MethodsTableElement extends ChildrenElement {
             ${ thType }
             <th>
                 <p>
-                    <a href="#${ this.getAccesNodeName() }-${ nameSlim }">${ name }</a>
+                    <a href="#${ this.getNodeName() }-${ nameSlim }">${ name }</a>
                 </p>
             </th>
         </tr>
