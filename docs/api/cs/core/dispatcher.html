@@ -120,6 +120,25 @@ animation.disconect('animationFinish', this.animationFinishHandler);
                     <br>
                     <return>vrací <code><span>true</span></code>, pokud funkce v signálu existuje.</return>
                 </meth>
+                <hr>
+                <meth type="o:function" name="emitSignal ( signal )">
+                    <para name="signal">Do tohodo atributu se předává objekt signálu.</para>
+                    <p>
+                        Posílá signál pro připojené posluchače signálu.
+                    </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Do atributu <code><span>signal</span></code>, je potřeba
+                            předat objekt, který má definován <code><span>type</span></code>
+                            hodnotu, která určuje typ signálu.
+                        </p>
+                        <br>
+                        <light-code>
+this.emitSignal( { type: 'animationFinish' } );
+                        </light-code>
+                    </note-info>
+                </meth>
             </meth-desc>
         </article>
     </body>
