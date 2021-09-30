@@ -20,7 +20,7 @@ class MethodNodes {
 
         if ( nodeTemplate.length === 0 ) return '';
 
-        return this._createTemplate( nodeTemplate.join( '' ) );
+        return this.#createTemplate( nodeTemplate.join( '' ) );
 
     }
 
@@ -44,7 +44,7 @@ class MethodNodes {
 
 
     // Private
-    _createTemplate( customTemplate ) {
+    #createTemplate( customTemplate ) {
 
         let template = this.getDefaultTemplate();
 

@@ -10,29 +10,17 @@ class PropertyTableElement extends ChildrenElement {
 
     initChild( child ) {
 
-        const type = child.getAttribute( 'type' );
-        const name = child.getAttribute( 'name' );
-        const value = child.getAttribute( 'value' );
-
-        const typeTemplate = this.getTypeTemplate( type );
-        const valueTemplate = this.getValueTemplate( value );
-
-        this.childTemplate = ( this.childTemplate === undefined )
-            ? ''
-            : this.childTemplate;
-
-        this.childTemplate += this.createChildTemplate( typeTemplate,
-            name, valueTemplate );
+        this.childTemplate += this.createChildTemplate( child );
 
     }
 
-    getNodeName() {
+    getNodeName() {  //
 
         return 'prop';
 
     }
 
-    applyTemplate() {
+    applyTemplate() {  //
 
         const template = `
         <div class="section" id="properties" >
@@ -52,42 +40,22 @@ class PropertyTableElement extends ChildrenElement {
 
     }
 
-    getValueTemplate( value ) {
+    createChildTemplate( child ) {
 
-        let template = `
-        <p>
-            <code>
-                <span>${ value }</span>
-            </code>
-        </p>
-        `;
-
-        if ( value.indexOf( '<' ) > -1 ) {
-            
-            template = value;
-        
-        }
-
-        return template;
-
-    }
-
-    createChildTemplate( type, name, value ) {
-
-        const nameSlim = this.getNameSlim( name );
+        const nameSlim = this.getNameSlim( child.name );
 
         const template = `
         <tr>
             <th>
-                ${ type }
+                ${ child.getTypeTemplate() }
             </th>
             <th>
                 <p>
-                    <a href="#${ this.getNodeName() }-${ nameSlim }">${ name }</a>
+                    <a href="#${ this.getNodeName() }-${ nameSlim }">${ child.name }</a>
                 </p>
             </th>
             <th>
-                ${ value }
+                ${ child.getValueTemplate() }
             </th>
         </tr>
         `;

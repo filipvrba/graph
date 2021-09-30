@@ -1,3 +1,5 @@
+import { ChildNode } from '../src/node/childNode.js';
+
 /**
  * Abstract class.
  */
@@ -27,33 +29,9 @@ class ChildrenElement extends HTMLElement {
 
             }
 
-            this.initChild( child );
+            this.initChild( new ChildNode( child ) );
 
         }
-
-    }
-
-    getTypeTemplate( type ) {
-
-        const typeArray = type.split( ':' );
-        const typeChar = typeArray[ 0 ];
-        const typeName = typeArray[ 1 ];
-
-        switch ( typeChar ) {
-
-            case 'o':  // Object
-                type = `<obj-type type="${ capitalized( typeName ) }"></obj-type>`;
-                break;
-            case 'c':  // Class
-                type = `<class-type type="${ typeName }"></class-type>`;
-                break;
-            case 'a':  // API
-                type = `<p><a href="?${ typeName }">${ capitalized(typeName) }</a></p>`;
-                break;
-
-        }
-
-        return type;
 
     }
 

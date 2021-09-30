@@ -8,7 +8,7 @@ class PropertyDescElement extends ChildrenElement {
 
     }
 
-    getNodeName() {
+    getNodeName() {  //
 
         return 'prop';
 
@@ -16,37 +16,11 @@ class PropertyDescElement extends ChildrenElement {
 
     initChild( child ) {
 
-        const type = child.getAttribute( 'type' );
-        const name = child.getAttribute( 'name' );
-        const value = child.getAttribute( 'value' );
-        const desc = child.innerHTML;
-
-        const typeTemplate = this.getTypeTemplate( type );
-
-        this.setDefaulChildTemplate();
-        
-        this.childTemplate += this.createChildTemplate( typeTemplate, name,
-            value, desc );
+        this.childTemplate += this.createChildTemplate( child );
         
     }
 
-    hr() {
-
-        this.setDefaulChildTemplate();
-
-        this.childTemplate += '<hr>';
-
-    }
-
-    setDefaulChildTemplate() {
-
-        this.childTemplate = ( this.childTemplate === undefined )
-            ? ''
-            : this.childTemplate;
-
-    }
-
-    applyTemplate() {
+    applyTemplate() {  //
 
         const template = `
         <div class="section name" id="property-descriptions">
@@ -59,46 +33,38 @@ class PropertyDescElement extends ChildrenElement {
 
     }
 
-    getValueTemplate( value ) {
+    createChildTemplate( child ) {
 
-        let template = `
-        <p>
-            <code>
-                <span>${ value }</span>
-            </code>
-        </p>
-        `;
-
-        if ( value.indexOf( '<' ) > -1 ) {
-            
-            template = value;
-        
-        }
-
-        return template;
-
-    }
-
-    createChildTemplate( type, name, value, desc ) {
-
-        const nameSlim = this.getNameSlim( name );
-
-        const valueArray = value.split( ':' );
-        const valueIdentity = valueArray[ 0 ];
-        value = valueArray[ 1 ];
-
-        const valueTemplate = this.getValueTemplate( value );
+        const nameSlim = this.getNameSlim( child.name );
 
         const template = `
         <div id="${ this.getNodeName() }-${ nameSlim }">
             <ul>
                 <li>
-                    <p>
-                        ${ type }
-                        <strong>${ name }</strong>
-                    </p>
+                    <div>
+                        ${ child.getTypeTemplate() }
+                        <p><strong>${ child.name }</strong></p>
+                    </div>
                 </li>
             </ul>
+            ${ this.getValueTemplate( child ) }
+            <div class="description">
+                ${ child.description }
+            </div>
+        </div>
+        `;
+
+        return template;
+
+    }
+
+    getValueTemplate( child ) {
+
+        let template = '';
+
+        if ( child.identity !== null ) {
+
+            template = `
             <table>
                 <colgroup>
                     <col style="width: 55%;">
@@ -106,18 +72,16 @@ class PropertyDescElement extends ChildrenElement {
                 </colgroup>
                 <tr>
                     <th>
-                        ${ valueIdentity }
+                        <p>${ child.identity }</p>
                     </th>
                     <th>
-                        ${ valueTemplate }
+                        ${ child.getValueTemplate() }
                     </th>
                 </tr>
             </table>
-            <div class="description">
-                ${ desc }
-            </div>
-        </div>
-        `;
+            `;
+
+        }
 
         return template;
 

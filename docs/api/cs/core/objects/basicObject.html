@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>BasicObject</h1>
+            <inhe-info>dispatcher</inhe-info>
+            <p>Základní třída pro všechny objekty scény.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+
+            <prop-table name="Vlastnosti">
+                <prop type="o:undefined" name="id"></prop>
+                <prop type="a:basicObject" name="parent" value="null"></prop>
+                <prop type="o:array" name="children"></prop>
+            </prop-table>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="a:basicObject" name="add ( object, id )"></meth>
+                <meth type="a:basicObject" name="remove ( object )"></meth>
+                <meth type="o:function" name="free ()"></meth>
+                <meth type="o:function" name="freeSignals ()"></meth>
+                <meth type="a:scene" name="getScene ()"></meth>
+                <meth type="a:basicObject" name="findChildren ( id )"></meth>
+            </meth-table>
+
+            <prop-desc name="Popis Vlastnosti">
+                <prop type="o:undefined" name="id"></prop>
+                <hr>
+                <prop type="a:basicObject" name="parent" value="výchozí:null"></prop>
+                <hr>
+                <prop type="o:array" name="children"></prop>
+            </prop-desc>
+
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+            </meth-desc>
+        </article>
+    </body>
+</html>

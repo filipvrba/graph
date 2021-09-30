@@ -1,7 +1,7 @@
 import { ChildrenElement } from "../childrenElement.js";
 
-import { ParametersNode } from "./parametersNode.js";
-import { ReturnNode } from "./returnNode.js";
+import { ParametersNode } from "../../src/node/method/parametersNode.js";
+import { ReturnNode } from "../../src/node/method/returnNode.js";
 
 class MethodDescElement extends ChildrenElement {
 
@@ -20,10 +20,10 @@ class MethodDescElement extends ChildrenElement {
 
     initChild( child ) {
 
-        const parametersTemplate = this.parametersNode.getTemplate( child );
-        const returnTemplate = this.returnNode.getTemplate( child );
+        const parametersTemplate = this.parametersNode.getTemplate( child.getChild() );
+        const returnTemplate = this.returnNode.getTemplate( child.getChild() );
 
-        let description = child.innerHTML;
+        let description = child.description;
         if ( parametersTemplate !== '' ) {
 
             description = this.parametersNode.removeDescription( description );
@@ -34,15 +34,10 @@ class MethodDescElement extends ChildrenElement {
 
         }
 
-        const nameMethod = child.getAttribute( 'name' );
-        const typeMethod = child.getAttribute( 'type' );
-
-        const typeTemplate = this.getTypeTemplate( typeMethod );
-
         const values = {
 
-            typeTemplate,
-            nameMethod,
+            typeTemplate: child.getTypeTemplate(),
+            nameMethod: child.name,
             parametersTemplate,
             returnTemplate,
             description

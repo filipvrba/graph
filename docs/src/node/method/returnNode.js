@@ -17,8 +17,11 @@ class ReturnNode extends MethodNodes{
     getDefaultTemplate() {
 
         return `
-        <div class="row">
-            <p class="fa fa-sign-out"></p>
+        <div class="fix-line">
+            <div class="row">
+                <p class="fa fa-sign-out"></p>
+                
+            </div>
             *
         </div>
         `;

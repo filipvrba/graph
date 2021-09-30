@@ -161,17 +161,23 @@ a:hover {
 .row {
 
     display: flex;
+}
+
+.fix-line {
+
+    align-items: flex-start;
+    display: flex;
 
 }
 
 .row .fa {
 
     margin-right: 8px;
-    margin-top: 2px;
+    align-items: center;
 
 }
 
-.name li p {
+.name li div {
 
     display: flex;
 
@@ -233,5 +239,44 @@ root-page .loader {
 .row {
 
     align-items: center;
+
+}
+
+/* inhe-info */
+inhe-info div {
+
+    flex-wrap: wrap;
+
+}
+
+inhe-info .section {
+
+    margin-bottom: 25px;
+
+}
+
+inhe-info p {
+
+    margin-right: 10px;
+
+}
+
+inhe-info .row .fa {
+
+    margin-right: 17px;
+    font-size: 22px;
+
+}
+
+inhe-info .row .fa-chevron-left {
+
+    margin-right: 10px;
+    font-size: 11px;
+
+}
+
+.row.center {
+
+    flex-wrap: nowrap;
 
 }

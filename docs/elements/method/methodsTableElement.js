@@ -10,17 +10,7 @@ class MethodsTableElement extends ChildrenElement {
 
     initChild( child ) {
 
-        const type = child.getAttribute( 'type' );
-        const name = child.getAttribute( 'name' );
-
-        const typeTemplate = this.getTypeTemplate( type );
-
-        this.childTemplate = ( this.childTemplate === undefined )
-            ? ''
-            : this.childTemplate;
-
-        this.childTemplate += this.createChildTemplate( typeTemplate,
-            name );
+        this.childTemplate += this.createChildTemplate( child );
 
     }
 
@@ -51,13 +41,13 @@ class MethodsTableElement extends ChildrenElement {
 
     }
 
-    createChildTemplate( type, name ) {
+    createChildTemplate( child ) {
 
-        const nameSlim = this.getNameSlim( name );
+        const nameSlim = this.getNameSlim( child.name );
 
         let thType = `
         <th>
-            ${ type }
+            ${ child.getTypeTemplate() }
         </th>
         `;
 
@@ -66,7 +56,7 @@ class MethodsTableElement extends ChildrenElement {
             thType = `
             <th class="row">
                 <p class="${ STATIC }"></p>
-                ${ type }
+                ${ child.getTypeTemplate() }
             </th>
             `;
 
@@ -77,7 +67,7 @@ class MethodsTableElement extends ChildrenElement {
             ${ thType }
             <th>
                 <p>
-                    <a href="#${ this.getNodeName() }-${ nameSlim }">${ name }</a>
+                    <a href="#${ this.getNodeName() }-${ nameSlim }">${ child.name }</a>
                 </p>
             </th>
         </tr>

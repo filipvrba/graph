@@ -33,11 +33,17 @@ class ParametersNode extends MethodNodes {
 
         return `
         <li class="p-default">
-            <div class="row">
-                <code>
-                    <span>${ name }</span>
-                </code>
-                <p class="fa fa-caret-right"></p> ${ decs }
+            <div class="fix-line">
+                <div class="row">
+                    <code>
+                        <span>${ name }</span>
+                    </code>
+                    <p class="fa fa-caret-right"></p>
+                    <div>
+                        
+                    </div>
+                </div>
+                <p>${ decs }</p>
             </div>
         </li>
         `;

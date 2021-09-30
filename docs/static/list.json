@@ -70,6 +70,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "basicObject": {
+
+            "path": "core/objects/basicObject",
+            "dir": "api",
+            "visible": true
+
         }
         
     }

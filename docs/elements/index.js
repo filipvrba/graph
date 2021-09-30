@@ -23,6 +23,7 @@ import { SelectColorElement } from './selectColorElement.js';
 import { ListPagesElement } from './listPageElement.js';
 import { VersionElement } from "./versionElement.js";
 import { NoteElement } from "./noteElement.js";
+import { InheritsElement } from "./inheritsElement.js"
 
 window.customElements.define( 'obj-type', ObjectsElement );
 window.customElements.define( 'nav-panel', NavigationElement );
@@ -43,3 +44,4 @@ window.customElements.define( 'lang-menu', LanguageElement );
 window.customElements.define( 'content-menu', ContentElement );
 window.customElements.define( 'version-p', VersionElement );
 window.customElements.define( 'note-info', NoteElement );
+window.customElements.define( 'inhe-info', InheritsElement );
