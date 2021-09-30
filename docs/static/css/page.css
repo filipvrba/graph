@@ -280,3 +280,10 @@ inhe-info .row .fa-chevron-left {
     flex-wrap: nowrap;
 
 }
+
+/* sign-desc */
+#signal-name {
+
+    margin-bottom: 25px;
+
+}

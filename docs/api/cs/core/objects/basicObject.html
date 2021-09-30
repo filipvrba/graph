@@ -9,12 +9,64 @@
             <inhe-info>dispatcher</inhe-info>
             <p>Základní třída pro všechny objekty scény.</p>
 
-            <div class="section" id="description">
+            <div class="section description" id="description">
                 <h2>Popis</h2>
                 <div>
                     <p>
-                        
+                        Základní objekty, jsou jako stavební kameny. Mohou být
+                        přiřazeny jako potomek jiného objektu,
+                        což nám vznikne stromové uspořádání. Tento objekt
+                        může obsahovat libovolný počet podřízenych objektů.
                     </p>
+                    <br>
+                    <p>
+                        Strom objektů se nazývá <a href="?scene">scéna</a>.
+                        Scéna lze uložit a vzápětí i vložit do jiných scén.
+                        To nám umožňuje flexibilitu v architektuře kódu.
+                    </p>
+                    <br>
+                    <h3>Scéna</h3>
+                    <note-info>
+                        <p>
+                            Když je objekt přidán do scény, tak vyšle signál
+                            <s-c>adedd</s-c> a spustí se funkce <s-c>ready</s-c>
+                            k přidruženému objektu.
+                        </p>
+                    </note-info>
+                    <hr>
+                    <h3>Proces</h3>
+                    <note-info>
+                        <p>
+                            Objekt je připojený na <s-c>update</s-c> signál, který
+                            nám zajišťuje, že se bude spouštet funkce <s-c>update</s-c>
+                            , v závislosti na vaší snímkové frekvenci. Časový úsek <s-c>delta</s-c>
+                            je předán do argumentu metody.
+                        </p>
+                    </note-info>
+                    <hr>
+                    <h3>Vykreslení</h3>
+                    <note-info>
+                        <p>
+                            Na dále je objekt připojený k <s-c>draw</s-c> signálu, a spouští
+                            se k přidružené <s-c>draw</s-c> funkci v závisloti na vaší snímkové frekvenci,
+                            stejně jako <s-c>update</s-c> signál. <s-c>Rendering</s-c> od canvasu je předán do
+                            argumentu metody.
+                            <br>
+                            <br>
+                            <!-- <note-info> -->
+                                Funkce <s-c>draw</s-c> je vyvolána dříve, než <s-c>update</s-c> funkce.
+                            <!-- </note-info> -->
+                        </p>
+                    </note-info>
+                    <hr>
+                    <h3>Vstupní událost</h3>
+                    <note-info>
+                    <p>
+                        Základní objekty mohou také zpracovávat vstupní události.
+                        Jestli je připsána v objektu funkce <s-c>input</s-c>, tak
+                        bude spuštěna, pokud vstupní událost pohybu myši bude vyvolána.
+                    </p>
+                    </note-info>
                 </div>
             </div>
 
@@ -33,14 +85,43 @@
                 <meth type="a:basicObject" name="findChildren ( id )"></meth>
             </meth-table>
 
-            <prop-desc name="Popis Vlastnosti">
-                <prop type="o:undefined" name="id"></prop>
-                <hr>
-                <prop type="a:basicObject" name="parent" value="výchozí:null"></prop>
-                <hr>
-                <prop type="o:array" name="children"></prop>
-            </prop-desc>
+            <sign-desc name="Signály">
+                <sign name="added" emit="true">
+                    <p>Vysílá se, když je objekt připraven.</p>
+                </sign>
+            </sign-desc>
 
+            <hr>
+
+            <prop-desc name="Popis Vlastností">
+                <prop type="o:undefined" name="id">
+                    <p>
+                        Jedinečná hodnota pro tento objekt.
+                    </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Lze jej deklarovat na různé objekty.
+                            <br>
+                            Nejpoužívanější jsou <s-c>string</s-c> a <s-c>number</s-c>.
+                        </p>
+                    </note-info>
+                </prop>
+                <hr>
+                <prop type="a:basicObject" name="parent" value="výchozí:null">
+                    <p>
+                        Nadřazený objekt ve stromové scéně.
+                        Objek může mít jen jednoho rodiče.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:array" name="children">
+                    <p>
+                        Zásobník <s-c>basicObject's</s-c>, které jsou stromově podřízené
+                        tímto objektem.
+                    </p>
+                </prop>
+            </prop-desc>
             <hr>
             <meth-desc name="Popis Funkcí" static="false">
             </meth-desc>
