@@ -24,7 +24,7 @@ class ChildrenElement extends HTMLElement {
             if ( child.localName !== this.getNodeName() ||
                 child.localName === 'hr' ) {
 
-                this.hr();
+                this.hr( child.outerHTML );
                 continue;
 
             }
@@ -45,9 +45,9 @@ class ChildrenElement extends HTMLElement {
 
     }
 
-    hr() {
+    hr( outerHTML ) {
 
-        this.childTemplate += '<hr>';
+        this.childTemplate += outerHTML;
 
     }
 

@@ -41,6 +41,21 @@ class MethodsTableElement extends ChildrenElement {
 
     }
 
+    getRowTemplate( col1, col2 ) {
+
+        return `
+        <tr>
+            ${ col1 }
+            <th class="description">
+                <p>
+                    ${ col2 }
+                </p>
+            </th>
+        </tr>
+        `;
+
+    }
+
     createChildTemplate( child ) {
 
         const nameSlim = this.getNameSlim( child.name );
@@ -62,16 +77,8 @@ class MethodsTableElement extends ChildrenElement {
 
         }
 
-        const template = `
-        <tr>
-            ${ thType }
-            <th>
-                <p>
-                    <a href="#${ this.getNodeName() }-${ nameSlim }">${ child.name }</a>
-                </p>
-            </th>
-        </tr>
-        `;
+        const linkName = `<a href="#${ this.getNodeName() }-${ nameSlim }">${ child.name }</a>`;
+        const template = this.getRowTemplate( thType, linkName );
 
         return template;
 

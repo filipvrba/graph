@@ -64,7 +64,7 @@ class ChildNode {
 
     }
 
-    getChild() {
+    get() {
 
         return this.#child;
 

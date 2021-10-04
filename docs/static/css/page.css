@@ -287,3 +287,12 @@ inhe-info .row .fa-chevron-left {
     margin-bottom: 25px;
 
 }
+
+root-page {
+
+    box-sizing: border-box;
+    /* overflow: auto;
+    height: 48vh; */
+    /* margin-top: 50px; */
+
+}

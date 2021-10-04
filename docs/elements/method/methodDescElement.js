@@ -20,8 +20,8 @@ class MethodDescElement extends ChildrenElement {
 
     initChild( child ) {
 
-        const parametersTemplate = this.parametersNode.getTemplate( child.getChild() );
-        const returnTemplate = this.returnNode.getTemplate( child.getChild() );
+        const parametersTemplate = this.parametersNode.getTemplate( child.get() );
+        const returnTemplate = this.returnNode.getTemplate( child.get() );
 
         let description = child.description;
         if ( parametersTemplate !== '' ) {

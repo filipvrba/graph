@@ -15,47 +15,58 @@
                     <p>
                         Základní objekty, jsou jako stavební kameny. Mohou být
                         přiřazeny jako potomek jiného objektu,
-                        což nám vznikne stromové uspořádání. Tento objekt
+                        což nám vznikne grafický strom. Tento objekt
                         může obsahovat libovolný počet podřízenych objektů.
                     </p>
                     <br>
+                    <img src="./static/pictures/cs/scena.png">
+                    <br>
                     <p>
-                        Strom objektů se nazývá <a href="?scene">scéna</a>.
-                        Scéna lze uložit a vzápětí i vložit do jiných scén.
-                        To nám umožňuje flexibilitu v architektuře kódu.
+                        Grafický strom objektů, se nazávý <a href="?scene">scéna</a>.
+                        Ze scénou lze manipulovat, tak, že ji můžeme přesouvat do jiných
+                        scén. To nám umožňuje flexibilitu v architektuře kódu.
                     </p>
                     <br>
                     <h3>Scéna</h3>
                     <note-info>
                         <p>
-                            Když je objekt přidán do scény, tak vyšle signál
-                            <s-c>adedd</s-c> a spustí se funkce <s-c>ready</s-c>
-                            k přidruženému objektu.
+                            Základní funkcí scény, je přidávání objektů.
+                            Tato funkce nám vyšle signál <s-c>added</s-c>
+                            která nám v přidaném objektu spustí funkci <s-c>ready</s-c>.
+                            <br>
+                            <br>
+                            <i>
+                                Berme tuto metodu jako za inicializaci objektů, do které připisujeme
+                                deklaraci nových tříd, které jsou rozšířené <s-c>BasicObject</s-c> třídy.
+                            </i>
                         </p>
                     </note-info>
                     <hr>
                     <h3>Proces</h3>
                     <note-info>
                         <p>
-                            Objekt je připojený na <s-c>update</s-c> signál, který
-                            nám zajišťuje, že se bude spouštet funkce <s-c>update</s-c>
-                            , v závislosti na vaší snímkové frekvenci. Časový úsek <s-c>delta</s-c>
-                            je předán do argumentu metody.
+                            Přidaný objekt má připojeného posluchače <s-c>update</s-c>.
+                            To nám umožní, do naší třídy připsat funkci <s-c>update (...)</s-c>,
+                            která se spouší na snímkové frekvenci vašeho CPU.
+                            Časový úsek <s-c>delta</s-c> je předán do argumentu metody.
+                            <br>
+                            <br>
+                            <i>Tato funkce se používá pro výpočet animací a není určena pro fyzické výpočty.</i>
                         </p>
                     </note-info>
                     <hr>
                     <h3>Vykreslení</h3>
                     <note-info>
                         <p>
-                            Na dále je objekt připojený k <s-c>draw</s-c> signálu, a spouští
-                            se k přidružené <s-c>draw</s-c> funkci v závisloti na vaší snímkové frekvenci,
-                            stejně jako <s-c>update</s-c> signál. <s-c>Rendering</s-c> od canvasu je předán do
-                            argumentu metody.
+                            Na dále má přidaný objekt připojeného posluchače <s-c>draw</s-c>.
+                            To nám umožní, do naší třídy připsat funkci <s-c>draw (...)</s-c>,
+                            která se spouší stejně jako <s-c>update (...)</s-c> funkce,
+                            ale s jednou změnou.<sup>*</sup>
+                            Hodnota <s-c>rendering</s-c> je předán do argumentu metody.
                             <br>
                             <br>
-                            <!-- <note-info> -->
-                                Funkce <s-c>draw</s-c> je vyvolána dříve, než <s-c>update</s-c> funkce.
-                            <!-- </note-info> -->
+
+                            <i>* Vykreslení se spouší dřívěji, než je u procesu animací.</i>
                         </p>
                     </note-info>
                     <hr>
@@ -85,14 +96,21 @@
                 <meth type="a:basicObject" name="findChildren ( id )"></meth>
             </meth-table>
 
-            <sign-desc name="Signály">
+            <sign-table name="Signály">
                 <sign name="added" emit="true">
                     <p>Vysílá se, když je objekt připraven.</p>
                 </sign>
-            </sign-desc>
-
+                <sign name="update">
+                    <p>Spouští funci <s-c>update (...)</s-c> v rozšířené třídě.</p>
+                </sign>
+                <sign name="draw">
+                    <p>Spouští funci <s-c>draw (...)</s-c> v rozšířené třídě.</p>
+                </sign>
+                <sign name="input">
+                    <p>Spouští funci <s-c>input (...)</s-c> v rozšířené třídě.</p>
+                </sign>
+            </sign-table>
             <hr>
-
             <prop-desc name="Popis Vlastností">
                 <prop type="o:undefined" name="id">
                     <p>
@@ -117,7 +135,7 @@
                 <hr>
                 <prop type="o:array" name="children">
                     <p>
-                        Zásobník <s-c>basicObject's</s-c>, které jsou stromově podřízené
+                        Zásobník <s-c>basicObject</s-c>'s, které jsou stromově podřízené
                         tímto objektem.
                     </p>
                 </prop>

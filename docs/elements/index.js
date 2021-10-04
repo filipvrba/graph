@@ -12,6 +12,9 @@ import { PropertyDescElement } from './property/propertyDescElement.js';
 import { MethodDescElement } from './method/methodDescElement.js';
 import { MethodsTableElement } from './method/methodsTableElement.js';
 
+// Signal
+import { SignalTableElement } from './signal/signalTableElemen.js';
+
 import { ObjectsElement } from "./objectsElement.js";
 import { NavigationElement } from "./navigationElement.js";
 import { PagesElements } from "./pagesElement.js";
@@ -25,7 +28,6 @@ import { VersionElement } from "./versionElement.js";
 import { NoteElement } from "./noteElement.js";
 import { InheritsElement } from "./inheritsElement.js";
 import { StrongCodeElement } from './strongCodeElement.js';
-import { SignalDescElement } from './signal/signalDescElement.js';
 
 window.customElements.define( 'obj-type', ObjectsElement );
 window.customElements.define( 'nav-panel', NavigationElement );
@@ -48,4 +50,6 @@ window.customElements.define( 'version-p', VersionElement );
 window.customElements.define( 'note-info', NoteElement );
 window.customElements.define( 'inhe-info', InheritsElement );
 window.customElements.define( 's-c', StrongCodeElement );
-window.customElements.define( 'sign-desc', SignalDescElement );
+
+// Signal
+window.customElements.define( 'sign-table', SignalTableElement );
