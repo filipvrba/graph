@@ -19,7 +19,7 @@
                         může obsahovat libovolný počet podřízenych objektů.
                     </p>
                     <br>
-                    <img src="./static/pictures/cs/scena.png">
+                    <img src="./static/pictures/cs/scena.png" loading="lazy" alt="grafický strom scény">
                     <br>
                     <p>
                         Grafický strom objektů, se nazávý <a href="?scene">scéna</a>.
@@ -36,8 +36,8 @@
                             <br>
                             <br>
                             <i>
-                                Berme tuto metodu jako za inicializaci objektů, do které připisujeme
-                                deklaraci nových tříd, které jsou rozšířené <s-c>BasicObject</s-c> třídy.
+                                Berme tuto metodu jako za inicializaci, do kterého deklarujeme
+                                objekty vlastní třídy, které jsou rozšířené <s-c>BasicObject</s-c> třídou. 
                             </i>
                         </p>
                     </note-info>
@@ -47,7 +47,7 @@
                         <p>
                             Přidaný objekt má připojeného posluchače <s-c>update</s-c>.
                             To nám umožní, do naší třídy připsat funkci <s-c>update (...)</s-c>,
-                            která se spouší na snímkové frekvenci vašeho CPU.
+                            která se spouští na snímkové frekvenci vašeho CPU.
                             Časový úsek <s-c>delta</s-c> je předán do argumentu metody.
                             <br>
                             <br>
@@ -60,13 +60,13 @@
                         <p>
                             Na dále má přidaný objekt připojeného posluchače <s-c>draw</s-c>.
                             To nám umožní, do naší třídy připsat funkci <s-c>draw (...)</s-c>,
-                            která se spouší stejně jako <s-c>update (...)</s-c> funkce,
+                            která se spouští stejně jako <s-c>update (...)</s-c> funkce,
                             ale s jednou změnou.<sup>*</sup>
                             Hodnota <s-c>rendering</s-c> je předán do argumentu metody.
                             <br>
                             <br>
 
-                            <i>* Vykreslení se spouší dřívěji, než je u procesu animací.</i>
+                            <i>* Vykreslení se spouští dřívěji, než je u samotného procesu animací.</i>
                         </p>
                     </note-info>
                     <hr>
@@ -88,6 +88,7 @@
             </prop-table>
 
             <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="BasicObject ()"></meth>
                 <meth type="a:basicObject" name="add ( object, id )"></meth>
                 <meth type="a:basicObject" name="remove ( object )"></meth>
                 <meth type="o:function" name="free ()"></meth>
@@ -142,6 +143,68 @@
             </prop-desc>
             <hr>
             <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="BasicObject ()">
+                    <p>
+                        Konstruktor inicializuje vlastnosti objektů své třídy a nemá žádné parametry.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="a:basicObject" name="add ( object, id )">
+                    <para name="object">bude přidán do scéný.</para>
+                    <para name="id">identifikační hodnota pro přidaný objekt.</para>
+                    <p>
+                        Přidá objekt do scény, jako potomek tohoto objektu.
+                        Metoda není nijak omezena a lze přidávat libovolný poče objektů.
+                    </p>
+                    <br>
+                    <return>vrací aktuální objekt.</return>
+                </meth>
+                <hr>
+                <meth type="a:basicObject" name="remove ( object )">
+                    <para name="object">který bude odebrán.</para>
+                    <p>
+                        Odebere objekt jako podřízený tohoto objektu.
+                        Je možné odebrat omezený počet objektů, dle
+                        délky seznamu <s-c>children</s-c>.
+                    </p>
+                    <br>
+                    <return>vrací aktuální objekt.</return>
+                </meth>
+                <hr>
+                <meth type="o:function" name="free ()">
+                    <p>
+                        Odpojí všechny podřízené objekty od signálů,
+                        které byli předem definované.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="freeSignals ()">
+                    <p>
+                        Odpojí tento objekt od signálů,
+                        které byli předem definované.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="a:scene" name="getScene ()">
+                    <p>
+                        Zjistí kde se nachází deklarovaná scéna a
+                    </p>
+                    <br>
+                    <return>vrací scénu, tohoto objektu.</return>
+                </meth>
+                <hr>
+                <meth type="a:basicObject" name="findChildren ( id )">
+                    <para name="id">identifikační hodnota pro objekt.</para>
+                    <p>
+                        Najde v seznamu <s-c>children</s-c> podřízený objekt tohoto objektu, podle
+                        identifikační hodnoty.
+                    </p>
+                    <br>
+                    <return>
+                        pokud v seznamu existuje, vrací podřízený objekt tohoto objektu,
+                        jinak vrací <s-c>null</s-c>.
+                    </return>
+                </meth>
             </meth-desc>
         </article>
     </body>
