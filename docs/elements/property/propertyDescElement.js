@@ -82,32 +82,7 @@ class PropertyDescElement extends ChildrenElement {
         return template;
 
     }
-
-    // getValueTemplate( child ) {
-
-    //     let template = '';
-
-    //     if ( child.identity !== null ) {
-
-    //         template = `
-    //         <table>
-    //             <tr>
-    //                 <th>
-    //                     <p>${ child.identity }</p>
-    //                 </th>
-    //                 <th>
-    //                     ${ child.getValueTemplate() }
-    //                 </th>
-    //             </tr>
-    //         </table>
-    //         `;
-
-    //     }
-
-    //     return template;
-
-    // }
-
+    
 }
 
 export { PropertyDescElement };
