@@ -7,7 +7,8 @@ class MethodNodes {
 
         for ( const node of child.children ) {
 
-            if ( node.localName === this.getName() ) {
+            const name = this.getName();  // Call virtual function
+            if ( node.localName === name ) {
 
                 nodeTemplate.push( this.getCustomTemplate( node ) );
 
@@ -26,12 +27,14 @@ class MethodNodes {
 
     removeDescription( description = '' ) {
 
-        while ( description.search( `<${ this.getName() }` ) > -1 ) {
+        const name = this.getName();  // Call virtual function
 
-            const endNode = `</${ this.getName() }>`;
+        while ( description.search( `<${ name }` ) > -1 ) {
 
-            const start = description.indexOf( `<${ this.getName() }` );
-            const end = description.indexOf( `</${ this.getName() }>` );
+            const endNode = `</${ name }>`;
+
+            const start = description.indexOf( `<${ name }` );
+            const end = description.indexOf( `</${ name }>` );
             const decs = description.substring( start, end + endNode.length );
 
             description = description.replace( decs, '' );
@@ -46,7 +49,7 @@ class MethodNodes {
     // Private
     #createTemplate( customTemplate ) {
 
-        let template = this.getDefaultTemplate();
+        let template = this.getDefaultTemplate();  // Call virtual function
 
         template = template.replace( '*', customTemplate )
 

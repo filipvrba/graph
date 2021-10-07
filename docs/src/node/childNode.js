@@ -16,12 +16,16 @@ class ChildNode {
 
         let template = `
         <p>
-            <code>
-                <span>${ value }</span>
-            </code>
+            <s-c>${ value }</s-c>
         </p>
         `;
 
+        /**
+         * If still exist a node from value,
+         * so don't apply the literal from template.
+         * 
+         * Example: value = <select-color />
+         */
         if ( value.indexOf( '<' ) > -1 ) {
             
             template = value;
@@ -96,7 +100,13 @@ class ChildNode {
 
     get arrayValue() {
 
-        let value = this.#child.getAttribute( 'value' );
+        let value = this.description;
+
+        if ( value.trim() === '' ) {
+            
+            value = this.#child.getAttribute( 'value' );
+
+        }
 
         if ( value !== null ) {
 

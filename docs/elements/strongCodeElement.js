@@ -4,15 +4,29 @@ class StrongCodeElement extends HTMLElement {
 
         super();
 
-        this.innerHTML = this.getDefaulTemplate( this.innerHTML );
+        this.innerHTML = this.getCrateTemplate( this.innerHTML );
 
     }
 
-    getDefaulTemplate( value ) {
+    getCrateTemplate( value ) {
 
-        return `
-        <code><span>${ value }</span></code>
-        `;
+        // The pointer say, that literal not spading to a strong code!
+        const point = '*';
+
+        const SC_L = '<code><span>';
+        const SC_R = '</span></code>';
+
+        if ( value.indexOf( '*' ) > -1 ) {
+
+            value = value.replace( point, '' );
+
+        } else {
+
+            value = SC_L + value + SC_R;
+
+        }
+
+        return value;
 
     }
 

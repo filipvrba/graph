@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>Object2D</h1>
+            <inhe-info>basicObject-dispatcher</inhe-info>
+            <p>2D objekt s transformací pozice.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        Všechny 2D objekty, pomocí této třídy se mohou
+                        přesouvat na určité pozice v prostoru scény.
+                    </p>
+                </div>
+            </div>
+
+            <prop-table name="Vlastnosti">
+                <prop type="a:vector2" name="position" value="Vector2( 0, 0 )"></prop>
+                <prop type="a:vector2" name="#globalPosition" value="Vector2( 0, 0 )"></prop>
+            </prop-table>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Object2D ()"></meth>
+                <meth type="o:function" name="updateGlobalPosition ()"></meth>
+                <meth type="o:function" name="updateWord ()"></meth>
+            </meth-table>
+
+            <prop-desc name="Popis Vlastností">
+                <prop type="a:vector2" name="position" value="Vector2( 0, 0 )">
+
+                </prop>
+                <hr>
+                <prop type="a:vector2" name="#globalPosition">
+                    <tab>
+                        <value>výchozí:Vector2( 0, 0 )</value>
+                        <get>globalPosition</get>
+                        <set>globalPosition</set>
+                    </tab>
+                    
+                </prop>
+            </prop-desc>
+        </article>
+    </body>
+</html>

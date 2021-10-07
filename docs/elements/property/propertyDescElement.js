@@ -1,10 +1,18 @@
 import { ChildrenElement } from "../childrenElement.js";
 
+import { TableNode } from "../../src/node/property/tableNode.js";
+
 class PropertyDescElement extends ChildrenElement {
 
     constructor() {
 
         super();
+
+    }
+
+    init() {
+
+        this.tableNode = new TableNode();
 
     }
 
@@ -16,7 +24,24 @@ class PropertyDescElement extends ChildrenElement {
 
     initChild( child ) {
 
-        this.childTemplate += this.createChildTemplate( child );
+        const tableTemplate = this.tableNode.getTemplate( child.get() );
+
+        let description = child.description;
+        if ( tableTemplate !== '' ) {
+
+            description = this.tableNode.removeDescription( description );
+
+        }
+
+        const values = {
+
+            child,
+            tableTemplate,
+            description
+
+        };
+
+        this.childTemplate += this.createChildTemplate( values );
         
     }
 
@@ -33,23 +58,23 @@ class PropertyDescElement extends ChildrenElement {
 
     }
 
-    createChildTemplate( child ) {
+    createChildTemplate( values ) {
 
-        const nameSlim = this.getNameSlim( child.name );
+        const nameSlim = this.getNameSlim( values.child.name );
 
         const template = `
         <div id="${ this.getNodeName() }-${ nameSlim }">
             <ul>
                 <li>
                     <div>
-                        ${ child.getTypeTemplate() }
-                        <p><strong>${ child.name }</strong></p>
+                        ${ values.child.getTypeTemplate() }
+                        <p><strong>${ values.child.name }</strong></p>
                     </div>
                 </li>
             </ul>
-            ${ this.getValueTemplate( child ) }
+            ${ values.tableTemplate }
             <div class="description">
-                ${ child.description }
+                ${ values.description }
             </div>
         </div>
         `;
@@ -58,34 +83,30 @@ class PropertyDescElement extends ChildrenElement {
 
     }
 
-    getValueTemplate( child ) {
+    // getValueTemplate( child ) {
 
-        let template = '';
+    //     let template = '';
 
-        if ( child.identity !== null ) {
+    //     if ( child.identity !== null ) {
 
-            template = `
-            <table>
-                <colgroup>
-                    <col style="width: 55%;">
-                    <col style="width: 45%;">
-                </colgroup>
-                <tr>
-                    <th>
-                        <p>${ child.identity }</p>
-                    </th>
-                    <th>
-                        ${ child.getValueTemplate() }
-                    </th>
-                </tr>
-            </table>
-            `;
+    //         template = `
+    //         <table>
+    //             <tr>
+    //                 <th>
+    //                     <p>${ child.identity }</p>
+    //                 </th>
+    //                 <th>
+    //                     ${ child.getValueTemplate() }
+    //                 </th>
+    //             </tr>
+    //         </table>
+    //         `;
 
-        }
+    //     }
 
-        return template;
+    //     return template;
 
-    }
+    // }
 
 }
 

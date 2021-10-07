@@ -78,6 +78,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "object2D": {
+
+            "path": "core/objects/object2d",
+            "dir": "api",
+            "visible": true
+
         }
         
     }

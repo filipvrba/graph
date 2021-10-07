@@ -80,7 +80,7 @@ class ChildrenElement extends HTMLElement {
     }
 
     /**
-     * This is abstract method.
+     * This is virtual method.
      */
     init() { }
 

@@ -46,8 +46,10 @@ const randColor = Color.ranColorStyle();
             </meth-table>
 
             <prop-desc name="Popis Vlastností">
-                <prop type="o:array" name="colors"
-                    value="výchozí:<select-color></select-color>">
+                <prop type="o:array" name="colors">
+                    <tab>
+                        <value>výchozí:<select-color></select-color></value>
+                    </tab>
                     <p>
                         Paleta <a href="https://lospec.com/palette-list/zughy-32">zughy</a> má délku
                             <code><span>
@@ -58,8 +60,10 @@ const randColor = Color.ranColorStyle();
                     </p>
                 </prop>
                 <hr>
-                <prop type="o:number" name="bitMask"
-                    value="výchozí:0">
+                <prop type="o:number" name="bitMask">
+                    <tab>
+                        <value>výchozí:0</value>
+                    </tab>
                     <p>Ukládá unikátní bit pro identifikaci použitých barev z palety.</p>
                 </prop>
             </prop-desc>

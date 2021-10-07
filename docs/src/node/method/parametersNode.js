@@ -1,4 +1,4 @@
-import { MethodNodes } from "./methodNodes.js";
+import { MethodNodes } from "../methodNodes.js";
 
 class ParametersNode extends MethodNodes {
 
