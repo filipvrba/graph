@@ -22,15 +22,17 @@ class PropertyTableElement extends ChildrenElement {
 
     applyTemplate() {  //
 
+        // <col style="width: 38%;">
+        // <col style="width: 50%;">
+        // <col style="width: 13%;">
+
         const template = `
-        <div class="section" id="properties" >
+        <div class="section table-responsive" id="properties" >
             <h2>${ this.getAttribute( 'name' ) }</h2>
             <table>
-                <colgroup>
-                    <col style="width: 38%;">
-                    <col style="width: 50%;">
-                    <col style="width: 13%;">
-                </colgroup>
+                <col style="width: auto;">
+                <col style="width: 50%;">
+                <col style="width: auto;">
                 ${ this.childTemplate }
             </table>
         </div>

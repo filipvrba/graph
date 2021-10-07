@@ -59,7 +59,7 @@ code, light-code, select-color select {
     font-family: var( --code-font );
 }
 
-p code  {
+p code, select-color  {
 
     display: flex;
     justify-content: center;
@@ -294,5 +294,11 @@ root-page {
     /* overflow: auto;
     height: 48vh; */
     /* margin-top: 50px; */
+
+}
+
+.table-responsive {
+
+    overflow: auto;
 
 }
