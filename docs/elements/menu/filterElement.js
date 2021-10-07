@@ -53,7 +53,7 @@ class FilterElement extends HTMLElement {
 
         files.forEach( ( values, name ) => {
 
-            const result = name.search( value );
+            const result = name.toUpperCase().search( value.toUpperCase() );
 
             if ( result > -1 ) {
 
