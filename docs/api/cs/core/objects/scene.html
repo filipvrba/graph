@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>Scene</h1>
+            <inhe-info>object2D-basicObject-dispatcher</inhe-info>
+            <p>Udržuje ve stromové svéře objekty, ke kterým má přístup.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        Scéna vykresluje objekty na nastavených hodnotách objektů,
+                        pomocí <a href="?tdRenderer">renderingu</a>.
+                        <br>
+                        <br>
+                        Předtavme si scénu jako jeviště, do kterého můžeme
+                        vkládat kulisy. Tyto kulisy dokážou mezi
+                        sebou komunikovat a měnit své hodnoty pomocí signálů.
+                    </p>
+                    <br>
+                    <img src="./static/pictures/cs/jeviste.png" loading="lazy" alt="jeviště scény">
+                    <br>
+                    <p>
+                        Pokud jsme My diváci a chceme vidět scénu,
+                        tak je nutné ji předat do atributu funkce <a href="?tdRenderer#meth-render">render</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+// Inicializujeme scénu a spustíme funkci ready().
+const scene = new Scene();
+scene.ready();
+
+// Vytváříme loop pro vykreslení scény.
+function tick() {
+    this.renderer.render( scene );
+    requestAnimationFrame( () => tick() );
+}
+
+tick();
+                </light-code>
+            </div>
+
+            <prop-table name="Vlastnosti">
+                <prop type="a:input" name="input" value="Input()"></prop>
+            </prop-table>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Scene ()"></meth>
+                <meth type="o:function" name="ready ()"></meth>
+            </meth-table>
+
+            <prop-desc name="Popis Vlastností">
+                <prop type="a:input" name="input">
+                    <tab>
+                        <value>výchozí:Input()</value>
+                    </tab>
+                    <p>
+                        Přístup k objektu, který je předán do <s-c>children</s-c> listu
+                        tohoto objektu.
+                    </p>
+                </prop>
+            </prop-desc>
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="Scene ()">
+                    <p>
+                        Konstruktor dědí z tříd a nemá žádné parametry.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="ready ()">
+                    <p>
+                        Funkce inicializuje vlastnosti a předává je do <s-c>children</s-c> listu.
+                    </p>
+                </meth>
+            </meth-desc>
+        </article>
+    </body>
+</html>

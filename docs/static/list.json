@@ -86,6 +86,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "scene": {
+
+            "path": "core/objects/scene",
+            "dir": "api",
+            "visible": true
+
         }
         
     }
