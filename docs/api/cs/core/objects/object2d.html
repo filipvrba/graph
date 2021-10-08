@@ -32,7 +32,10 @@
 
             <prop-desc name="Popis Vlastností">
                 <prop type="a:vector2" name="position" value="Vector2( 0, 0 )">
-
+                    <tab>
+                        <value>výchozí:Vector2( 0, 0 )</value>
+                    </tab>
+                    <p>Lokální 2D pozice, která je vzhledem k nadřazenému objektu.</p>
                 </prop>
                 <hr>
                 <prop type="a:vector2" name="#globalPosition">
@@ -41,9 +44,55 @@
                         <get>globalPosition</get>
                         <set>globalPosition</set>
                     </tab>
-                    
+                    <p>Globální 2D pozice tohoto objektu.</p>
+                    <br>
+                    <p>K privátnímu fieldu, se přistupuje pomocí vlasností, které jsou veřejné, pro objekt.</p>
+                    <p>Vlastnost <s-c>set</s-c> zajišťuje, automatické zavolání funkce, pro výpočet
+                    globální pozice.</p>
                 </prop>
             </prop-desc>
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="Object2D ()">
+                    <p>
+                        Konstruktor inicializuje vlastnosti objektů své třídy a nemá žádné parametry.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="updateGlobalPosition ()">
+                    <p>Aktualizuje globální pozici, pomocí lokální pozice, nadřazeného objektu.</p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="updateWord ()">
+                    <p>
+                        Pokud má objekt své vlastní podřízené objekty, tak
+                        jim aktualizuje globální pozici. Pokud nemá,
+                        tak se aktualizuje globální pozice, svého objektu.
+                    </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Tuto funkci je dobré vyvolat tehdy, když je potřeba aktualizovat
+                            globální pozice objektů ve své vlastní scéně.
+                        </p>
+                        <br>
+                        <p>
+                            Příkladem je, pokud chceme změnit velikost
+                            renderingu, pomocí <s-c>resize</s-c> eventu.
+                        </p>
+                        <br>
+                            <light-code>
+this.resizeHandler = () => {
+
+    this.renderer.setSize( window.innerWidth, window.innerHeight );
+    this.pieChart.position = this.globalPosition;
+    this.scene.updateWord();
+
+}
+                            </light-code>
+                    </note-info>
+                </meth>
+            </meth-desc>
         </article>
     </body>
 </html>
