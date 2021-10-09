@@ -27,7 +27,7 @@
             <meth-table name="Funkce" static="false">
                 <meth type="c:constructor" name="Object2D ()"></meth>
                 <meth type="o:function" name="updateGlobalPosition ()"></meth>
-                <meth type="o:function" name="updateWord ()"></meth>
+                <meth type="o:function" name="updateWorld ()"></meth>
             </meth-table>
 
             <prop-desc name="Popis Vlastností">
@@ -63,7 +63,7 @@
                     <p>Aktualizuje globální pozici, pomocí lokální pozice, nadřazeného objektu.</p>
                 </meth>
                 <hr>
-                <meth type="o:function" name="updateWord ()">
+                <meth type="o:function" name="updateWorld ()">
                     <p>
                         Pokud má objekt své vlastní podřízené objekty, tak
                         jim aktualizuje globální pozici. Pokud nemá,
@@ -86,7 +86,7 @@ this.resizeHandler = () => {
 
     this.renderer.setSize( window.innerWidth, window.innerHeight );
     this.pieChart.position = this.globalPosition;
-    this.scene.updateWord();
+    this.scene.updateWorld();
 
 }
                             </light-code>
