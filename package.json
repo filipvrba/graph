@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "python3 ./bundler/build.py",
+    "build": "python3 ./bundler/build.py; python3 ./bundler/build.py -o './docs/src/'",
     "build-netsuit": "python3 ./bundler/build.py -o './warehouse-graph/src/FileCabinet/SuiteScripts' -u"
   },
   "repository": {
