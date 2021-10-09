@@ -94,6 +94,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "clock": {
+
+            "path": "core/objects/clock",
+            "dir": "api",
+            "visible": true
+
         }
         
     }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>Clock</h1>
+            <p>Objek pro sledování času.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        Tento objekt sleduje čas a je vyvolán ve smyčce,
+                        která se spouští na snímkové frekvenci vašeho CPU.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+/**
+ * Funkce render je vyvolána v loopu a vyšle signál update.
+ * Hodnota delta time, je předána do objektu s názvem dt.
+ */
+render( scene ) {
+    scene.emitSignal( { type: 'update', dt: clock.getDT() } );
+}
+                </light-code>
+            </div>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Clock ()"></meth>
+                <meth type="c:function" name="getDT ()"></meth>
+            </meth-table>
+
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="Clock ()">
+                    <p>
+                        Konstruktor inicializuje privátní vlastnost objektu své třídy a nemá žádné parametry.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:number" name="getDT ()">
+                    <p>
+                        Získá uplynulé milisekundy od doby, kdy byla vyvolána funkce
+                        <s-c>getDT()</s-c> a nastaví na aktuální čas.
+                    </p>
+                    <br>
+                    <return>
+                        vrací časový úsek delta time;
+                    </return>
+                </meth>
+            </meth-desc>
+        </article>
+    </body>
+</html>
