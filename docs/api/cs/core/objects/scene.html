@@ -78,8 +78,17 @@ tick();
                 <hr>
                 <meth type="o:function" name="ready ()">
                     <p>
-                        Funkce inicializuje vlastnosti a předává je do <s-c>children</s-c> listu.
+                        Funkce inicializuje vlastnosti a předává jej do <s-c>children</s-c> listu.
                     </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Tato funkce se volá až po inicializaci.
+                            Je to z důvodu, že se objekt nikde nepřidává.
+                            <s-c>Scéna</s-c> je stromově nejvyšší a neexistuje,
+                            žádnej <s-c>root</s-c>, který by zajišťil automatické vyvolání,
+                            této funkce.
+                    </note-info>
                 </meth>
             </meth-desc>
         </article>
