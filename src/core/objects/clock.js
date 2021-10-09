@@ -5,7 +5,7 @@ class Clock {
         this.#time = Date.now();
     }
 
-    get getDT() {
+    getDT() {
         const currentTime = Date.now();
         const deltaTime = (currentTime - this.#time) / 1000;
         this.#time = currentTime;

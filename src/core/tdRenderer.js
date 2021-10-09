@@ -28,7 +28,7 @@ class TDRenderer {
             this.canvas.height );
 
         scene.emitSignal( { type: 'draw', renderer: this.renderer } );
-        scene.emitSignal( { type: 'update', dt: this.clock.getDT } );
+        scene.emitSignal( { type: 'update', dt: this.clock.getDT() } );
 
     }
 

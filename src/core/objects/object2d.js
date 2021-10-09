@@ -44,7 +44,7 @@ class Object2D extends BasicObject {
 
 	}
 
-	updateWord() {
+	updateWorld() {
 
 		if ( this.children.length > 0 ) {
 
@@ -53,7 +53,7 @@ class Object2D extends BasicObject {
 				if ( typeof this.children[i].updateGlobalPosition !== 'undefined' ) {
 
 					this.children[i].updateGlobalPosition();
-					this.children[i].updateWord();
+					this.children[i].updateWorld();
 
 				}
 

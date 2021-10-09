@@ -22,7 +22,7 @@ class PieChartElement extends HTMLElement {
 
             this.pieChart.position = this.globalPosition;
                 
-            this.scene.updateWord();
+            this.scene.updateWorld();
 
         }
         window.addEventListener( 'resize', this.resizeHandler );
