@@ -102,6 +102,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "animation": {
+
+            "path": "core/objects/animations/animation",
+            "dir": "api",
+            "visible": true
+
         }
         
     }
