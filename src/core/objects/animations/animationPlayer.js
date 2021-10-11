@@ -18,7 +18,7 @@ class AnimationPlayer extends BasicObject {
 
         this.valuesMask = new Array();
         this.animation = new Map();
-        this.historyAnim = { };
+        this.historyAnim = { };  // no called
 
         this.time = 0;
         this.lastTime = 0;  // no called
