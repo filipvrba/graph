@@ -6,6 +6,7 @@ const STATIC = 'fa fa-flash';
 const AUTHOR = 'Filip Vrba';
 
 let language = getLocalLanguage();
+let andURL = '';
 
 const hash = window.location.hash;
 const title = document.querySelector('title');
@@ -40,6 +41,14 @@ function clickDoc( name ) {
 function getMark() {
 
     let mark = window.location.search.replace( '?', '' );
+
+    const andIndex = mark.indexOf( '&' )
+    if ( andIndex > -1 ) {
+
+        andURL = mark.substring( andIndex, mark.length );
+        mark = mark.replace( andURL, '' );
+
+    }
 
     if ( mark === '' ) mark = 'home';
 
