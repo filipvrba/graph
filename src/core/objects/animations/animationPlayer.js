@@ -21,9 +21,9 @@ class AnimationPlayer extends BasicObject {
         this.historyAnim = { };
 
         this.time = 0;
-        this.lastTime = 0;
+        this.lastTime = 0;  // no called
         this.playbackActive = false;
-        this.valueZERO = null;
+        this.valueZERO = null;  // no called
         this.currentAnimation = null;  // The name of the currently playing animation.
         
     }
