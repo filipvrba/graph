@@ -27,57 +27,63 @@
                         scén. To nám umožňuje flexibilitu v architektuře kódu.
                     </p>
                     <br>
-                    <h3>Scéna</h3>
-                    <note-info>
-                        <p>
-                            Základní funkcí scény, je přidávání objektů.
-                            Tato funkce nám vyšle signál <s-c>added</s-c>
-                            která nám v přidaném objektu spustí funkci <s-c>ready</s-c>.
-                            <br>
-                            <br>
-                            <i>
-                                Berme tuto metodu jako za inicializaci, do kterého deklarujeme
-                                objekty vlastní třídy, které jsou rozšířené <s-c>BasicObject</s-c> třídou. 
-                            </i>
-                        </p>
-                    </note-info>
+                    <div id="desc-added">
+                        <h3>Scéna</h3>
+                        <note-info>
+                            <p>
+                                Základní funkcí scény, je přidávání objektů.
+                                Tato funkce nám vyšle signál <s-c>added</s-c>
+                                která nám v přidaném objektu spustí funkci <s-c>ready</s-c>.
+                                <br>
+                                <br>
+                                <i>
+                                    Berme tuto metodu jako za inicializaci, do kterého deklarujeme
+                                    objekty vlastní třídy, které jsou rozšířené <s-c>BasicObject</s-c> třídou. 
+                                </i>
+                            </p>
+                        </note-info>
+                    </div>
                     <hr>
-                    <h3>Proces</h3>
-                    <note-info>
-                        <p>
-                            Přidaný objekt má připojeného posluchače <s-c>update</s-c>.
-                            To nám umožní, do naší třídy připsat funkci <s-c>update (...)</s-c>,
-                            která se spouští na snímkové frekvenci vašeho CPU.
-                            Časový úsek <s-c>delta</s-c> je předán do argumentu metody.
-                            <br>
-                            <br>
-                            <i>Tato funkce se používá pro výpočet animací a není určena pro fyzické výpočty.</i>
-                        </p>
-                    </note-info>
+                    <div id="desc-update">
+                        <h3>Proces</h3>
+                        <note-info>
+                            <p>
+                                Přidaný objekt má připojeného posluchače <s-c>update</s-c>.
+                                To nám umožňuje, do naší třídy připsat funkci <s-c>update (...)</s-c>,
+                                která <b>se spouští na snímkové frekvenci vašeho CPU.</b>
+                                Časový úsek <s-c>delta</s-c> je předána do argumentu funkce.
+                                <br>
+                                <br>
+                                <i>Tato funkce se používá pro výpočet animací a není určena pro fyzické výpočty.</i>
+                            </p>
+                        </note-info>
+                    </div>
                     <hr>
-                    <h3>Vykreslení</h3>
-                    <note-info>
-                        <p>
-                            Na dále má přidaný objekt připojeného posluchače <s-c>draw</s-c>.
-                            To nám umožní, do naší třídy připsat funkci <s-c>draw (...)</s-c>,
-                            která se spouští stejně jako <s-c>update (...)</s-c> funkce,
-                            ale s jednou změnou.<sup>*</sup>
-                            Hodnota <s-c>rendering</s-c> je předán do argumentu metody.
-                            <br>
-                            <br>
-
-                            <i>* Vykreslení se spouští dřívěji, než je u samotného procesu animací.</i>
-                        </p>
-                    </note-info>
+                    <div id="desc-draw">
+                        <h3>Vykreslení</h3>
+                        <note-info>
+                            <p>
+                                Objekt se dokáže vykreslovat pomocí <s-c>renderingu</s-c>,
+                                který najdem v parametru <s-c>draw( ... )</s-c> funkce.
+                                Tato funkce je virtuální a můžeme ji připsat
+                                do nové třídy, která se rozšiřuje <s-c>BasicObject</s-c> třídou.
+                                Je vyvolána pomocí posluchače signálu <s-c>draw</s-c>,
+                                který je vysílán dřívěji v <a href="#desc-update">procesu</a>,
+                                než je u signálu <s-c>update</s-c>.
+                            </p>
+                        </note-info>
+                    </div>
                     <hr>
-                    <h3>Vstupní událost</h3>
-                    <note-info>
-                    <p>
-                        Základní objekty mohou také zpracovávat vstupní události.
-                        Jestli je připsána v objektu funkce <s-c>input</s-c>, tak
-                        bude spuštěna, pokud vstupní událost pohybu myši bude vyvolána.
-                    </p>
-                    </note-info>
+                    <div id="desc-input">
+                        <h3>Vstupní událost</h3>
+                        <note-info>
+                        <p>
+                            Základní objekty mohou také zpracovávat vstupní události.
+                            Jestli je připsána v objektu funkce <s-c>input</s-c>, tak
+                            bude spuštěna, pokud vstupní událost pohybu myši bude vyvolána.
+                        </p>
+                        </note-info>
+                    </div>
                 </div>
             </div>
 

@@ -110,6 +110,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "animationPlayer": {
+
+            "path": "core/objects/animations/animationPlayer",
+            "dir": "api",
+            "visible": true
+
         }
         
     }

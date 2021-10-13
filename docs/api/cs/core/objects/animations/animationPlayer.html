@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>AnimationPlayer</h1>
+            <p>
+                Přehrávač uložených <a href="?animation">animací</a>.
+            </p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        Přehrávač spouští <a href="?animation">animace</a>,
+                        které jsou předem definované.
+                        Tyto definované animace, se ukládají do seznamu přehrávače.
+                        Seznam nabývá podle počtu vložených animací,
+                        které se během <a href="?basicObject#desc-update">procesu</a> otevřou,
+                        přečtou se a aktualizují příslušné hotnoty, pro
+                        <a href="?basicObject#desc-draw">vykreslení</a> objektu.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+
+                </light-code>
+
+            <prop-table name="Vlastnosti">
+                <!-- <prop type="o:map" name="tracks" value="Map()"></prop> -->
+            </prop-table>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="AnimationPlayer ()"></meth>
+            </meth-table>
+
+            <prop-desc name="Popis Vlastností">
+                <!-- <prop type="o:map" name="tracks">
+                    <tab>
+                        <value>výchozí:Map()</value>
+                    </tab>
+                    <p>
+                        Veškeré stopy pro animaci, najdeme v této vlastnosti objektu.
+                    </p>
+                </prop> -->
+            </prop-desc>
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="AnimationPlayer ()">
+                    <p>
+                        Konstruktor dědí z tříd, inicializuje
+                        vlastnosti objektů a nemá žádné parametry.
+                    </p>
+                </meth>
+            </meth-desc>
+        </article>
+    </body>
+</html>
