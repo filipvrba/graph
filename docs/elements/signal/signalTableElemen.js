@@ -51,7 +51,12 @@ class SignalTableElement extends MethodsTableElement {
         </th>
         `;
 
-        const template = this.getRowTemplate( name, child.description );
+        const id = `${ this.getNodeName() }-${ child.name }`;
+        const trNode = '<tr';
+        const trNodeID = `${ trNode } id="${ id }"`;
+        
+        let template = this.getRowTemplate( name, child.description );
+        template = template.replace( trNode, trNodeID );
 
         return template;
 

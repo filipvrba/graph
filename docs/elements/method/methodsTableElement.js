@@ -56,24 +56,26 @@ class MethodsTableElement extends ChildrenElement {
 
     }
 
+    getCustomTemplate( template ) {
+
+        return `<th class="row">${ template }</th>`;
+
+    }
+
     createChildTemplate( child ) {
 
         const nameSlim = this.getNameSlim( child.name );
 
-        let thType = `
-        <th>
-            ${ child.getTypeTemplate() }
-        </th>
-        `;
+        let thType = this.getCustomTemplate( child.getTypeTemplate() );
 
         if ( this.isStatic ) {
 
-            thType = `
-            <th class="row">
-                <p class="${ STATIC }"></p>
-                ${ child.getTypeTemplate() }
-            </th>
-            `;
+            thType = this.getCustomTemplate(
+
+                `<p class="${ STATIC }"></p>
+                ${ child.getTypeTemplate() }`
+
+            );
 
         }
 

@@ -58,7 +58,32 @@ class ChildNode {
 
         }
 
+        type = this.getVirtualTemplate() + type;
+
         return type;
+
+    }
+
+    getVirtualTemplate() {
+
+        const pClass = 'class="fa fa-pencil-square-o"';
+        let template = `<p ${ pClass }></p>`;
+
+        if ( this.virtual === null ) {
+
+            template = '';
+
+        } else if ( this.virtual !== '' ) {
+
+            template = `
+            <p>
+                <a ${ pClass } href="${ this.virtual }" title="Virtual function"></a>
+            </p>
+            `;
+
+        }
+
+        return template;
 
     }
 
@@ -133,6 +158,12 @@ class ChildNode {
     get description() {
 
         return this.#child.innerHTML;
+
+    }
+
+    get virtual() {
+
+        return this.#child.getAttribute( 'virtual' );
 
     }
 

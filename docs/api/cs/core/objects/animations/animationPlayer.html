@@ -6,6 +6,7 @@
     <body>
         <article>
             <h1>AnimationPlayer</h1>
+            <inhe-info>basicObject-dispatcher</inhe-info>
             <p>
                 Přehrávač uložených <a href="?animation">animací</a>.
             </p>
@@ -28,26 +29,145 @@
             <div class="section" id="exaples">
                 <h2>Příklad</h2>
                 <light-code>
+// Vytváříme přehrávač animací a přidáváme mu animaci.
+const animationPlayer = new AnimationPlayer();
+animationPlayer.addAnimation( 'moveObject', animation );
 
+// Připojíme animaci k signálu a budeme poslouchat ukončení animace.
+animationPlayer.connect( 'animFinish',
+    ( signal ) => { animationFinished( signal.name ) } );
+
+// Do scény přidáme přehrávač animací.
+this.add( animationPlayer );
+
+// Spouštíme animaci.
+animationPlayer.play( 'moveObject' );
+
+// Funkce která čeká, než se animace ukončí.
+function animationFinished( name ) {
+    console.log( `Animace ${ name } byla dokončena.` );
+}
                 </light-code>
 
             <prop-table name="Vlastnosti">
-                <!-- <prop type="o:map" name="tracks" value="Map()"></prop> -->
+                <prop type="o:map" name="animation" value="Map()"></prop>
+                <prop type="o:map" name="animations" value="Map()"></prop>
+                <prop type="o:string" name="currentAnimation" value="null"></prop>
+                <prop type="o:boolean" name="playbackActive" value="false"></prop>
+                <prop type="o:number" name="time" value="0"></prop>
+                <prop type="o:array" name="valuesMask" value="Array()"></prop>
             </prop-table>
 
             <meth-table name="Funkce" static="false">
                 <meth type="c:constructor" name="AnimationPlayer ()"></meth>
+                <meth type="o:function" name="addAnimation ( name, animation )"></meth>
+                <meth type="o:function" name="animationFinished ()"></meth>
+                <meth type="o:function" name="defaultValues ()"></meth>
+                <meth type="o:function" name="defStartAnim ()"></meth>
+                <meth type="o:function" name="defStopAnim ( object )"></meth>
+                <meth type="o:number" name="getUniqueID ( object, add )"></meth>
+                <meth type="o:boolean" name="isAnimFinish ()"></meth>
+                <meth type="o:function" name="play ( name )"></meth>
+                <meth type="o:function" name="processAnim ( dt, object )"></meth>
+                <meth type="o:function" name="stop ( reset )"></meth>
+                <meth virtual="?basicObject#desc-update" type="o:function" name="update ( dt )"></meth>
+                <meth type="o:function" name="updateAnimation ( dt, object )"></meth>
+                <meth type="o:function" name="updateAnimValue ( dt, object )"></meth>
             </meth-table>
 
+            <sign-table name="Signály">
+                <sign name="animFinish" emit="true">
+                    <p>
+                        Vysílá se, když animace skončí a
+                        předává název animace do objektu
+                        pomocí <s-c>name</s-c> hodnoty.
+                    </p>
+                </sign>
+            </sign-table>
+            <hr>
             <prop-desc name="Popis Vlastností">
-                <!-- <prop type="o:map" name="tracks">
+                <prop type="o:map" name="animation">
                     <tab>
                         <value>výchozí:Map()</value>
                     </tab>
                     <p>
-                        Veškeré stopy pro animaci, najdeme v této vlastnosti objektu.
+                        Aktuálně spuštěná animace se uloží do této vlastnosti.
                     </p>
-                </prop> -->
+                </prop>
+                <hr>
+                <prop type="o:map" name="animations">
+                    <tab>
+                        <value>výchozí:Map()</value>
+                    </tab>
+                    <p>
+                        Seznam animací, které jsou v přehrávači uložené.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:string" name="currentAnimation">
+                    <tab>
+                        <value>výchozí:null</value>
+                    </tab>
+                    <p>
+                        Název animace, která je aktuálně spuštěná.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:boolean" name="playbackActive">
+                    <tab>
+                        <value>výchozí:false</value>
+                    </tab>
+                    <p>
+                        Zjišťuje u aktuální animaci, jestli je spuštěná.
+                    </p>
+                    <p>
+                        Pokud ano, vrací <s-c>true</s-c> hodnotu.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:number" name="time">
+                    <tab>
+                        <value>výchozí:0</value>
+                    </tab>
+                    <p>
+                        Aktuální čas spuštěné animace.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:array" name="valuesMask">
+                    <tab>
+                        <value>výchozí:Array()</value>
+                    </tab>
+                    <p>
+                        Během <a href="#meth-play">spuštění</a>
+                        animace se přidají tři dimenze.
+                        Jsou uspořádané tak, že se jim připisuje
+                        hodnota bitmasku, která se během procecu
+                        animace mění.
+                    </p>
+                    <br>
+                    <ul>
+                        <li>
+                            <p>
+                                <s-c>[ 0 ]</s-c> - <s-c>PROCESS</s-c>
+                                hodnota bitmasku, která je aktuálně spuštěná v procesu.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <s-c>[ 1 ]</s-c> - <s-c>STOP</s-c>
+                                hodnota bitmasku, která je aktuálně dokončená.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <s-c>[ 2 ]</s-c> - <s-c>SUM</s-c>
+                                hodnota maximální velikosti bitmasku.
+                                <i>Používá se výhradně ke <a href="#meth-isAnimFinish">kontrole</a>.</i>
+                            </p>
+                        </li>
+                    </ul>
+                </prop>
             </prop-desc>
             <hr>
             <meth-desc name="Popis Funkcí" static="false">
@@ -55,6 +175,159 @@
                     <p>
                         Konstruktor dědí z tříd, inicializuje
                         vlastnosti objektů a nemá žádné parametry.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="addAnimation ( name, animation )">
+                    <para name="name">jméno nové animace.</para>
+                    <para name="animation">objekt animace, která se bude přidávat.</para>
+                    <p>
+                        Přidá animaci do <s-c>animations</s-c> <a href="#prop-animations">seznamu</a>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="animationFinished ()">
+                    <p>
+                        Zavolá <a href="#sign-animFinish">signál</a> pro ukončení animace a
+                        nastaví vlastnosti svého objektu na počáteční hodnoty,
+                        pomocí <s-c>defaultValues()</s-c> <a href="#meth-defaultValues">funkce</a>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="defaultValues ()">
+                    <p>
+                        Inicializuje všechny vlastnosti na výchozí hodnoty svého objektu.
+                    </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Vlastnost <s-c>animations</s-c> se nebude inicializovat
+                            touto funkcí. Je to z důvodu, pro zachování přidělených animací.
+                        </p>
+                    </note-info>
+                </meth>
+                <hr>
+                <meth type="o:function" name="defStartAnim ()">
+                    <p>
+                        Definuje do hodnoty <s-c>valuesMask</s-c> konečný
+                        <s-c>SUM</s-c> bitmask, pro
+                        <a href="#meth-isAnimFinish">kontrolu</a> ukončení animace.
+                        
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="defStopAnim ( object )">
+                    <para name="object">stopa hodnot a času.</para>
+                    <p>
+                        Při <a href="#meth-updateAnimation">procesu</a> <s-c>updateAnimation</s-c> se kontroluje
+                        přístupnost této funkce, kde se zjišťuje čas a bitmask
+                        stopy u animace.
+                    </p>
+                    <br>
+                    <p>
+                        Pokud stopa u animace je dokončená, tak aktualizuje
+                        příslušnou hodnotu a připisuje
+                        se do <s-c>valuesMask</s-c> (k dimenzím <s-c>STOP</s-c> a <s-c>PROCESS</s-c>)
+                        vlastnosti <a href="#meth-getUniqueID">unikátní ID</a>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:number" name="getUniqueID ( object, add )">
+                    <para name="object">stopa hodnot.</para>
+                    <para name="add">
+                        má výchozí hodnotu <s-c>0</s-c>
+                        a přičítá se do ID hodnot.
+                    </para>
+                    <p>
+                        Sečte ID hodnoty a umocní je číslem 2.
+                    </p>
+                    <br>
+                    <return>vrací unikátní ID pro bitmask.</return>
+                </meth>
+                <hr>
+                <meth type="o:boolean" name="isAnimFinish ()">
+                    <p>
+                        Porovnávají se dimenze <s-c>SUM</s-c> a <s-c>STOP</s-c>
+                        u vlastnosti <s-c>valuesMask</s-c>, pro zjištění ukončení animace.
+                    </p>
+                    <br>
+                    <return>
+                        pokud jsou dimenze stejné, vrací <s-c>true</s-c>.
+                    </return>
+                </meth>
+                <hr>
+                <meth type="o:function" name="play ( name )">
+                    <para name="name">jméno animace, která se má spustit.</para>
+                    <p>
+                        Spouští ze <a href="#prop-animations">seznamu</a> zvolenou animaci.
+                    </p>
+                    <br>
+                    <p>
+                        Tato funkce kontroluje existenci animace.
+                        Pokud existuje, tak se inicializuje do <s-c>animation</s-c>
+                        <a href="#prop-animation">vlastnosti</a>. Pokračuje s inicializací
+                        <s-c>valuesMask</s-c> <a href="#prop-valuesMask">vlastnosti</a>, na nový <s-c>Array( ... )</s-c>
+                        se třemi dimenzemi, u kterých se připisuje číslo.
+                        Hodnota čísla, je velikostí přidělených stop, ve zvolené animaci.
+                        Na dále pokračuje ve spustění <s-c>defStartAnim()</s-c> <a href="#meth-defStartAnim">funkce</a>
+                        a přepisuje <s-c>playbackActive</s-c> <a href="#prop-playbackActive">vlastnost</a>
+                        pro aktivaci <a href="#meth-update">procesu</a> pro tento objekt přehrávače.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="processAnim ( dt, object )">
+                    <para name="dt">časový úsek delta time.</para>
+                    <para name="object">stopa hodnot a času.</para>
+                    <p>
+                        Aktualizuje příslušné hodnoty, pro nadřazený objekt.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="stop ( reset )">
+                    <para name="reset">má výchozí hodnotu <s-c>true</s-c>.</para>
+                    <p>
+                        Zastaví animaci která je aktuálně spuštěna a to pomocí <s-c>defaultValues()</s-c>
+                        <a href="#meth-defaultValues">funkce</a>.
+                    </p>
+                </meth>
+                <hr>
+                <meth virtual="?basicObject#desc-update" type="o:function" name="update ( dt )">
+                    <para name="dt">časový úsek delta time.</para>
+                    <p>
+                        Tento proces se aktivuje tehdy, pokud je animace spuštěna.
+                        Pokud je spuštěna, tak připisuje čas do <a href="#prop-time">vlastnosti</a>
+                        svého objektu a předává hodnoty do atributu
+                        <s-c>updateAnimation( ... )</s-c> <a href="#meth-updateAnimation">funkce</a>.
+                    </p>
+                    <p>
+                        Na konec <a href="#meth-isAnimFinish">kontroluje</a> i animaci, jestli je dokončena.
+                        Při dokončení spustí <s-c>animationFinished()</s-c>
+                        <a href="#meth-animationFinished">funkci</a>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="updateAnimation ( dt, object )">
+                    <para name="dt">časový úsek delta time.</para>
+                    <para name="object">stopy hodnot.</para>
+                    <p>
+                        Z parametru <s-c>object</s-c> dostává stopy animace,
+                        ze kterých se touto funkcí otevřou a
+                        zabalují se do objektu. Objekt je předán do
+                        argumentu <s-c>updateAnimValue( ... )</s-c> <a href="#meth-updateAnimValue">funkce</a>
+                        i s parametrem <s-c>dt</s-c>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="updateAnimValue ( dt, object )">
+                    <para name="dt">časový úsek delta time.</para>
+                    <para name="object">stopa hodnot a času.</para>
+                    <p>
+                        Kontroluje přístupnost bitmasku, 
+                        pro <a href="#prop-valuesMask">dimenze</a> <s-c>PROCESS</s-c> & <s-c>STOP</s-c>.
+                        Pokud se vyhodnotí jako přístupné,
+                        tak se spouští <s-c>processAnim( ... )</s-c> <a href="#meth-processAnim">funkce</a>.
+                        Funkce dále pokračuje ve vyvolávání <s-c>defStopAnim( ... )</s-c>
+                        <a href="#meth-defStopAnim">funkci</a>.
                     </p>
                 </meth>
             </meth-desc>

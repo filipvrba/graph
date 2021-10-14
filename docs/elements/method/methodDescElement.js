@@ -93,7 +93,7 @@ class MethodDescElement extends ChildrenElement {
         <div id="${this.getNodeName()}-${nameSlim}">
             <ul id="meth-name" class="${ classPara }">
                 <li>
-                    <div class="row">
+                    <div class="fix-line">
                         ${pStatic}
                         ${ values.typeTemplate }
                         <p>
