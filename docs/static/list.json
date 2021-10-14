@@ -118,6 +118,22 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "animations": {
+
+            "path": "core/objects/animations/index",
+            "dir": "api",
+            "visible": true
+
+        },
+
+        "objects": {
+
+            "path": "core/objects/index",
+            "dir": "api",
+            "visible": true
+
         }
         
     }
