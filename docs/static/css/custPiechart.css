@@ -1,0 +1,16 @@
+cust-piechart .fa {
+    font-size: 200%;
+    cursor: pointer;
+    margin: 0;
+    display: block;
+}
+
+cust-piechart .bottom-center {
+    /* margin-top: 260px; */
+    display: flex;
+    justify-content: center;
+}
+
+cust-piechart .space {
+    margin: 0 20px;
+}

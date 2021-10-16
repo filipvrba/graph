@@ -1,4 +1,4 @@
-import { AnimationPlayer, Animation, Object2D, Vector2 } from "../core/index.js";
+import { AnimationPlayer, Animation, Object2D, Vector2, Mathf } from "../core/index.js";
 import { Label } from './index.js'
 
 class List extends Object2D {
@@ -18,6 +18,10 @@ class List extends Object2D {
 
     ready( ) {
 
+        const degWidth = Mathf.per2deg( this.parent.widthRadius );
+        const radWidth = Mathf.radians( degWidth );
+        this.labelWidthRadius = radWidth;
+
         this.visibleHandler = ( signal ) => {
 
             this.findChildren( signal.id ).start();
@@ -30,6 +34,19 @@ class List extends Object2D {
 
         }
         this.parent.connect( 'visible', this.visibleHandler );
+
+        this.hiddeHandler = ( signal ) => {
+
+            if ( signal.id === this.length - 1 ) {
+
+                this.close();
+
+            }
+
+            this.findChildren( signal.id ).end();
+
+        }
+        this.parent.connect( 'hidde', this.hiddeHandler );
 
         this.createAnimation();
 
@@ -73,21 +90,36 @@ class List extends Object2D {
 
     createAnimation() {
 
-        const animation = new Animation();
+        this.animationPlayer = new AnimationPlayer();
+        this.add( this.animationPlayer );
+
+        // Move
+        let animation = new Animation();
         let trackID = animation.addTrack( 'position.y' );
         animation.addInsertKey(trackID, 0, this.position.y);
         animation.addInsertKey(trackID, this.length * 0.2, -this.height);
 
-        this.animationPlayer = new AnimationPlayer();
         this.animationPlayer.addAnimation('move', animation);
 
-        this.add( this.animationPlayer );
+        // Close
+        animation = new Animation();
+        trackID = animation.addTrack( 'position.y' );
+        animation.addInsertKey(trackID, 0, -this.height);
+        animation.addInsertKey(trackID, this.length * 0.2, this.position.y);
+
+        this.animationPlayer.addAnimation('close', animation);
 
     }
 
     move() {
 
         this.animationPlayer.play( 'move' );
+
+    }
+
+    close() {
+
+        this.animationPlayer.play( 'close' );
 
     }
 

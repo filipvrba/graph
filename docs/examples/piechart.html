@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <cust-piechart></cust-piechart>
+
+        <script src="../src/graph-engine.js"></script>
+
+        <script>
+            const root = document.getElementById( 'root' );
+            let template = '';
+
+            document.addEventListener( 'removeInner', () => {
+
+                root.innerHTML = template;
+
+            });
+
+            window.onmessage = ( event ) => {
+                
+                template = `
+                <pie-chart data='${ event.data }' widthRadius="100"></pie-chart>
+                `;
+
+                if ( !root.innerHTML ) {
+
+                    root.innerHTML = template;
+
+                } else {
+
+                    const removeEvent = new CustomEvent( 'remove' );
+                    document.dispatchEvent( removeEvent );
+
+                }
+
+            };
+        </script>
+    </body>
+</html>

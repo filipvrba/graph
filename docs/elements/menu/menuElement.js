@@ -12,7 +12,11 @@ class MenuElement extends HTMLElement {
         <div class="menu" id="menu">
             <div class="scroll">
                 <div id="header">
-                    <h1>${DOCUMENT}</h1>
+                    <div class="row">
+                        <img src="./static/pictures/logo.png"
+                            loading="lazy" alt="logo graph">
+                        <h1>${DOCUMENT}</h1>
+                    </div>
                 </div>
                 <hr>
                 <div id="contentWraper">

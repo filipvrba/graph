@@ -39,7 +39,11 @@ class Label extends Object2D {
 
     createAnimation() {
 
-        const animation = new Animation();
+        this.animationPlayer = new AnimationPlayer();
+        this.add( this.animationPlayer );
+
+        // Start
+        let animation = new Animation();
         let trackID = animation.addTrack( 'position.x' );
         animation.addInsertKey(trackID, 0, this.position.x);
         animation.addInsertKey(trackID, 0.2, 0 );
@@ -48,16 +52,31 @@ class Label extends Object2D {
         animation.addInsertKey(trackID, 0, 0);
         animation.addInsertKey(trackID, 0.2, this.widthRadius );
 
-        this.animationPlayer = new AnimationPlayer();
         this.animationPlayer.addAnimation('start', animation);
 
-        this.add( this.animationPlayer );
+        // End
+        animation = new Animation();
+        trackID = animation.addTrack( 'position.x' );
+        animation.addInsertKey(trackID, 0, 0);
+        animation.addInsertKey(trackID, 0.2, this.position.x );
+
+        trackID = animation.addTrack( 'widthRadius' );
+        animation.addInsertKey(trackID, 0, this.widthRadius);
+        animation.addInsertKey(trackID, 0.2, 0 );
+
+        this.animationPlayer.addAnimation('end', animation);
 
     }
 
     start() {
 
         this.animationPlayer.play('start');
+
+    }
+
+    end() {
+
+        this.animationPlayer.play( 'end' );
 
     }
 

@@ -36,6 +36,11 @@ class PieChart extends Object2D {
         }
         this.pieces.connect( 'animFinish', this.animFinishHandler );
 
+        this.animFinishEndHandler = (signal) => {
+            this.animFinishEnd( signal.id );
+        }
+        this.pieces.connect( 'animFinishEnd', this.animFinishEndHandler );
+
         this.createPie();
 
     }
@@ -45,6 +50,7 @@ class PieChart extends Object2D {
         super.free();
         
         this.pieces.disconect( 'animFinish', this.animFinishHandler );
+        this.pieces.disconect( 'animFinishEnd', this.animFinishEndHandler );
 
     }
 
@@ -64,6 +70,27 @@ class PieChart extends Object2D {
         if ( id + 1 === this.pieArray.length ) {
 
             this.isScaletable = true;
+            
+        }
+
+    }
+
+    animFinishEnd( id ) {
+
+        if ( id + 1 === this.pieArray.length ) {
+
+            this.isScaletable = false;
+
+        }
+
+        // Go start animation for piece
+        if ( id - 1 === -1 ) {
+
+            this.emitSignal( { type: 'hidden' } );
+
+        } else if (id - 1 >= 0) {
+
+            this.hiddePiece( id - 1 );
 
         }
 
@@ -114,6 +141,14 @@ class PieChart extends Object2D {
         this.pieces.children[ id ].start();
 
         this.emitSignal( { type: 'visible', id: id } );
+
+    }
+
+    hiddePiece( id ) {
+
+        this.pieces.children[ id ].end();
+
+        this.emitSignal( { type: 'hidde', id: id } );
 
     }
 

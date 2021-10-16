@@ -28,6 +28,7 @@ import { VersionElement } from "./versionElement.js";
 import { NoteElement } from "./noteElement.js";
 import { InheritsElement } from "./inheritsElement.js";
 import { StrongCodeElement } from './strongCodeElement.js';
+import { CustomizePiechartElement } from './customizePiechartElement.js';
 
 window.customElements.define( 'obj-type', ObjectsElement );
 window.customElements.define( 'nav-panel', NavigationElement );
@@ -50,6 +51,7 @@ window.customElements.define( 'version-p', VersionElement );
 window.customElements.define( 'note-info', NoteElement );
 window.customElements.define( 'inhe-info', InheritsElement );
 window.customElements.define( 's-c', StrongCodeElement );
+window.customElements.define( 'cust-piechart', CustomizePiechartElement );
 
 // Signal
 window.customElements.define( 'sign-table', SignalTableElement );

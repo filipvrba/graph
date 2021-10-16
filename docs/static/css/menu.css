@@ -145,6 +145,21 @@
 
 }
 
+.menu #header {
+
+    display: block;
+
+}
+
+.menu img {
+
+    width: 64px;
+    height: 64px;
+    margin: 0;
+    margin-right: 1em;
+
+}
+
 @keyframes menuMove-in {
 
     from {

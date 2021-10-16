@@ -27,7 +27,16 @@ class Piece extends Object2D {
 
         this.animFinishHandler = ( signal ) => {
 
-            if ( signal.name === 'start' ) this.parent.emitSignal( { type: 'animFinish', id: this.id } );
+            switch( signal.name ) {
+
+                case 'start':
+                    this.parent.emitSignal( { type: 'animFinish', id: this.id } );
+                    break;
+                case 'end':
+                    this.parent.emitSignal( { type: 'animFinishEnd', id: this.id } );
+                    break;
+
+            }
 
         }
         this.animationPlayer.connect( 'animFinish', this.animFinishHandler );
@@ -77,7 +86,11 @@ class Piece extends Object2D {
 
     createAnimation() {
 
-        const animation = new Animation();
+        this.animationPlayer = new AnimationPlayer();
+        this.add( this.animationPlayer );
+
+        // Start
+        let animation = new Animation();
         let trackID = animation.addTrack( 'widthRadius' );
         animation.addInsertKey(trackID, 0, 0);
         animation.addInsertKey(trackID, 0.2, this.values.widthRadius);
@@ -85,17 +98,32 @@ class Piece extends Object2D {
         trackID = animation.addTrack( 'endRadian' );
         animation.addInsertKey(trackID, 0, this.startRadian);
         animation.addInsertKey(trackID, 0.1, this.endRadian);
-
-        this.animationPlayer = new AnimationPlayer();
+        
         this.animationPlayer.addAnimation('start', animation);
 
-        this.add( this.animationPlayer );
+        // End
+        animation = new Animation();
+        trackID = animation.addTrack( 'widthRadius' );
+        animation.addInsertKey(trackID, 0, this.values.widthRadius);
+        animation.addInsertKey(trackID, 0.2, 0 );
+
+        trackID = animation.addTrack( 'endRadian' );
+        animation.addInsertKey(trackID, 0, this.endRadian);
+        animation.addInsertKey(trackID, 0.1, this.startRadian);
+        
+        this.animationPlayer.addAnimation('end', animation);
 
     }
 
     start() {
 
         this.animationPlayer.play('start');
+
+    }
+
+    end() {
+
+        this.animationPlayer.play( 'end' );
 
     }
 

@@ -7,6 +7,9 @@ class PieChartElement extends HTMLElement {
 
         super();
 
+        this.removeHandler = () => { this.remove() };
+        this.hiddeHandler = () => { this.hidden() };
+
         this.data = this.getAttribute( 'data' );
         this.widthRadius = parseInt( this.getAttribute( 'widthRadius' ) );
 
@@ -46,6 +49,7 @@ class PieChartElement extends HTMLElement {
                     top: 0;
                     left: 0;
                     outline: none;
+                    z-index: -1;
                 }
             </style>
 
@@ -94,10 +98,28 @@ class PieChartElement extends HTMLElement {
 
     }
 
+    remove() {
+
+        const index = this.pieChart.pieces.children.length - 1;
+        this.pieChart.hiddePiece( index )
+
+    }
+
+    hidden() {
+
+        const removeInnerEvent = new CustomEvent( 'removeInner' );
+        document.dispatchEvent( removeInnerEvent );
+
+    }
+
     connectedCallback() {
 
         this.initPieChart();
         this.tick();
+
+        document.addEventListener( 'remove', this.removeHandler );
+
+        this.pieChart.connect( 'hidden', this.hiddeHandler );
 
     }
 
@@ -106,6 +128,7 @@ class PieChartElement extends HTMLElement {
         this.scene.free();
         
         window.removeEventListener( 'resize', this.resizeHandler );
+        document.removeEventListener( 'remove', this.removeHandler );
 
     }
 

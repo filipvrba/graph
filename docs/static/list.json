@@ -134,6 +134,22 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "input": {
+
+            "path": "core/input",
+            "dir": "api",
+            "visible": true
+
+        },
+
+        "piechart": {
+
+            "path": "graphs/piechart",
+            "dir": "api",
+            "visible": true
+
         }
         
     }
