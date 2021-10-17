@@ -13,10 +13,13 @@
         <script>
             const root = document.getElementById( 'root' );
             let template = '';
+            let isDelete = false;
 
             document.addEventListener( 'removeInner', () => {
 
                 root.innerHTML = template;
+
+                isDelete = false;
 
             });
 
@@ -30,7 +33,9 @@
 
                     root.innerHTML = template;
 
-                } else {
+                } else if ( !isDelete ) {
+
+                    isDelete = true;
 
                     const removeEvent = new CustomEvent( 'remove' );
                     document.dispatchEvent( removeEvent );

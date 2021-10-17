@@ -8,7 +8,7 @@ class CustomizePiechartElement extends HTMLElement {
 
         this.clickMinCircleHandler = () => { this.clickMinCircle() };
         this.clickPlusCircleHandler = () => { this.clickPlusCircle() };
-        this.loadHandler = () => { this.addObj() };
+        this.loadHandler = () => { this.addObj( 2 ) };  // Add two objects
 
         this.customObjects = [];
         this.defaultObjects = [
@@ -90,9 +90,14 @@ class CustomizePiechartElement extends HTMLElement {
         
     }
 
-    addObj() {
+    addObj( length = 1 ) {
 
-        this.customObjects.push( this.getRandomObject() );
+        for ( let i = 0; i < length; i++ ) {
+
+            this.customObjects.push( this.getRandomObject() );
+
+        }
+        
         this.sendData();
 
     }
