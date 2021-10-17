@@ -49,7 +49,9 @@ class PropertyTableElement extends ChildrenElement {
         const template = `
         <tr>
             <th>
-                ${ child.getTypeTemplate() }
+                <div class="row">
+                    ${ child.getTypeTemplate() }
+                </div>
             </th>
             <th>
                 <p>

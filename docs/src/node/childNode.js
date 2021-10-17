@@ -58,7 +58,7 @@ class ChildNode {
 
         }
 
-        type = this.getVirtualTemplate() + type;
+        type = this.getVirtualTemplate() + this.getLambdaTemplate() + type;
 
         return type;
 
@@ -81,6 +81,24 @@ class ChildNode {
             </p>
             `;
 
+        }
+
+        return template;
+
+    }
+
+    getLambdaTemplate() {
+
+        const symbol = '&#955;';
+        let template = '';
+
+        if ( this.hasLambda ) {
+
+            template = `
+            <p id="lambda" class="fa" title="Anonymous function">
+                ${ symbol }
+            </p>`;
+            
         }
 
         return template;
@@ -164,6 +182,12 @@ class ChildNode {
     get virtual() {
 
         return this.#child.getAttribute( 'virtual' );
+
+    }
+
+    get hasLambda() {
+
+        return this.#child.hasAttribute( 'lambda' );
 
     }
 

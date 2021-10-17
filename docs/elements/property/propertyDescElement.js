@@ -66,7 +66,7 @@ class PropertyDescElement extends ChildrenElement {
         <div id="${ this.getNodeName() }-${ nameSlim }">
             <ul>
                 <li>
-                    <div>
+                    <div class="row">
                         ${ values.child.getTypeTemplate() }
                         <p><strong>${ values.child.name }</strong></p>
                     </div>
