@@ -26,19 +26,63 @@
 
             <meth-table name="Funkce" static="false">
                 <meth type="c:constructor" name="Input ()"></meth>
+                <meth virtual="?basicObject#desc-added" type="o:function" name="ready ()"></meth>
+                <meth virtual="?basicObject#desc-draw" type="o:function" name="draw( renderer )"></meth>
+                <meth type="o:function" name="mouseMove( event )"></meth>
+                <meth type="o:function" name="free()"></meth>
             </meth-table>
 
-            <!-- <prop-desc name="Popis Vlastností">
-                <prop type="a:vector2" name="position" value="Vector2( 0, 0 )">
+            <sign-table name="Signály">
+                <sign name="input" emit="true">
+                    <p>Vysílá se, když je vstupní událost myši aktivní.</p>
+                </sign>
+                <sign origin name="mousemove" emit="false">
+                    <p>Pouslouchá vstupní událost myši z dokumentu.</p>
+                </sign>
+            </sign-table>
+            <hr>
+            <prop-desc name="Popis Vlastností">
+                <prop type="a:vector2" name="position">
                     <tab>
                         <value>výchozí:Vector2( 0, 0 )</value>
                     </tab>
                     <p>Lokální 2D pozice, která je vzhledem k nadřazenému objektu.</p>
                 </prop>
+                <hr>
+                <prop lambda type="o:function"function" name="mouseMoveHandler">
+                    <tab>
+                        <value>výchozí:mouseMove( event )</value>
+                    </tab>
+                    <p>
+                        Anonymní funkce, která je posluchačem <s-c>mousemove</s-c>
+                        <a href="#sign-mousemove">události</a>.
+                        Při poslechu spouští <s-c>mouseMove( ... )</s-c>
+                        <a href="#meth-mouseMove">funkci</a>.
+                    </p>
+                </prop>
             </prop-desc>
             <hr>
             <meth-desc name="Popis Funkcí" static="false">
-            </meth-desc> -->
+                <meth type="c:constructor" name="Input ()">
+
+                </meth>
+                <hr>
+                <meth virtual="?basicObject#desc-added" type="o:function" name="ready ()">
+
+                </meth>
+                <hr>
+                <meth virtual="?basicObject#desc-draw" type="o:function" name="draw( renderer )">
+
+                </meth>
+                <hr>
+                <meth type="o:function" name="mouseMove( event )">
+
+                </meth>
+                <hr>
+                <meth type="o:function" name="free()">
+
+                </meth>
+            </meth-desc>
         </article>
     </body>
 </html>

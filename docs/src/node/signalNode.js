@@ -15,6 +15,26 @@ class SignalNode extends ChildNode {
 
     }
 
+    get isOrigin() {
+
+        return super.get().hasAttribute( 'origin' );
+
+    }
+
+    getOriginTemplate() {
+
+        let template = '<sup>*</sup>';
+
+        if ( !this.isOrigin ) {
+
+            template = '';
+
+        }
+
+        return template;
+
+    }
+
 }
 
 export { SignalNode };

@@ -46,7 +46,9 @@ class SignalTableElement extends MethodsTableElement {
 
         const name = `
         <th class="row">
-            <p class="fa fa-${ icon }"></p>
+            <div style="display: blocks;">
+                <p class="fa fa-${ icon }">${ child.getOriginTemplate() }</p>
+            </div>
             <p>${ child.name }</p>
         </th>
         `;
