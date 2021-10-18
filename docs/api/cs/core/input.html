@@ -13,10 +13,34 @@
                 <h2>Popis</h2>
                 <div>
                     <p>
-                        Zpracovává vstupní událost myši. Tato třída,
-                        je komponentou 
+                        Tato třída zpracovává vstupní událost myši,
+                        je rozšiřovací komponentou pro <a href="?scene">scénu</a>
+                        třídy a vysílá <a href="#sign-input">signál</a>,
+                        který je automaticky připojen k <a href="?basicObject#desc-input">funkci</a>
+                        objektu.
                     </p>
                 </div>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+// Vytvořená nová třída, která je rozšířená BasicObject třídou.
+class Collision extends BasicObject {
+
+    /**
+     * Pro přistoupení k pozici myši, stačí
+     * připsat do této vytvořené třídy
+     * virtuální funkci input( ... ).
+     */
+    input( mousePos ) {
+
+        // Vypíše 2D pozici myši do konzole.
+        console.log( mousePos );
+
+    }
+}
+                </light-code>
             </div>
 
             <prop-table name="Vlastnosti">
@@ -67,9 +91,9 @@
                         <value>výchozí:getBoundingClientRect()</value>
                     </tab>
                     <p>
-                        Tato vlastnost se inicializuje na <s-c>getBoundingClientRect()</s-c>
+                        Tato vlastnost se inicializuje na
                         <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">funkci</a>,
-                        která získává informace o velikosti <s-c>canvas</s-c> objektu.
+                        která vrací získané informace o velikosti <s-c>canvas</s-c> objektu.
                     </p>
                 </prop>
             </prop-desc>
