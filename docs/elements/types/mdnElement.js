@@ -8,19 +8,21 @@ class MDNElement extends HTMLElement {
 
     }
 
-    init( url ) {
+    init( url, isLowerCase = true ) {
+
+        const type = isLowerCase ? this.type.toLowerCase(): this.type;
     
         this.innerHTML = `
             <p>
-                <a href="${ this.getUrlType( url ) }">
-                    <span>${ this.type.toLowerCase() }</span>
+                <a href="${ this.getUrlType() }">
+                    <span>${ type }</span>
                 </a>
             </p>
         `;
 
     }
 
-    getUrlType( url ) {
+    getUrlType() {
 
         return this.url + this.type;
 

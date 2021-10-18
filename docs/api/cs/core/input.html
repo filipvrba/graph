@@ -22,6 +22,7 @@
             <prop-table name="Vlastnosti">
                 <prop type="a:vector2" name="position" value="Vector2( 0, 0 )"></prop>
                 <prop lambda type="o:function" name="mouseMoveHandler" value="mouseMove( event )"></prop>
+                <prop type="oa:DOMRect" name="canvasRect" value="getBoundingClientRect()"></prop>
             </prop-table>
 
             <meth-table name="Funkce" static="false">
@@ -29,7 +30,7 @@
                 <meth virtual="?basicObject#desc-added" type="o:function" name="ready ()"></meth>
                 <meth virtual="?basicObject#desc-draw" type="o:function" name="draw( renderer )"></meth>
                 <meth type="o:function" name="mouseMove( event )"></meth>
-                <meth type="o:function" name="free()"></meth>
+                <meth virtual="?basicObject#meth-free" type="o:function" name="free()"></meth>
             </meth-table>
 
             <sign-table name="Signály">
@@ -38,7 +39,7 @@
                 </sign>
                 <sign origin name="mousemove" emit="false">
                     <p>Pouslouchá vstupní událost myši z dokumentu.</p>
-                </sign>
+                </sign>vektorové
             </sign-table>
             <hr>
             <prop-desc name="Popis Vlastností">
@@ -60,27 +61,60 @@
                         <a href="#meth-mouseMove">funkci</a>.
                     </p>
                 </prop>
+                <hr>
+                <prop type="oa:DOMRect" name="canvasRect">
+                    <tab>
+                        <value>výchozí:getBoundingClientRect()</value>
+                    </tab>
+                    <p>
+                        Tato vlastnost se inicializuje na <s-c>getBoundingClientRect()</s-c>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">funkci</a>,
+                        která získává informace o velikosti <s-c>canvas</s-c> objektu.
+                    </p>
+                </prop>
             </prop-desc>
             <hr>
             <meth-desc name="Popis Funkcí" static="false">
                 <meth type="c:constructor" name="Input ()">
-
+                    <p>
+                        Konstruktor dědí z tříd, inicializuje vlastnosti
+                        a nemá žádné parametry. 
+                    </p>
                 </meth>
                 <hr>
                 <meth virtual="?basicObject#desc-added" type="o:function" name="ready ()">
-
+                    <p>
+                        Virtuální funkce, která přidává <a href="#sign-mousemove">událost</a>
+                        a předává ji do <s-c>mouseMoveHandler</s-c>
+                        <a href="#prop-mouseMoveHandler">vlastnosti</a>.
+                    </p>
                 </meth>
                 <hr>
                 <meth virtual="?basicObject#desc-draw" type="o:function" name="draw( renderer )">
-
+                    <p>
+                        Virtuální funkce, která inicializuje <s-c>canvasRect</s-c>
+                        <a href="#prop-canvasRect">vlastnost</a>.
+                    </p>
                 </meth>
                 <hr>
                 <meth type="o:function" name="mouseMove( event )">
-
+                    <para name="event">informace o pozice myši.</para>
+                    <p>
+                        Pokud ukazatel myši je na <s-c>canvasu</s-c>,
+                        tak zapisuje do <s-c>position</s-c>
+                        <a href="#prop-position">vlastnosti</a> pozice myši.
+                        Tato pozice se dále předává do hodnoty objektu, která
+                        se vysílá pomocí <s-c>input</s-c>
+                        <a href="#sign-input">signálu</a>.
+                    </p>
                 </meth>
                 <hr>
-                <meth type="o:function" name="free()">
-
+                <meth virtual="?basicObject#meth-free" type="o:function" name="free()">
+                    <p>
+                        Virtuální funkce, která spouští zděděnou <s-c>free()</s-c>
+                        funkci a odebírá <s-c>mousemove</s-c>
+                        <a href="#sign-mousemove">událost</a>.
+                    </p>
                 </meth>
             </meth-desc>
         </article>

@@ -49,6 +49,9 @@ class ChildNode {
             case 'o':  // Object
                 type = `<obj-type type="${ capitalized( typeName ) }"></obj-type>`;
                 break;
+            case 'oa': // Object-API
+                type = `<api-type type="${ typeName }"></api-type>`;
+                break;    
             case 'c':  // Class
                 type = `<class-type type="${ typeName }"></class-type>`;
                 break;

@@ -15,11 +15,14 @@ import { MethodsTableElement } from './method/methodsTableElement.js';
 // Signal
 import { SignalTableElement } from './signal/signalTableElemen.js';
 
-import { ObjectsElement } from "./objectsElement.js";
+// Types
+import { ObjectsElement } from "./types/objectsElement.js";
+import { ClassesElement } from "./types/classesElement.js"
+import { APIElement } from "./types/apiElement.js"
+
 import { NavigationElement } from "./navigationElement.js";
 import { PagesElements } from "./pagesElement.js";
 import { FooterElement } from "./footerElement.js"
-import { ClassesElement } from "./classesElement.js"
 import { HighlighterElement } from "./highlighterElement.js"
 import { ExamplesElement } from "./examplesElement.js"
 import { SelectColorElement } from './selectColorElement.js';
@@ -30,11 +33,18 @@ import { InheritsElement } from "./inheritsElement.js";
 import { StrongCodeElement } from './strongCodeElement.js';
 import { CustomizePiechartElement } from './customizePiechartElement.js';
 
+
+/**
+ * Defines
+ */
+// Types
+window.customElements.define( 'class-type', ClassesElement );
 window.customElements.define( 'obj-type', ObjectsElement );
+window.customElements.define( 'api-type', APIElement );
+
 window.customElements.define( 'nav-panel', NavigationElement );
 window.customElements.define( 'root-page', PagesElements );
 window.customElements.define( 'foo-panel', FooterElement );
-window.customElements.define( 'class-type', ClassesElement );
 window.customElements.define( 'light-code', HighlighterElement );
 window.customElements.define( 'e-code', ExamplesElement );
 window.customElements.define( 'select-color', SelectColorElement );
