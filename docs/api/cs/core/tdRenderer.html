@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>TDRenderer</h1>
+            <p>Vykresluje 2D tvary pomocí <a href="?scene">scén</a>.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        Tento renderer dokáže vykreslovat tvary pomocí <a href="#prop-canvas">canvas</a> elementu.
+                        Element je nastaven pro 2D vykreslování,
+                        který je předáván do hodnoty objektu pro <a href="#sign-draw">draw signál</a>.
+                        Pro přístup k <a href="#prop-renderer">renderingu</a> ve vlastní třídě,
+                        stačí připsat <a href="?basicObject#desc-draw">virtuální metodu</a> a přistoupit k parametru.
+                        Parametr má vestavěné funkce, které dokoužou kreslit 2D tvary
+                        do canvasu.
+                    </p>
+                    <br>
+                    <p>
+                        Přistupuje k <a href="?clock">času</a>, který sleduje uplynulé milisekundy.
+                        Vypočítá <a href="?clock#meth-getDT">delta-time</a>, který je předáván do hodnoty objektu pro
+                        <a href="#sign-update">update signál</a>.
+                        Takže dokážeme, vypočítat hodnoty v průběhu animace.
+                        Pro přístup k delta-time ve vlastní třídě,
+                        stačí připsat <a href="?basicObject#desc-update">virtuální metodu</a> a přistoupit k parametru.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+class Circle extends Object2D {
+    constructor() {
+        // Deklarujeme a inicializujeme vlastnosti.
+        this.position = new Vector( 100, 100 );
+        this.widthRadius = 100;
+        this.speed = 10;
+    }
+
+    // Virtuální funkce
+    draw( renderer ) {
+        // Vykresluje kružnici, pomocí vlastností.
+        renderer.arc(
+            this.position.x, this.position.y,
+            this.widthRadius,
+            0, Math.PI * 2,
+            false
+        );
+    }
+
+    // Virtuální funkce
+    update( dt ) {
+        // U této vlastnosti, připisujeme rychlost u hodnoty x,
+        // takže kružnice se bude posouvat doprava.
+        this.position.x += this.speed * dt;
+    }
+}
+                </light-code>
+            </div>
+
+            <prop-table name="Vlastnosti">
+                <prop type='oa:HTMLCanvasElement'
+                    name="canvas" value="canvas">
+                </prop>
+                <prop type='a:clock'
+                    name="clock" value="Clock()">
+                </prop>
+                <prop type='oa:CanvasRenderingContext2D'
+                    name="renderer">
+                </prop>
+            </prop-table>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="TDRenderer ( canvas )"></meth>
+                <meth type="c:function" name="setSize ( width, height )"></meth>
+                <meth type="c:function" name="render ( scene )"></meth>
+            </meth-table>
+
+            <sign-table name="Signály">
+                <p>Signály jsou vyvolány podle pořadí priorit.</p>
+                <br>
+                <sign name="draw" emit="true">
+                    <p>
+                        <b>1.</b> vysílaný signál, v průběhu <s-c>render( ... )</s-c>
+                        <a href="#meth-render">funkce</a>,
+                        přes <s-c>scene</s-c> <a href="?scene">parametr</a>.
+                        Tento signál je <a href="?basicObject#desc-draw">připojen</a> v <s-c>BasicObject</s-c>
+                        třídě.
+                    </p>
+                </sign>
+                <sign name="update" emit="true">
+                    <p>
+                        <b>2.</b> vysílaný signál, v průběhu <s-c>render( ... )</s-c>
+                        <a href="#meth-render">funkce</a>,
+                        přes <s-c>scene</s-c> <a href="?scene">parametr</a>.
+                        Tento signál je <a href="?basicObject#desc-update">připojen</a> v <s-c>BasicObject</s-c>
+                        třídě.
+                    </p>
+                </sign>
+            </sign-table>
+            <hr>
+            <prop-desc name="Popis Vlastností">
+                <prop type="oa:HTMLCanvasElement" name="canvas">
+                    <tab>
+                        <value>výchozí:canvas</value>
+                    </tab>
+                    <p>
+                        Je prvkem v DOM dokumentu a
+                        používá se pro vykreslování tvarů.
+                    </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Při inicializaci v <a href="#meth-Clock">konstruktoru</a>
+                            této třídy, se předává <s-c>canvas</s-c> parametr,
+                            do této vlastnosti.
+                        </p>
+                    </note-info>
+                </prop>
+                <hr>
+                <prop type='a:clock' name="clock" value="Clock()">
+                    <tab>
+                        <value>výchozí:Clock()</value>
+                    </tab>
+                    <p>
+                        Je rozšiřovací komponentou, která sleduje čas
+                        v tomto objektu.
+                    </p>
+                </prop>
+                <hr>
+                <prop type='oa:CanvasRenderingContext2D' name="renderer">
+                    <tab>
+                        <get>renderer</get>
+                    </tab>
+                    <p>
+                        Pomocí <s-c>canvas</s-c> vlastnosti, získává
+                        nástroje pro 2D kreslení. Při kreslení tvarů,
+                        se vykreslují do <s-c>canvas</s-c> prvku v
+                        DOM dokumentu.
+                    </p>
+                </prop>
+            </prop-desc>
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="TDRenderer ( canvas )">
+                    <para name="canvas">prvek pro vykreslování tvarů.</para>
+                    <p>
+                        Konstruktor má parametr, který je předáván do <a href="#prop-canvas">vlastnosti</a>.
+                        Zbylé vlastnosti, se inicializují touto konstrukcí.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="c:function" name="setSize ( width, height )">
+                    <para name="width">hodnota pro šířku.</para>
+                    <para name="height">hodnota pro výšku.</para>
+                    <p>
+                        Nastavuje u <s-c>canvas</s-c>
+                        <a href="#prop-canvas">vlastnosti</a> šířku a výšku
+                        prvku pro vykreslení stylu v DOM dokumentu.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="c:function" name="render ( scene )">
+                    <para name="scene">
+                        objekt <a href="?scene">scény</a>, který bude
+                        vykreslován.
+                    </para>
+                    <p>
+                        Funkce vymaže nakreslené prvky přes <s-c>renderer</s-c>
+                        <a href="#prop-renderer">vlastnost</a> a
+                        vysílají se <a href="#signals">signály</a>.
+                    </p>
+                    <br>
+                    <p>
+                        Pomocí <s-c>draw</s-c> <a href="#sign-draw">signálu</a>,
+                        je předávána <s-c>renderer</s-c> vlastnost do hodnoty
+                        objektu. Pro <a href="?basicObject#desc-draw">vykreslování</a> tvarů, je zapotřebí
+                        vložit <s-c>draw( ... )</s-c> funkci, do nově vytvořené třídě.
+                    </p>
+                    <br>
+                    <note-info>
+                        <p>
+                            Tuto funkci vkládáme do smyčky, pro aktualizaci animací.
+                        </p>
+                        <br>
+                        <light-code>
+function tick() {
+    // Vykresluje scénu, kterou jsme vložily do argumentu funkce.
+    renderer.render( scene );
+
+    // Tato funkce aktualizuje vykreslení a znovu spustí tick() funkci.
+    requestAnimationFrame( () => tick() );
+}
+tick();
+                        </light-code>
+                    </note-info>
+                </meth>
+            </meth-desc>
+        </article>
+    </body>
+</html>

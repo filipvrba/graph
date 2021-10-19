@@ -150,6 +150,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "TDRenderer": {
+
+            "path": "core/tdRenderer",
+            "dir": "api",
+            "visible": true
+
         }
         
     }
