@@ -12,7 +12,7 @@ class PagesElements extends HTMLElement {
         this.metaOgURL = document.querySelector('meta[property="og:url"]');
         this.metaOgSiteName = document.querySelector('meta[property="og:site_name"]');
         this.metaOgDescription = document.querySelector('meta[property="og:description"]');
-        // this.metaOgImage = document.querySelector('meta[property="og:image"]');
+        this.metaOgImage = document.querySelector('meta[property="og:image"]');
 
         this.init();
 
@@ -73,7 +73,7 @@ class PagesElements extends HTMLElement {
         this.metaOgSiteName.content = getPageName();
 
         // Image
-        // this.metaOgImage.content = window.location.host + '/static/pictures/logo_1024px.png';
+        this.metaOgImage.content = window.location.host + '/static/pictures/logo_1024px.png';
 
         // Description
         const smallDesc = document.getElementById( 'small-desc' );
