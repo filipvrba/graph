@@ -158,6 +158,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "collision": {
+
+            "path": "core/collision",
+            "dir": "api",
+            "visible": true
+
         }
         
     }

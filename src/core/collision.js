@@ -6,21 +6,21 @@ class Collision extends BasicObject {
 
         super();
 
-        this.input_pickable = false;
+        this.inputPickable = false;
 
     }
 
     input( mousePos ) {
 
-        if ( !this.input_pickable && this.isCollide( mousePos ) ) {
+        if ( !this.inputPickable && this.isCollide( mousePos ) ) {
 
             this.mouseEntered();
-            this.input_pickable = true;
+            this.inputPickable = true;
 
-        } else if ( this.input_pickable && !this.isCollide( mousePos ) ) {
+        } else if ( this.inputPickable && !this.isCollide( mousePos ) ) {
 
             this.mouseExited();
-            this.input_pickable = false;
+            this.inputPickable = false;
         
         }
 

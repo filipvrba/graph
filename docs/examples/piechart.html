@@ -13,36 +13,50 @@
         <script>
             const root = document.getElementById( 'root' );
             let template = '';
-            let isDelete = false;
 
-            document.addEventListener( 'removeInner', () => {
+            isReadyPost( true, false );
 
+            document.addEventListener( 'removeInner', ( event ) => {
+                
                 root.innerHTML = template;
 
-                isDelete = false;
+            });
+            document.addEventListener( 'isReadyBack', ( event ) => {
+                
+                isReadyPost( event.detail );
 
             });
 
             window.onmessage = ( event ) => {
-                
-                template = `
-                <pie-chart data='${ event.data }' widthRadius="100"></pie-chart>
-                `;
 
-                if ( !root.innerHTML ) {
+                switch( event.data.type ) {
+                    case 'isReady':
+                        const isReadyEvent = new CustomEvent( 'isReadyC' );
+                        document.dispatchEvent( isReadyEvent );
+                        break;
+                    default:
+                        template = `
+                        <pie-chart data='${ event.data }' widthRadius="100"></pie-chart>
+                        `;
 
-                    root.innerHTML = template;
+                        if ( !root.innerHTML ) {
 
-                } else if ( !isDelete ) {
+                            root.innerHTML = template;
 
-                    isDelete = true;
+                        } else {
+                            
+                            const removeEvent = new CustomEvent( 'remove' );
+                            document.dispatchEvent( removeEvent );
 
-                    const removeEvent = new CustomEvent( 'remove' );
-                    document.dispatchEvent( removeEvent );
-
+                        }
+                    break;
                 }
 
             };
+
+            function isReadyPost(value, add = true) {
+                window.top.postMessage( { type: 'isReady', value, add } );
+            }
         </script>
     </body>
 </html>

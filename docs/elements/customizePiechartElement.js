@@ -9,6 +9,7 @@ class CustomizePiechartElement extends HTMLElement {
         this.clickMinCircleHandler = () => { this.clickMinCircle() };
         this.clickPlusCircleHandler = () => { this.clickPlusCircle() };
         this.loadHandler = () => { this.addObj( 2 ) };  // Add two objects
+        this.messageHandler = ( event ) => { this.message( event.data ) };
 
         this.customObjects = [];
         this.defaultObjects = [
@@ -25,6 +26,7 @@ class CustomizePiechartElement extends HTMLElement {
         ];
         this.graph = document.getElementById( 'graph' );
         this.innerHTML = this.getDefaultTemplate();
+        this.clickLeftButton = null;
 
     }
 
@@ -65,7 +67,8 @@ class CustomizePiechartElement extends HTMLElement {
 
         if ( this.customObjects.length <= 1 ) return;
 
-        this.removeObj();
+        this.clickLeftButton = true;
+        this.isReady();
 
     }
 
@@ -86,8 +89,15 @@ class CustomizePiechartElement extends HTMLElement {
 
         if ( this.customObjects.length >= this.defaultObjects.length / 2 ) return;
 
-        this.addObj();
+        this.clickLeftButton = false;
+        this.isReady();
         
+    }
+
+    isReady() {
+
+        this.graph.contentWindow.postMessage( { type: 'isReady' } );
+
     }
 
     addObj( length = 1 ) {
@@ -116,12 +126,36 @@ class CustomizePiechartElement extends HTMLElement {
 
     }
 
+    message( data ) {
+
+        if ( data.type === 'isReady' ) {
+                
+            if ( data.value === true && data.add === true ) {
+
+                if ( this.clickLeftButton ) {
+
+                    this.removeObj();
+
+                } else {
+
+                    this.addObj();
+
+                }
+
+            }
+
+        }
+
+    }
+
     connectedCallback() {
 
         document.addEventListener( 'clickMinCircle', this.clickMinCircleHandler );
         document.addEventListener( 'clickPlusCircle', this.clickPlusCircleHandler );
 
-        graph.addEventListener( 'load', this.loadHandler );
+        this.graph.addEventListener( 'load', this.loadHandler );
+
+        window.addEventListener( 'message', this.messageHandler );
         
     }
 
@@ -130,7 +164,9 @@ class CustomizePiechartElement extends HTMLElement {
         document.removeEventListener( 'clickMinCircle', this.clickMinCircleHandler );
         document.removeEventListener( 'clickPlusCircle', this.clickPlusCircleHandler );
 
-        graph.removeEventListener( 'load', this.loadHandler );
+        this.graph.removeEventListener( 'load', this.loadHandler );
+
+        window.removeEventListener( 'message', this.messageHandler );
 
     }
 

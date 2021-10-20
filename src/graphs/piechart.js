@@ -77,12 +77,6 @@ class PieChart extends Object2D {
 
     animFinishEnd( id ) {
 
-        if ( id + 1 === this.pieArray.length ) {
-
-            this.isScaletable = false;
-
-        }
-
         // Go start animation for piece
         if ( id - 1 === -1 ) {
 
@@ -146,8 +140,9 @@ class PieChart extends Object2D {
 
     hiddePiece( id ) {
 
-        this.pieces.children[ id ].end();
+        this.isScaletable = false;
 
+        this.pieces.children[ id ].end();
         this.emitSignal( { type: 'hidde', id: id } );
 
     }

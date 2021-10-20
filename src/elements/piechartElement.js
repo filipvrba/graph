@@ -9,6 +9,7 @@ class PieChartElement extends HTMLElement {
 
         this.removeHandler = () => { this.remove() };
         this.hiddeHandler = () => { this.hidden() };
+        this.isReadyHandler = () => { this.isReady() };
 
         this.data = this.getAttribute( 'data' );
         this.widthRadius = parseInt( this.getAttribute( 'widthRadius' ) );
@@ -107,8 +108,19 @@ class PieChartElement extends HTMLElement {
 
     hidden() {
 
-        const removeInnerEvent = new CustomEvent( 'removeInner' );
+        const removeInnerEvent = new CustomEvent( 'removeInner');
         document.dispatchEvent( removeInnerEvent );
+
+    }
+
+    isReady() {
+
+        const isReadyEvent = new CustomEvent( 'isReadyBack', {
+
+            detail: this.pieChart.isScaletable
+
+        });
+        document.dispatchEvent( isReadyEvent );
 
     }
 
@@ -118,6 +130,7 @@ class PieChartElement extends HTMLElement {
         this.tick();
 
         document.addEventListener( 'remove', this.removeHandler );
+        document.addEventListener( 'isReadyC', this.isReadyHandler );
 
         this.pieChart.connect( 'hidden', this.hiddeHandler );
 
@@ -129,6 +142,7 @@ class PieChartElement extends HTMLElement {
         
         window.removeEventListener( 'resize', this.resizeHandler );
         document.removeEventListener( 'remove', this.removeHandler );
+        document.removeEventListener( 'isReadyC', this.isReadyHandler );
 
     }
 

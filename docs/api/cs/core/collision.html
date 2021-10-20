@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>Collision</h1>
+            <inhe-info>basicObject-dispatcher</inhe-info>
+            <p></p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                    </p>
+                </div>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code>
+                </light-code>
+            </div>
+
+            <prop-table name="Vlastnosti">
+                <prop type="o:boolean" name="inputPickable" value="false"></prop>
+            </prop-table>
+
+            <meth-table name="Funkce" static="false">
+                <meth type="c:constructor" name="Collision ()"></meth>
+                <meth virtual="?basicObject#desc-input" type="o:function" name="input ( mousePos )"></meth>
+                <meth type="o:function" name="mouseEntered ()"></meth>
+                <meth type="o:function" name="mouseExited ()"></meth>
+                <meth type="o:function" name="isCollide ( mousePos )"></meth>
+            </meth-table>
+
+            <sign-table name="Signály">
+                <sign name="mouseEntered" emit="true">
+                    <!-- <p>Vysílá se, když je vstupní událost myši aktivní.</p> -->
+                    <p></p>
+                </sign>
+                <sign name="mouseExited" emit="true">
+                    <p></p>
+                </sign>
+            </sign-table>
+            <hr>
+            <prop-desc name="Popis Vlastností">
+                <prop type="o:boolean" name="inputPickable" value="false">
+                    <tab>
+                        <value>výchozí:false</value>
+                    </tab>
+                    <p>
+                        Pokud myš vstoupí do areálu kolize,
+                        tak vrací <s-c>true</s-c>.
+                    </p>
+                </prop>
+            </prop-desc>
+            <hr>
+            <meth-desc name="Popis Funkcí" static="false">
+                <meth type="c:constructor" name="Collision ()">
+                    <p>
+                        Konstruktor dědí z tříd, inicializuje vlastnost
+                        a nemá žádné parametry.
+                    </p>
+                </meth>
+                <hr>
+                <meth virtual="?basicObject#desc-input" type="o:function" name="input ( mousePos )">
+                    <para name="mousePos">vektorova pozice myši.</para>
+                    <p>
+                        Virtuální funkce kontroluje přístupnost pozice myši
+                        jestli je v areálu vyhrazené kolize.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="mouseEntered ()">
+
+                </meth>
+                <hr>
+                <meth type="o:function" name="mouseExited ()">
+                </meth>
+                <hr>
+                <meth type="o:function" name="isCollide ( mousePos )">
+
+                </meth>
+            </meth-desc>
+        </article>
+    </body>
+</html>
