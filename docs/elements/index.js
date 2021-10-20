@@ -21,7 +21,6 @@ import { ClassesElement } from "./types/classesElement.js"
 import { APIElement } from "./types/apiElement.js"
 
 import { NavigationElement } from "./navigationElement.js";
-import { PagesElements } from "./pagesElement.js";
 import { FooterElement } from "./footerElement.js"
 import { HighlighterElement } from "./highlighterElement.js"
 import { ExamplesElement } from "./examplesElement.js"
@@ -43,7 +42,6 @@ window.customElements.define( 'obj-type', ObjectsElement );
 window.customElements.define( 'api-type', APIElement );
 
 window.customElements.define( 'nav-panel', NavigationElement );
-window.customElements.define( 'root-page', PagesElements );
 window.customElements.define( 'foo-panel', FooterElement );
 window.customElements.define( 'light-code', HighlighterElement );
 window.customElements.define( 'e-code', ExamplesElement );
@@ -65,3 +63,6 @@ window.customElements.define( 'cust-piechart', CustomizePiechartElement );
 
 // Signal
 window.customElements.define( 'sign-table', SignalTableElement );
+
+import { PagesElements } from "./pagesElement.js";
+window.customElements.define( 'root-page', PagesElements );
