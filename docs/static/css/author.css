@@ -1,6 +1,8 @@
 :root {
 
     --note-color: #959482;
+    --note-color-warning: #0070e0;
+    --note-color-error: #e0115f;
 
 }
 
@@ -52,11 +54,10 @@
 .info h1 .fa {
 
     margin-right: 0.5em;
-    color: var( --note-color );
 
 }
 
-.info p {
+.info p  {
 
     font-size: 20px;
     margin-bottom: 5px;
@@ -71,9 +72,47 @@
 
 }
 
+#icon-info {
+
+    margin-left: 5%;
+    margin-bottom: 5px;
+    font-size: 22px;
+
+}
+
 .note {
 
     border-left: 5px solid var( --note-color );
+
+}
+
+.note-warning {
+
+    border-left: 5px solid var( --note-color-warning );
+
+}
+
+.note-error {
+
+    border-left: 5px solid var( --note-color-error );
+
+}
+
+.icolor {
+
+    color: var( --note-color );
+
+}
+
+.icolor-warning {
+
+    color: var( --note-color-warning );
+
+}
+
+.icolor-error {
+
+    color: var( --note-color-error );
 
 }
 

@@ -166,6 +166,22 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "constants": {
+
+            "path": "core/constants",
+            "dir": "api",
+            "visible": true
+
+        },
+
+        "core": {
+
+            "path": "core/index",
+            "dir": "api",
+            "visible": true
+
         }
         
     }

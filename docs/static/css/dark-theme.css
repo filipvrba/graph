@@ -6,6 +6,8 @@
     --dark-menu-color-font: #3391ff;
     --dark-code-span: #e95849;
     --dark-note-color: #9f978a;
+    --dark-note-color-warning: #46acff;
+    --dark-note-color-error: #f0337a;
 
 }
 
@@ -97,15 +99,39 @@
     }
 
     /* author.css */
-    .info h1 .fa {
-
-        color: var( --dark-note-color );
-    
-    }
-
     .note {
 
         border-left: 5px solid var( --dark-note-color );
+    
+    }
+
+    .note-warning {
+
+        border-left: 5px solid var( --dark-note-color-warning );
+    
+    }
+    
+    .note-error {
+    
+        border-left: 5px solid var( --dark-note-color-error );
+    
+    }
+    
+    .icolor {
+    
+        color: var( --dark-note-color );
+    
+    }
+    
+    .icolor-warning {
+    
+        color: var( --dark-note-color-warning );
+    
+    }
+    
+    .icolor-error {
+    
+        color: var( --dark-note-color-error );
     
     }
 

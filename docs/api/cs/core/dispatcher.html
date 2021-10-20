@@ -68,7 +68,7 @@ animation.connect( 'animationFinish', ( signal ) => {
                         Vytvoří objekt.
                     </p>
                     <br>
-                    <note-info>
+                    <note-info warning>
                         Prakticky bude lepší rozšířit
                         vlastní třídu přes tuto <code><span>Dispatcher</span></code>
                         třídu.
@@ -93,7 +93,7 @@ animation.connect( 'animationFinish', ( signal ) => {
                         Předaná funkce, se odpojí, když určíme typ signálu.
                     </p>
                     <br>
-                    <note-info>
+                    <note-info warning>
                         <p>
                             Bude lepší, když se do atributu předá definovaná
                             <code><span>handler</span></code> anonymní funkce.
@@ -127,7 +127,7 @@ animation.disconect('animationFinish', this.animationFinishHandler);
                         Posílá signál pro připojené posluchače předaných funkcí.
                     </p>
                     <br>
-                    <note-info>
+                    <note-info warning>
                         <p>
                             Do atributu <code><span>signal</span></code>, je potřeba
                             předat objekt, který má definován <code><span>type</span></code>

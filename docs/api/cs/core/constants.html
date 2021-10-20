@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <article>
+            <h1>Constants</h1>
+            <p>Přístup ke konstantním hodnotám.</p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <div>
+                    <p>
+                        Konstanty jsou identifikátory,
+                        pro organizaci zdrojového kódu ve třídách.
+                    </p>
+                    <br>
+                    <note-info error>
+                        <p>
+                            Místo používání čísel, se používá pojmenovaná konstanta,
+                            pro lepší orientaci.
+                        </p>
+                    </note-info>
+                </div>
+            </div>
+
+            <prop-table name="Vlastnosti">
+                <prop type="o:string" name="NAME_SCENE" value="'Scene'"></prop>
+                <prop type="o:number" name="PROCESS" value="0"></prop>
+                <prop type="o:number" name="STOP" value="1"></prop>
+                <prop type="o:number" name="SUM" value="2"></prop>
+            </prop-table>
+
+            <prop-desc name="Popis Vlastností">
+                <prop type="o:string" name="NAME_SCENE" value="'Scene'">
+                    <tab>
+                        <value>výchozí:'Scene'</value>
+                    </tab>
+                    <p>
+                        Název třídní <a href="?scene">scény</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:number" name="PROCESS" value="0">
+                    <tab>
+                        <value>výchozí:0</value>
+                    </tab>
+                    <p>
+                        Hodnota dimenze pro <s-c>valuesMask</s-c>
+                        <a href="?animationPlayer#prop-valuesMask">vlastnost</a>,
+                        která je vyvolána v <a href="?animationPlayer#meth-updateAnimValue">procesu animace</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:number" name="STOP" value="1">
+                    <tab>
+                        <value>výchozí:1</value>
+                    </tab>
+                    <p>
+                        Hodnota dimenze pro <s-c>valuesMask</s-c>
+                        <a href="?animationPlayer#prop-valuesMask">vlastnost</a>,
+                        která je vyvolána v průběhu <a href="?animationPlayer#meth-defStopAnim">dokončení animace</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:number" name="SUM" value="2">
+                    <tab>
+                        <value>výchozí:2</value>
+                    </tab>
+                    <p>
+                        Hodnota dimenze pro <s-c>valuesMask</s-c>
+                        <a href="?animationPlayer#prop-valuesMask">vlastnost</a>,
+                        která je vyvolána pro <a href="?animationPlayer#meth-isAnimFinish">kontrolu animace</a>.
+                    </p>
+                </prop>
+            </prop-desc>
+        </article>
+    </body>
+</html>
