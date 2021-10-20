@@ -8,12 +8,20 @@
     --dark-note-color: #9f978a;
     --dark-note-color-warning: #46acff;
     --dark-note-color-error: #f0337a;
+    --dark-font-color: #e8e6e3;
+    --dark-fa-font-color: #d6d3cd;
 
 }
 
 @media ( prefers-color-scheme: dark ) {
 
     /* index-style.css */
+    p, h1, h2, h3, li {
+
+        color: var( --dark-font-color );
+
+    }
+
     body {
 
         background-color: var( --dark-table-solid );
@@ -74,7 +82,7 @@
 
     .p-default .fa-caret-right {
 
-        color: var( --dark-table-solid );
+        color: var( --dark-fa-font-color );
     
     }
 
