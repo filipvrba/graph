@@ -73,7 +73,7 @@ class PagesElements extends HTMLElement {
         this.metaOgSiteName.content = getPageName();
 
         // Image
-        this.metaOgImage.content = window.location.host + '/static/pictures/logo_1024px.png';
+        this.metaOgImage.content = window.location.origin + window.location.pathname + 'static/pictures/logo_1024px.png'
 
         // Description
         const smallDesc = document.getElementById( 'small-desc' );
