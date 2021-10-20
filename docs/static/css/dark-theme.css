@@ -1,6 +1,7 @@
 :root {
 
     --dark-white: #181a1b;
+    --dark-white-body: #282b2d;
     --dark-table-solid: #383d3f;
     --dark-table-row: #1b2424;
     --dark-menu-color-font: #3391ff;
@@ -24,7 +25,7 @@
 
     body {
 
-        background-color: var( --dark-table-solid );
+        background-color: var( --dark-white-body );
 
     }
 
@@ -42,7 +43,7 @@
 
     .background {
 
-        background-color: var( --dark-table-solid );
+        background-color: var( --dark-white-body );
 
     }
 
