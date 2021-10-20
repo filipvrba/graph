@@ -9,6 +9,11 @@ class PagesElements extends HTMLElement {
         this.metaKeywords = document.querySelector('meta[name="keywords"]');
         this.metaAuthor = document.querySelector('meta[name="author"]');
 
+        this.metaOgURL = document.querySelector('meta[property="og:url"]');
+        this.metaOgSiteName = document.querySelector('meta[property="og:site_name"]');
+        this.metaOgDescription = document.querySelector('meta[property="og:description"]');
+        // this.metaOgImage = document.querySelector('meta[property="og:image"]');
+
         this.init();
 
     }
@@ -61,10 +66,20 @@ class PagesElements extends HTMLElement {
         // Keywords
         this.metaKeywords.content = `${ DOCUMENT }, ${ await this.getKeywords() }`;
 
+        // URL
+        this.metaOgURL.content = window.location.href;
+
+        // Title
+        this.metaOgSiteName.content = getPageName();
+
+        // Image
+        // this.metaOgImage.content = window.location.host + '/static/pictures/logo_1024px.png';
+
         // Description
         const smallDesc = document.getElementById( 'small-desc' );
         if ( smallDesc ) {
             this.metaDescription.content = smallDesc.innerText;
+            this.metaOgDescription.content = smallDesc.innerText;
         }
 
         // Author
