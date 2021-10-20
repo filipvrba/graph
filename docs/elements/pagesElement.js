@@ -56,10 +56,37 @@ class PagesElements extends HTMLElement {
 
     }
 
-    applyMeta( template ) {
+    async applyMeta() {
 
+        // Keywords
+        this.metaKeywords.content = `${ DOCUMENT }, ${ await this.getKeywords() }`;
+
+        // Description
         const smallDesc = document.getElementById( 'small-desc' );
-        this.metaDescription.content = smallDesc.innerText;
+        if ( smallDesc ) {
+            this.metaDescription.content = smallDesc.innerText;
+        }
+
+        // Author
+        this.metaAuthor.content = AUTHOR;
+
+    }
+
+    async getKeywords() {
+
+        const page = await getPage();
+        let categories = page.path;
+        
+        const literalSearch = '/index';
+        if ( categories.indexOf( literalSearch ) > -1 ) {
+
+            categories = categories.replace( literalSearch, '' );
+
+        }
+
+        categories = categories.replaceAll( '/', ', ' );
+
+        return categories;
 
     }
 
