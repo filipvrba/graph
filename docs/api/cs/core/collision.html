@@ -7,20 +7,17 @@
         <article>
             <h1>Collision</h1>
             <inhe-info>basicObject-dispatcher</inhe-info>
-            <p></p>
+            <p>Detekce kolize.</p>
 
             <div class="section" id="description">
                 <h2>Popis</h2>
                 <div>
                     <p>
+                        Zpracovává detekci kolize, přes
+                        <a href="?basicObject#desc-input">vstupní událost</a> a
+                        je komponentou pro nový <a href="?basicObject">objekt</a>.
                     </p>
                 </div>
-            </div>
-
-            <div class="section" id="exaples">
-                <h2>Příklad</h2>
-                <light-code>
-                </light-code>
             </div>
 
             <prop-table name="Vlastnosti">
@@ -32,16 +29,16 @@
                 <meth virtual="?basicObject#desc-input" type="o:function" name="input ( mousePos )"></meth>
                 <meth type="o:function" name="mouseEntered ()"></meth>
                 <meth type="o:function" name="mouseExited ()"></meth>
-                <meth type="o:function" name="isCollide ( mousePos )"></meth>
+                <meth type="o:boolean" name="isCollide ( mousePos )"></meth>
             </meth-table>
 
             <sign-table name="Signály">
                 <sign name="mouseEntered" emit="true">
                     <!-- <p>Vysílá se, když je vstupní událost myši aktivní.</p> -->
-                    <p></p>
+                    <p>Vysílá se, když je pozice myši vstoupena do areálu kolize.</p>
                 </sign>
                 <sign name="mouseExited" emit="true">
-                    <p></p>
+                    <p>Vysílá se, když je pozice myši odstoupena od areálu kolize.</p>
                 </sign>
             </sign-table>
             <hr>
@@ -68,20 +65,48 @@
                 <meth virtual="?basicObject#desc-input" type="o:function" name="input ( mousePos )">
                     <para name="mousePos">vektorova pozice myši.</para>
                     <p>
-                        Virtuální funkce kontroluje přístupnost pozice myši
-                        jestli je v areálu vyhrazené kolize.
+                        Virtuální funkce kontroluje přístupnost pozice myši,
+                        ve vyhrazeném areálu kolize pomocí logických výrazů. 
+                    </p>
+                    <br>
+                    <p>
+                        Tyto výrazy se vyhodnocují podle
+                        <s-c>inputPickable</s-c> <a href="#prop-inputPickable">vlastnosti</a>
+                        a <s-c>isCollide ( ... )</s-c> <a href="#meth-isCollide">funkcionality</a>.
+                        Pokud výrazy jsou pravdivé, tak se spouští <s-c>mouseEntered</s-c>
+                        <a href="#meth-mouseEntered">funkce</a>. Pokud ne, tak se
+                        spouští <s-c>mouseExited</s-c> <a href="#meth-mouseExited">funkce</a>
                     </p>
                 </meth>
                 <hr>
                 <meth type="o:function" name="mouseEntered ()">
-
+                    <p>
+                        Spouští <s-c>mouseEntered</s-c> <a href="#sign-mouseEntered">signál</a>.
+                    </p>
                 </meth>
                 <hr>
                 <meth type="o:function" name="mouseExited ()">
+                    <p>
+                        Spouští <s-c>mouseExited</s-c> <a href="#sign-mouseExited">signál</a>.
+                    </p>
                 </meth>
                 <hr>
-                <meth type="o:function" name="isCollide ( mousePos )">
-
+                <meth type="o:boolean" name="isCollide ( mousePos )">
+                    <para name="mousePos">vektorova pozice myši.</para>
+                    <p>
+                        Kontroluje pozici myši, jestli je v areálu kolize.
+                    </p>
+                    <br>
+                    <p>
+                        Areál kolize je vypočítána dynamicky. Při každém spuštění
+                        této funkce, se inicializují konstantní hodnoty,
+                        pro výpočet vzdálenosti kořene areálu, směr myši
+                        <small>(který se předává do atributu funkce)</small>
+                        a radiánu
+                        <small>(který je nakonec vyhodnocován)</small>.
+                    </p>
+                    <br>
+                    <return>vrací logický výraz z vyhodnocených radiánů.</return>
                 </meth>
             </meth-desc>
         </article>
