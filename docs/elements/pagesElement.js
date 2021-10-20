@@ -5,6 +5,9 @@ class PagesElements extends HTMLElement {
         super();
 
         this.innerHTML = '<p class="fa fa-refresh loader"></p>';
+        this.metaDescription = document.querySelector('meta[name="description"]');
+        this.metaKeywords = document.querySelector('meta[name="keywords"]');
+        this.metaAuthor = document.querySelector('meta[name="author"]');
 
         this.init();
 
@@ -39,6 +42,7 @@ class PagesElements extends HTMLElement {
     loaded( template ) {
 
         this.applyTemplate( template );
+        this.applyMeta( template );
         this.applyHash();
 
         const event = new CustomEvent( 'loadedPage' );
@@ -49,6 +53,13 @@ class PagesElements extends HTMLElement {
     applyTemplate( template ) {
 
         this.innerHTML = template;
+
+    }
+
+    applyMeta( template ) {
+
+        const smallDesc = document.getElementById( 'small-desc' );
+        this.metaDescription.content = smallDesc.innerText;
 
     }
 
