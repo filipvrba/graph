@@ -124,13 +124,13 @@ class PagesElements extends HTMLElement {
 
     connectedCallback() {
 
-        window.addEventListener( 'pageshow', this.loadHandler );
+        window.addEventListener( 'load', this.loadHandler );
 
     }
 
     disconnectedCallback() {
 
-        window.removeEventListener( 'pageshow', this.loadHandler );
+        window.removeEventListener( 'load', this.loadHandler );
 
     }
 
