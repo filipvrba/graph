@@ -10,6 +10,12 @@ class InheritsElement extends HTMLElement {
 
     }
 
+    get hasOA() {
+
+        return this.hasAttribute( 'oa' );
+
+    }
+
     getDefaultTemplate() {
 
         return `
@@ -25,11 +31,19 @@ class InheritsElement extends HTMLElement {
 
     getCustomTemplate( name ) {
 
-        return `
-        <p>
-            <a href="?${ name }">${ capitalized( name ) }</a>
-        </p>
-        `;
+        if ( this.hasOA ) {
+
+            return `<api-type type="${ name }"></api-type>`;
+        
+        } else {
+
+            return `
+            <p>
+                <a href="?${ name }">${ capitalized( name ) }</a>
+            </p>
+            `;
+
+        }
 
     }
 

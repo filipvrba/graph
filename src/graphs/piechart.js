@@ -16,7 +16,8 @@ class PieChart extends Object2D {
 
         this.totalValue = this.countTotalValue();
 
-        this.color = new Color();
+        this.colorStart = new Color( { r: 0, g: 63, b: 92 } );
+        this.colorEnd = new Color( { r: 255, g: 166, b: 0 } );
 
     }
 
@@ -92,14 +93,21 @@ class PieChart extends Object2D {
 
     createPie() {
 
+        const piecesLength = this.pieArray.length - 1;
+
         // Look on the list and write defined values for pieces.
-        for (let i = 0; i < this.pieArray.length; i++) {
+        for (let i = 0; i <= piecesLength; i++) {
 
             // Calculate angles
             const angleValues = this.pieceAngleValues(i);
 
-            // Random color
-            const color = this.color.getRandomPalettte();
+            // Gradient color
+            let alpha = i / piecesLength;
+            if ( !alpha )
+                alpha = 0;
+
+            let color = this.colorStart.lerp( this.colorEnd, alpha );
+            color = color.toString();
 
             this.createPiece({
                 id: i,
@@ -176,6 +184,7 @@ class PieChart extends Object2D {
         piece.values = values.pieceValue;
         piece.values['widthRadius'] = this.widthRadius;
         piece.values['angles'] = values.angles;
+        piece.values[ 'color' ] = values.color;
 
         // Add all the objects for the scene identity
         this.pieces.add(piece);

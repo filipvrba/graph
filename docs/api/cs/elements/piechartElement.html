@@ -5,18 +5,28 @@
     </head>
     <body>
         <article>
-            <h1>Piechart</h1>
-            <!-- <inhe-info>basicObject-dispatcher</inhe-info> -->
-            <p id="small-desc">Element grafu pro html.</p>
+            <h1>PiechartElement</h1>
+            <inhe-info oa>HTMLElement-Element-Node-EventTarget</inhe-info>
+            <p id="small-desc">
+                Element grafu, který se implementuje do DOM dokumentu,
+                pomocí zděděných tříd.
+            </p>
 
             <div class="section" id="description">
                 <h2>Popis</h2>
                 <div>
                     <p>
+                        Element vykresluje piechart graf do přístupněného
+                        canvasu
                     </p>
                 </div>
+                <br>
                 <iframe id="graph" src="./examples/piechart.html" frameborder="0"></iframe>
                 <cust-piechart></cust-piechart>
+                <br>
+                <note-info>
+                    <p>Graf zobrazuje průměrnou rychlost stahování v Mb/s (IPS).</p>
+                </note-info>
             </div>
 
             <prop-table name="Vlastnosti">

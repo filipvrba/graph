@@ -137,7 +137,7 @@ class Piece extends Object2D {
         renderer.lineTo(this.globalPosition.x, this.globalPosition.y);
 
         renderer.closePath();
-        
+
         renderer.fillStyle = this.colorStyle;
         renderer.fill();
 

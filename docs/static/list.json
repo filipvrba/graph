@@ -144,9 +144,9 @@
 
         },
 
-        "piechart": {
+        "piechartElement": {
 
-            "path": "graphs/piechart",
+            "path": "elements/piechartElement",
             "dir": "api",
             "visible": true
 

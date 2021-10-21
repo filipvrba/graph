@@ -12,17 +12,30 @@ class CustomizePiechartElement extends HTMLElement {
         this.messageHandler = ( event ) => { this.message( event.data ) };
 
         this.customObjects = [];
+        // this.defaultObjects = [
+            // { name: "China", value: "1411778724" },
+            // { name: "India", value: "1383082048" },
+            // { name: "United States", value: "332531318" },
+            // { name: "Indonesia", value: "271350000" },
+            // { name: "Pakistan", value: "225200000" },
+            // { name: "Brazil", value: "213807993" },
+            // { name: "Nigeria", value: "211401000" },
+            // { name: "Bangladesh", value: "171522480" },
+            // { name: "Russia", value: "146171015" },
+            // { name: "Mexico", value: "126014024" }
+        // ];
         this.defaultObjects = [
-            { name: "China", value: "1411778724" },
-            { name: "India", value: "1383082048" },
-            { name: "United States", value: "332531318" },
-            { name: "Indonesia", value: "271350000" },
-            { name: "Pakistan", value: "225200000" },
-            { name: "Brazil", value: "213807993" },
-            { name: "Nigeria", value: "211401000" },
-            { name: "Bangladesh", value: "171522480" },
-            { name: "Russia", value: "146171015" },
-            { name: "Mexico", value: "126014024" }
+
+            { name: "CESNET", value: "73.1" },
+            { name: "FreeTel", value: "60.3" },
+            { name: "RIO", value: "43.9" },
+            { name: "SMART", value: "51" },
+            { name: "PODA", value: "57" },
+            { name: "StarNet", value: "35" },
+            { name: "T-Mobile", value: "27.7" },
+            { name: "O2", value: "30.2" },
+            { name: "Vodafone", value: "62.7" },
+
         ];
         this.graph = document.getElementById( 'graph' );
         this.innerHTML = this.getDefaultTemplate();
