@@ -31,17 +31,25 @@ class MethodNodes {
 
         while ( description.search( `<${ name }` ) > -1 ) {
 
-            const endNode = `</${ name }>`;
-
-            const start = description.indexOf( `<${ name }` );
-            const end = description.indexOf( `</${ name }>` );
-            const decs = description.substring( start, end + endNode.length );
-
-            description = description.replace( decs, '' );
+            const desc = this.getDescription( name, description );
+            description = description.replace( desc, '' );
 
         }
 
         return description;
+
+    }
+
+    getDescription( name, description ) {
+
+        const endNode = `</${ name }>`;
+        const start = description.indexOf( `<${ name }` );
+        const end = description.indexOf( endNode );
+        const desc = description.substring( start, end + endNode.length );
+
+        console.log( start, end );
+
+        return desc;
 
     }
 

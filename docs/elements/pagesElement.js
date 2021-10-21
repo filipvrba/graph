@@ -1,19 +1,24 @@
+import { MethodNodes } from "../src/node/methodNodes.js";
+
 class PagesElements extends HTMLElement {
 
     constructor() {
 
         super();
 
-        // this.loadHandler = () => this.init();
+        this.loadHandler = () => this.init();
 
         this.innerHTML = '<p class="fa fa-refresh loader"></p>';
         this.metaDescription = document.querySelector('meta[name="description"]');
         this.metaKeywords = document.querySelector('meta[name="keywords"]');
         this.metaAuthor = document.querySelector('meta[name="author"]');
 
+        this.metaOgImage = document.querySelector('meta[property="og:image"]');
+        this.metaOgImageAlt = document.querySelector('meta[property="og:image:alt"]');
         this.metaOgURL = document.querySelector('meta[property="og:url"]');
         this.metaOgSiteName = document.querySelector('meta[property="og:site_name"]');
         this.metaOgDescription = document.querySelector('meta[property="og:description"]');
+        this.metaOgTitle = document.querySelector('meta[property="og:title"]');
 
     }
 
@@ -27,15 +32,12 @@ class PagesElements extends HTMLElement {
     async load( page ) {
 
         const url = `${ getPath( page.dir ) }/${ page.path }.html`;
-
-        this.applyMeta( page );
-
         let response = await fetch( url );
 
         if ( response.status === 200 ) {
 
             const template = await response.text();
-            this.loaded( template )
+            this.loaded( page, template )
 
         } else if ( response.status === 404 ) {
 
@@ -46,8 +48,9 @@ class PagesElements extends HTMLElement {
 
     }
 
-    loaded( template ) {
+    loaded( page, template ) {
 
+        this.applyMeta( page, template )
         this.applyTemplate( template );
         this.applyHash();
 
@@ -62,30 +65,35 @@ class PagesElements extends HTMLElement {
 
     }
 
-    applyMeta( page ) {
+    applyMeta( page, template ) {
 
         // Keywords
-        this.metaKeywords.content = `${ DOCUMENT }, ${ this.getKeywords( page ) }`;
+        this.metaKeywords.setAttribute( 'content', `${ DOCUMENT }, ${ this.getKeywords( page ) }` );
 
         // URL
-        this.metaOgURL.content = window.location.href;
+        this.metaOgURL.setAttribute( 'content', window.location.href );
 
         // Title
-        this.metaOgSiteName.content = getPageName();
+        this.metaOgSiteName.setAttribute( 'content', getPageName() );
+        this.metaOgTitle.setAttribute( 'content', getPageName() );
 
         // Image
-        this.metaOgImage.content = window.location.origin +
-            window.location.pathname + 'static/pictures/logo_1024px.png';
+        this.metaOgImage.setAttribute( 'content', window.location.origin +
+            window.location.pathname + 'static/pictures/graph_social.png' );
 
         // Description
-        const smallDesc = document.getElementById( 'small-desc' );
+        const templateElement = document.createElement('html');
+        templateElement.innerHTML = template;
+        const smallDesc = templateElement.querySelector( '#small-desc' );
+
         if ( smallDesc ) {
-            this.metaDescription.content = smallDesc.innerText;
-            this.metaOgDescription.content = smallDesc.innerText;
+            this.metaDescription.setAttribute( 'content', smallDesc.innerText );
+            this.metaOgDescription.setAttribute( 'content', smallDesc.innerText );
+            this.metaOgImageAlt.setAttribute( 'content', smallDesc.innerText );
         }
 
         // Author
-        this.metaAuthor.content = AUTHOR;
+        this.metaAuthor.setAttribute( 'content', AUTHOR );
 
     }
 
@@ -118,13 +126,14 @@ class PagesElements extends HTMLElement {
 
     connectedCallback() {
 
-        window.addEventListener( 'load', this.loadHandler );
+        // window.addEventListener( 'load', this.loadHandler );
+        this.init();
 
     }
 
     disconnectedCallback() {
 
-        window.removeEventListener( 'load', this.loadHandler );
+        // window.removeEventListener( 'load', this.loadHandler );
 
     }
 
