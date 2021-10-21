@@ -14,10 +14,6 @@ class PagesElements extends HTMLElement {
         this.metaOgURL = document.querySelector('meta[property="og:url"]');
         this.metaOgSiteName = document.querySelector('meta[property="og:site_name"]');
         this.metaOgDescription = document.querySelector('meta[property="og:description"]');
-        this.metaOgImage = document.querySelector('meta[property="og:image"]');
-
-        this.metaOgImage.content = window.location.origin +
-            window.location.pathname + 'static/pictures/logo_1024px.png';
 
     }
 
