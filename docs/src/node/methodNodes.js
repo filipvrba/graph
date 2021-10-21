@@ -47,8 +47,6 @@ class MethodNodes {
         const end = description.indexOf( endNode );
         const desc = description.substring( start, end + endNode.length );
 
-        console.log( start, end );
-
         return desc;
 
     }

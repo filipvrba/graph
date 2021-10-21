@@ -1,5 +1,3 @@
-import { MethodNodes } from "../src/node/methodNodes.js";
-
 class PagesElements extends HTMLElement {
 
     constructor() {
@@ -126,14 +124,13 @@ class PagesElements extends HTMLElement {
 
     connectedCallback() {
 
-        // window.addEventListener( 'load', this.loadHandler );
-        this.init();
+        window.addEventListener( 'pageshow', this.loadHandler );
 
     }
 
     disconnectedCallback() {
 
-        // window.removeEventListener( 'load', this.loadHandler );
+        window.removeEventListener( 'pageshow', this.loadHandler );
 
     }
 
