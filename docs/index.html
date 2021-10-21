@@ -35,15 +35,16 @@
 
         <title>Document</title>
 
-        <script>
-            const metaOgImage = document.querySelector('meta[property="og:image"]');
-
-            metaOgImage.content = window.location.origin +
-                window.location.pathname + 'static/pictures/logo_1024px.png';
-        </script>
-
        
     </head>
+
+    <script>
+        const metaOgImage = document.querySelector('meta[property="og:image"]');
+
+        metaOgImage.content = window.location.origin +
+            window.location.pathname + 'static/pictures/logo_1024px.png';
+    </script>
+
     <body>
         <menu-panel></menu-panel>
         <div class="background"></div>
