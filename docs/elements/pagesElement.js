@@ -4,6 +4,8 @@ class PagesElements extends HTMLElement {
 
         super();
 
+        this.loadHandler = () => this.init();
+
         this.innerHTML = '<p class="fa fa-refresh loader"></p>';
         this.metaDescription = document.querySelector('meta[name="description"]');
         this.metaKeywords = document.querySelector('meta[name="keywords"]');
@@ -12,15 +14,13 @@ class PagesElements extends HTMLElement {
         this.metaOgURL = document.querySelector('meta[property="og:url"]');
         this.metaOgSiteName = document.querySelector('meta[property="og:site_name"]');
         this.metaOgDescription = document.querySelector('meta[property="og:description"]');
-        // this.metaOgImage = document.querySelector('meta[property="og:image"]');
-
-        this.init();
+        this.metaOgImage = document.querySelector('meta[property="og:image"]');
 
     }
 
     async init() {
 
-        let page = await getPage();
+        const page = await getPage();
         this.load( page );
 
     }
@@ -28,6 +28,9 @@ class PagesElements extends HTMLElement {
     async load( page ) {
 
         const url = `${ getPath( page.dir ) }/${ page.path }.html`;
+
+        this.applyMeta( page );
+
         let response = await fetch( url );
 
         if ( response.status === 200 ) {
@@ -47,7 +50,6 @@ class PagesElements extends HTMLElement {
     loaded( template ) {
 
         this.applyTemplate( template );
-        this.applyMeta( template );
         this.applyHash();
 
         const event = new CustomEvent( 'loadedPage' );
@@ -61,10 +63,10 @@ class PagesElements extends HTMLElement {
 
     }
 
-    async applyMeta() {
+    applyMeta( page ) {
 
         // Keywords
-        this.metaKeywords.content = `${ DOCUMENT }, ${ await this.getKeywords() }`;
+        this.metaKeywords.content = `${ DOCUMENT }, ${ this.getKeywords( page ) }`;
 
         // URL
         this.metaOgURL.content = window.location.href;
@@ -73,12 +75,7 @@ class PagesElements extends HTMLElement {
         this.metaOgSiteName.content = getPageName();
 
         // Image
-        // this.metaOgImage.content = window.location.origin + window.location.pathname + 'static/pictures/logo_1024px.png'
-        const head = document.querySelector( 'head' );
-        const metaOgImage = document.createElement( 'meta' );
-        metaOgImage.setAttribute( 'property', "og:image" );
-        metaOgImage.content = window.location.origin + window.location.pathname + 'static/pictures/logo_1024px.png';
-        head.appendChild( metaOgImage );
+        this.metaOgImage.content = window.location.origin + window.location.pathname + 'static/pictures/logo_1024px.png'
 
         // Description
         const smallDesc = document.getElementById( 'small-desc' );
@@ -92,9 +89,8 @@ class PagesElements extends HTMLElement {
 
     }
 
-    async getKeywords() {
+    getKeywords( page ) {
 
-        const page = await getPage();
         let categories = page.path;
         
         const literalSearch = '/index';
@@ -117,6 +113,18 @@ class PagesElements extends HTMLElement {
             window.location.replace( hash );
 
         }
+
+    }
+
+    connectedCallback() {
+
+        window.addEventListener( 'load', this.loadHandler );
+
+    }
+
+    disconnectedCallback() {
+
+        window.removeEventListener( 'load', this.loadHandler );
 
     }
 

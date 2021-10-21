@@ -15,6 +15,7 @@ const html = document.querySelector( 'html' );
 // Change language in document
 html.setAttribute( 'lang', language );
 
+
 // Events
 const clickHomeEvent = new CustomEvent( 'clickHome' );
 const clickSearchEvent = new CustomEvent( 'clickSearch' );
