@@ -189,7 +189,7 @@ def main( argv ):
 
     save_lines_to_file( DIR_PATH_BUILD, f'{ FILE_NAME }.{ FILE_TYPE }', new_file_lines )
 
-    print( 'Graph engine is build!' )
+    print( f'Graph engine is build in "{ DIR_PATH_BUILD }" directory.' )
 
     if toUpload:
         suitecloud_project = DIR_PATH_BUILD.split( '/' )[1]

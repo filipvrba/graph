@@ -10,9 +10,7 @@ class PieChartElement extends HTMLElement {
         this.removeHandler = () => { this.remove() };
         this.hiddeHandler = () => { this.hidden() };
         this.isReadyHandler = () => { this.isReady() };
-
-        this.data = this.getAttribute( 'data' );
-        this.widthRadius = parseInt( this.getAttribute( 'widthRadius' ) );
+        this.resizeHandler = () => this.resize();
 
         this.initRoot();
         this.initRenderer();
@@ -20,16 +18,28 @@ class PieChartElement extends HTMLElement {
         this.scene = new Scene();
         this.scene.ready();
 
-        this.resizeHandler = () => {
+    }
 
-            this.renderer.setSize( window.innerWidth, window.innerHeight );
+    get data() {
 
-            this.pieChart.position = this.globalPosition;
-                
-            this.scene.updateWorld();
+        let data = this.getAttribute( 'data' );
+
+        if ( data === null ) {
+
+            throw 'Please implement to component a atribute data="".\nFormatted attribute must be string and representing json.';
 
         }
-        window.addEventListener( 'resize', this.resizeHandler );
+
+        // Convert string (json) to object
+        data = JSON.parse( data )
+
+        return data;
+
+    }
+
+    get widthRadius() {
+
+        return parseInt( this.getAttribute( 'widthRadius' ) );
 
     }
 
@@ -38,6 +48,14 @@ class PieChartElement extends HTMLElement {
         return new Vector2( (this.renderer.canvas.width / 2 ) - this.widthRadius / 2,
         this.renderer.canvas.height / 2 );
     
+    }
+
+    resize() {
+
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.pieChart.position = this.globalPosition;
+        this.scene.updateWorld();
+
     }
 
     initRoot() {
@@ -72,16 +90,6 @@ class PieChartElement extends HTMLElement {
     }
 
     initPieChart() {
-
-        if ( this.data === null ) {
-
-            console.warn( 'Please implement to component a atribute data="".\nFormatted attribute must be string and representing json.' );
-            return;
-
-        }
-
-        // Convert string (json) to object
-        this.data = JSON.parse( this.data )
 
         this.pieChart = new PieChart( this.data );  // There implement object values
         this.pieChart.position = this.globalPosition;
@@ -129,6 +137,7 @@ class PieChartElement extends HTMLElement {
         this.initPieChart();
         this.tick();
 
+        window.addEventListener( 'resize', this.resizeHandler );
         document.addEventListener( 'remove', this.removeHandler );
         document.addEventListener( 'isReadyC', this.isReadyHandler );
 

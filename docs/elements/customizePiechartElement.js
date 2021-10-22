@@ -8,22 +8,10 @@ class CustomizePiechartElement extends HTMLElement {
 
         this.clickMinCircleHandler = () => { this.clickMinCircle() };
         this.clickPlusCircleHandler = () => { this.clickPlusCircle() };
-        this.loadHandler = () => { this.addObj( 2 ) };  // Add two objects
+        this.loadHandler = () => this.load();
         this.messageHandler = ( event ) => { this.message( event.data ) };
 
         this.customObjects = [];
-        // this.defaultObjects = [
-            // { name: "China", value: "1411778724" },
-            // { name: "India", value: "1383082048" },
-            // { name: "United States", value: "332531318" },
-            // { name: "Indonesia", value: "271350000" },
-            // { name: "Pakistan", value: "225200000" },
-            // { name: "Brazil", value: "213807993" },
-            // { name: "Nigeria", value: "211401000" },
-            // { name: "Bangladesh", value: "171522480" },
-            // { name: "Russia", value: "146171015" },
-            // { name: "Mexico", value: "126014024" }
-        // ];
         this.defaultObjects = [
 
             { name: "CESNET", value: "73.1" },
@@ -40,6 +28,13 @@ class CustomizePiechartElement extends HTMLElement {
         this.graph = document.getElementById( 'graph' );
         this.innerHTML = this.getDefaultTemplate();
         this.clickLeftButton = null;
+
+    }
+
+    load() {
+
+        this.codeData = document.getElementById( 'code-data' );
+        this.addObj( 2 )  // Add two objects
 
     }
 
@@ -120,7 +115,7 @@ class CustomizePiechartElement extends HTMLElement {
             this.customObjects.push( this.getRandomObject() );
 
         }
-        
+    
         this.sendData();
 
     }
@@ -136,6 +131,13 @@ class CustomizePiechartElement extends HTMLElement {
         const json = JSON.stringify( dataArray );
 
         this.graph.contentWindow.postMessage( json );
+        this.setCodeData( json );
+
+    }
+
+    setCodeData( json ) {
+
+        this.codeData.innerHTML = `'${ json }'`;
 
     }
 

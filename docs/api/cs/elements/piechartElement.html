@@ -9,33 +9,91 @@
             <inhe-info oa>HTMLElement-Element-Node-EventTarget</inhe-info>
             <p id="small-desc">
                 Element grafu, který se implementuje do DOM dokumentu,
-                pomocí zděděných tříd.
+                pomocí zděděné třídy.
             </p>
 
-            <div class="section" id="description">
+            <div class="section description" id="description">
                 <h2>Popis</h2>
                 <div>
                     <p>
-                        Element vykresluje piechart graf do přístupněného
-                        canvasu
+                        Element je definován <s-c>pie-chart</s-c> jménem,
+                        který se implementuje do DOM dokumentu s attributy. Jméno nám spouští
+                        tuto třídu, která <a href="?TDRenderer">vykresluje</a> piechart graf.
                     </p>
+                    <br>
+                    <iframe id="graph" src="./examples/piechart.html" frameborder="0"></iframe>
+                    <cust-piechart></cust-piechart>
+                    <br>
+                    <note-info>
+                        <p>
+                            <small>
+                                Graf zobrazuje průměrnou rychlost stahování v Mb/s.
+                            </small>
+                        </p>
+                    </note-info>
                 </div>
-                <br>
-                <iframe id="graph" src="./examples/piechart.html" frameborder="0"></iframe>
-                <cust-piechart></cust-piechart>
-                <br>
-                <note-info>
-                    <p>Graf zobrazuje průměrnou rychlost stahování v Mb/s (IPS).</p>
-                </note-info>
+            </div>
+
+            <div class="section" id="exaples">
+                <h2>Příklad</h2>
+                <light-code nocompile>
+<span class="kwd">&lt;body&gt;</span>
+    <span class="kwd">&lt;pie-chart&gt;</span>
+        <span class="pln">data=</span><span id="code-data" class="str"></span>
+        <span class="pln">widthRadius=</span><span class="str">"110"</span>
+    <span class="kwd">&lt;/pie-chart&gt;</span>
+<span class="kwd">&lt;/body&gt;</span>
+                </light-code>
             </div>
 
             <prop-table name="Vlastnosti">
-                <!-- <prop type="a:vector2" name="position" value="Vector2( 0, 0 )"></prop> -->
+                <prop lambda type="o:function" name="removeHandler"></prop>
+                <prop lambda type="o:function" name="hiddeHandler"></prop>
+                <prop lambda type="o:function" name="isReadyHandler"></prop>
+                <prop lambda type="o:function" name="resizeHandler"></prop>
+                <prop type="o:string" name="data"></prop>
+                <prop type="o:number" name="widthRadius"></prop>
+                <prop type="a:scene" name="scene" value="Scene()"></prop>
+                <prop type="a:vector2" name="globalPosition"></prop>
+                <prop type="a:TDRenderer" name="renderer" value="TDRenderer( canvas )"></prop>
+                <prop type="a:pieChart" name="pieChart" value="PieChart( data )"></prop>
             </prop-table>
 
             <meth-table name="Funkce" static="false">
-                <meth type="c:constructor" name="Piechart ( pieArray )"></meth>
+                <meth type="c:constructor" name="PieChartElement ()"></meth>
+                <meth type="o:function" name="resize ()"></meth>
+                <meth type="o:function" name="initRoot ()"></meth>
+                <meth type="o:function" name="initRenderer ()"></meth>
+                <meth type="o:function" name="initPieChart ()"></meth>
+                <meth type="o:function" name="tick ()"></meth>
+                <meth type="o:function" name="remove ()"></meth>
+                <meth type="o:function" name="hidden ()"></meth>
+                <meth type="o:function" name="isReady ()"></meth>
+                <meth virtual type="o:function" name="connectedCallback ()"></meth>
+                <meth virtual type="o:function" name="disconnectedCallback ()"></meth>
             </meth-table>
+
+            <sign-table name="Signály">
+                <br>
+                <sign origin name="resize" emit="false">
+                    <p>
+
+                    </p>
+                </sign>
+                <sign origin name="remove" emit="false">
+                    <p>
+                    </p>
+                </sign>
+                <sign origin name="isReadyC" emit="false">
+                    <p>
+                    </p>
+                </sign>
+                <sign name="hidden" emit="false">
+                    <p>
+                    </p>
+                </sign>
+            </sign-table>
+            <hr>
 
             <!-- <prop-desc name="Popis Vlastností">
                 <prop type="a:vector2" name="position" value="Vector2( 0, 0 )">

@@ -4,13 +4,13 @@ class HighlighterElement extends HTMLElement {
 
         super();
 
-        const code = this.innerText.trim();
+        let code = this.innerHTML.trim();
 
         this.className = "prettyprint";
         this.setAttribute( "translate", "no" );
-
         this.innerHTML = code;
 
+        if ( this.hasAttribute( 'nocompile' ) ) return;
         prettyPrint();
 
     }
