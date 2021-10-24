@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "python3 ./bundler/build.py -o './docs/src/'",
-    "build-netsuit": "python3 ./bundler/build.py -o './warehouse-graph/src/FileCabinet/SuiteScripts' -u"
+    "build-netsuit": "python3 ./bundler/build.py -o './warehouse-graph/src/FileCabinet/SuiteScripts' -u",
+    "sitemap": "python3 ./bundler/sitemap.py"
   },
   "repository": {
     "type": "git",

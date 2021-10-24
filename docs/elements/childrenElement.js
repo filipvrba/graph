@@ -29,7 +29,8 @@ class ChildrenElement extends HTMLElement {
 
             }
 
-            this.initChild( new ChildNode( child ) );
+            const childNode = new ChildNode( child );
+            this.initChild( childNode );
 
         }
 

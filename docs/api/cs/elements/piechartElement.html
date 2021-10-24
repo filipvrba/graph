@@ -26,9 +26,7 @@
                     <br>
                     <note-info>
                         <p>
-                            <small>
-                                Graf zobrazuje průměrnou rychlost stahování v Mb/s.
-                            </small>
+                            Graf zobrazuje průměrnou rychlost stahování v Mb/s.
                         </p>
                     </note-info>
                 </div>
@@ -51,7 +49,7 @@
                 <prop lambda type="o:function" name="hiddeHandler"></prop>
                 <prop lambda type="o:function" name="isReadyHandler"></prop>
                 <prop lambda type="o:function" name="resizeHandler"></prop>
-                <prop type="o:string" name="data"></prop>
+                <prop type="o:array" name="data"></prop>
                 <prop type="o:number" name="widthRadius"></prop>
                 <prop type="a:scene" name="scene" value="Scene()"></prop>
                 <prop type="a:vector2" name="globalPosition"></prop>
@@ -77,35 +75,222 @@
                 <br>
                 <sign origin name="resize" emit="false">
                     <p>
-
+                        Poslouchá změnu velikosti okna prohlížeče.
                     </p>
                 </sign>
                 <sign origin name="remove" emit="false">
                     <p>
+                        Poslouchá příkaz eventu, který má odstranit graf ze
+                        <a href="?scene">scény</a>.
                     </p>
                 </sign>
                 <sign origin name="isReadyC" emit="false">
                     <p>
+                        Poslouchá příkaz eventu a ptá se, jestli
+                        je graf škálovatelný.
                     </p>
                 </sign>
                 <sign name="hidden" emit="false">
                     <p>
+                        Poslopuchá signál, když je graf skrytý.
+                    </p>
+                </sign>
+                <sign origin name="removeInner" emit="true">
+                    <p>
+                        Vysílá příkaz eventu, který smaže tento element z DOM dokumentu. 
                     </p>
                 </sign>
             </sign-table>
             <hr>
-
-            <!-- <prop-desc name="Popis Vlastností">
-                <prop type="a:vector2" name="position" value="Vector2( 0, 0 )">
+            <prop-desc name="Popis Vlastností">
+                <prop lambda type="o:function" name="removeHandler">
                     <tab>
-                        <value>výchozí:Vector2( 0, 0 )</value>
+                        <get>remove()</get>
                     </tab>
-                    <p>Lokální 2D pozice, která je vzhledem k nadřazenému objektu.</p>
+                    <p>
+                        Anonymní funkce, která je posluchačem
+                        <s-c>remove</s-c> <a href="#sign-remove">eventu</a> a 
+                        spouští <s-c>remove()</s-c> <a href="#meth-remove">funkci</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop lambda type="o:function" name="hiddeHandler">
+                    <tab>
+                        <get>hidden()</get>
+                    </tab>
+                    <p>
+                        Anonymní funkce, která je posluchačem
+                        <s-c>hidden</s-c> <a href="#sign-hidden">signálu</a> a 
+                        spouští <s-c>hidden()</s-c> <a href="#meth-hidden">funkci</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop lambda type="o:function" name="isReadyHandler">
+                    <tab>
+                        <get>remove()</get>
+                    </tab>
+                    <p>
+                        Anonymní funkce, která je posluchačem
+                        <s-c>isReadyC</s-c> <a href="#sign-isReadyC">eventu</a> a 
+                        spouští <s-c>isReady()</s-c> <a href="#meth-isReady">funkci</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop lambda type="o:function" name="resizeHandler">
+                    <tab>
+                        <get>resize()</get>
+                    </tab>
+                    <p>
+                        Anonymní funkce, která je posluchačem
+                        <s-c>resize</s-c> <a href="#sign-resize">eventu</a> a 
+                        spouští <s-c>resize()</s-c> <a href="#meth-resize">funkci</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="o:array" name="data">
+                    <tab>
+                        <get>data()</get>
+                    </tab>
+                    <p>
+                        Data objektů, které reprezentují hodnoty grafu.
+                        <br>
+                        Získá data z atributu tohoto elementu
+                        a převádí jej do listu objektů.
+                    </p>
+                    <br>
+                    <note-info name="Hodnoty objektu">
+                        <p>
+                            Každý objekt vlastní tyto hodnoty.
+                        </p>
+                        <br>
+                        <para name="name">název dílku.</para>
+                        <para name="value">velikost dílku.</para>
+                    </note-info>
+                    <br>
+                    <note-info error>
+                        <p>
+                            Hodnota atributu <s-c>data</s-c>, se předává přes string,
+                            který reprezentuje <s-c>json</s-c> formát.
+                        </p>
+                    </note-info>
+                </prop>
+                <hr>
+                <prop type="o:number" name="widthRadius">
+                    <tab>
+                        <get>widthRadius()</get>
+                    </tab>
+                    <p>
+                        Získá hodnotu z atributu <s-c>widthRadius</s-c>
+                        a převádí jej na číslo.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="a:scene" name="scene">
+                    <tab>
+                        <value>výchozí:Scene()</value>
+                    </tab>
+                    <p>
+                        Vytváří novou scénu pro tento graf a
+                        hned spouští <s-c>ready()</s-c>
+                        <a href="?scene#meth-ready">funkci</a>.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="a:vector2" name="globalPosition">
+                    <tab>
+                        <get>globalPosition()</get>
+                    </tab>
+                    <p>
+                        Vektorova globální pozice od středu okna prohlížeče.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="a:TDRenderer" name="renderer">
+                    <tab>
+                        <value>výchozí:TDRenderer( canvas )</value>
+                    </tab>
+                    <p>
+                        Vytváří novou <s-c>TDRenderer</s-c> <a href="?TDRenderer">třídu</a>
+                        a do atributu se předává <s-c>canvas</s-c> element.
+                    </p>
+                </prop>
+                <hr>
+                <prop type="a:pieChart" name="pieChart">
+                    <tab>
+                        <value>výchozí:PieChart( data )</value>
+                    </tab>
+                    <p>
+                        Vytváří novou <s-c>PieChart</s-c> <a href="?pieChart">třídu</a>
+                        a do atibutu se předává
+                        <a href="#prop-data">list objektů</a>.
+                    </p>
                 </prop>
             </prop-desc>
             <hr>
             <meth-desc name="Popis Funkcí" static="false">
-            </meth-desc> -->
+                <meth type="c:constructor" name="PieChartElement ()">
+                    <p>
+                        Konstruktor inicializuje vlastnosti
+                        objektů své třídy a nemá žádné parametry. 
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="resize ()">
+                    <p>
+                        <a href="?TDRenderer#meth-setSize">Nastavuje</a>
+                        velikost renderingu na velikost okna prohlížeče,
+                        inicializuje piechart pozici na <a href="#prop-globalPosition">globální pozici</a>
+                        a <a href="?object2D#meth-updateWorld">aktualizuje</a>
+                        všechny pozice podřízených objektů ve
+                        <a href="#prop-scene">scéně</a>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="initRoot ()">
+                    <p>
+                        Vytváří novou templatu pro manipulaci <s-c>canvasu</s-c>
+                        a přidá se do <s-c>shadowRoot</s-c> tohoto elementu.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="initRenderer ()">
+                    <p>
+                        Vyhledává <s-c>canvas</s-c> z <s-c>shadowRootu</s-c>,
+                        <a href="#prop-renderer">inicializuje</a> <s-c>TDRenderer( canvas )</s-c> pomocí
+                        hodnoty  <s-c>canvas</s-c>, který je přidělen do atributu konstrukce třídy
+                        a <a href="?TDRenderer#meth-setSize">nastavuje</a>
+                        velikost renderingu na velikost okna prohlížeče.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="initPieChart ()">
+                    <p>
+                        Inizializuje <s-c>piechart</s-c> <a href="#prop-pieChart">vlastnost</a>
+                        na novou <s-c>PieChart</s-c> <a href="?pieChart">třídu</a>,
+                        do které se předává <s-c>data</s-c> <a href="#prop-data">vlastnost</a>.
+                        <br>
+                        U inicializované vlastnosti se přepisuje pozice na
+                        <a href="#prop-globalPosition">globální pozici</a>
+                        a přepisuje i šířku rádiusu pomocí <s-c>widthRadius</s-c>
+                        <a href="#prop-widthRadius">vlastnosti</a>.
+                        Potom se <s-c>piechart</s-c> <a href="#prop-pieChart">vlastnost</a>
+                        <a href="?basicObject#meth-add">přidá</a> do
+                        <a href="#prop-scene">scény</a>.
+                    </p>
+                </meth>
+                <hr>
+                <meth type="o:function" name="tick ()"></meth>
+                <hr>
+                <meth type="o:function" name="remove ()"></meth>
+                <hr>
+                <meth type="o:function" name="hidden ()"></meth>
+                <hr>
+                <meth type="o:function" name="isReady ()"></meth>
+                <hr>
+                <meth virtual type="o:function" name="connectedCallback ()"></meth>
+                <hr>
+                <meth virtual type="o:function" name="disconnectedCallback ()"></meth>
+            </meth-desc>
         </article>
     </body>
 </html>

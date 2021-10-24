@@ -1,4 +1,10 @@
 class MethodNodes {
+
+    constructor() {
+
+        this.index = -1;
+
+    }
     
     // Public
     getTemplate( child ) {
@@ -25,14 +31,14 @@ class MethodNodes {
 
     }
 
-    removeDescription( description = '' ) {
+    removeDescription( description = '', replace = '' ) {
 
         const name = this.getName();  // Call virtual function
 
-        while ( description.search( `<${ name }` ) > -1 ) {
+        while ( this.#isInDesc( name, description ) ) {
 
             const desc = this.getDescription( name, description );
-            description = description.replace( desc, '' );
+            description = description.replace( desc, replace );
 
         }
 
@@ -53,6 +59,26 @@ class MethodNodes {
 
 
     // Private
+    #isInDesc( name, description ) {
+
+        const isExist = this.#getDescIndex( name, description ) > -1;
+
+        if ( isExist ) {
+
+            this.index = this.#getDescIndex( name, description );
+
+        }
+
+        return isExist;
+
+    }
+
+    #getDescIndex( name, description ) {
+
+        return description.search( `<${ name }` );
+
+    }
+
     #createTemplate( customTemplate ) {
 
         let template = this.getDefaultTemplate();  // Call virtual function

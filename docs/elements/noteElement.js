@@ -8,7 +8,7 @@ class NoteElement extends HTMLElement {
         <div class="${ this.getClass( 'note' ) }">
             <div id="icon-info" class="row">
                 <p class="fa fa-bookmark ${ this.getClass( 'icolor' ) }"></p>
-                <p><strong>Info</strong></p>
+                <p><strong>${ this.name }</strong></p>
             </div>
             <div class="info-container">
                 <p>${ this.innerHTML }</p>
@@ -35,6 +35,20 @@ class NoteElement extends HTMLElement {
     get isError() {
 
         return this.hasAttribute( 'error' );
+
+    }
+
+    get name() {
+
+        let name = this.getAttribute( 'name' );
+
+        if ( !name ) {
+
+            name = 'Info';
+
+        }
+
+        return name;
 
     }
 

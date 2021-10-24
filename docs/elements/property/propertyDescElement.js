@@ -1,6 +1,7 @@
 import { ChildrenElement } from "../childrenElement.js";
 
 import { TableNode } from "../../src/node/property/tableNode.js";
+import { ParametersNode } from "../../src/node/method/parametersNode.js";
 
 class PropertyDescElement extends ChildrenElement {
 
@@ -22,14 +23,14 @@ class PropertyDescElement extends ChildrenElement {
 
     }
 
-    initChild( child ) {
+    initChild(child) {
 
         const tableTemplate = this.tableNode.getTemplate( child.get() );
 
         let description = child.description;
-        if ( tableTemplate !== '' ) {
+        if (tableTemplate !== '') {
 
-            description = this.tableNode.removeDescription( description );
+            description = this.tableNode.removeDescription(description);
 
         }
 
@@ -41,16 +42,16 @@ class PropertyDescElement extends ChildrenElement {
 
         };
 
-        this.childTemplate += this.createChildTemplate( values );
-        
+        this.childTemplate += this.createChildTemplate(values);
+
     }
 
     applyTemplate() {  //
 
         const template = `
         <div class="section name" id="property-descriptions">
-            <h2>${ this.getAttribute( 'name' ) }</h2>
-            ${ this.childTemplate }
+            <h2>${this.getAttribute('name')}</h2>
+            ${this.childTemplate}
         </div>
         `;
 
@@ -58,23 +59,23 @@ class PropertyDescElement extends ChildrenElement {
 
     }
 
-    createChildTemplate( values ) {
+    createChildTemplate(values) {
 
-        const nameSlim = this.getNameSlim( values.child.name );
+        const nameSlim = this.getNameSlim(values.child.name);
 
         const template = `
-        <div id="${ this.getNodeName() }-${ nameSlim }">
+        <div id="${this.getNodeName()}-${nameSlim}">
             <ul>
                 <li>
                     <div class="row">
-                        ${ values.child.getTypeTemplate() }
-                        <p><strong>${ values.child.name }</strong></p>
+                        ${values.child.getTypeTemplate()}
+                        <p><strong>${values.child.name}</strong></p>
                     </div>
                 </li>
             </ul>
-            ${ values.tableTemplate }
+            ${values.tableTemplate}
             <div class="description">
-                ${ values.description }
+                ${this.getDescription(values.description)}
             </div>
         </div>
         `;
@@ -82,7 +83,33 @@ class PropertyDescElement extends ChildrenElement {
         return template;
 
     }
-    
+
+    getDescription( description = '' ) {
+
+        const parametersNode = new ParametersNode();
+
+        if ( description.indexOf( parametersNode.getName() ) != -1 ) {
+
+            const node = this.querySelector('note-info');
+            const parametersTemplate = parametersNode.getTemplate( node );
+
+            if (parametersTemplate !== '') {
+
+                description = parametersNode.removeDescription(
+                    description);
+
+                const descLeft = description.substring( 0, parametersNode.index );
+                const descRigth = description.substring( parametersNode.index );
+                description = descLeft + parametersTemplate + descRigth;
+
+            }
+
+        }
+
+        return description;
+
+    }
+
 }
 
 export { PropertyDescElement };
