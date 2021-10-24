@@ -1,14 +1,19 @@
 import json
-import sitemap_xml
+import build
 
 DIR_PATH = 'docs/static/'
 FILE = 'list.json'
-FILE_XML = 'sitemap.xml'
+SAVE_FILE = 'sitemap'
 WEB_URL = 'https://filipvrba.github.io/graph'
 
 # Open JSON file
 def get_path():
     return DIR_PATH + FILE
+
+
+def get_file_save( type ):
+    return f'{ SAVE_FILE }.{ type }'
+
 
 def get_dictionary():
     """Open file from the file path and return dictionary object."""
@@ -44,13 +49,37 @@ def get_files_name( dict ):
     return files
 
 
+def get_urls( files ):
+
+    urls = [ ]
+
+    for file in files:
+        url = f'{ WEB_URL }/?{ file }\n'
+        urls.append( url )
+    
+    return urls
+
+
+def save_file( urls ):
+
+    type_file = 'txt'
+    file_save = get_file_save( type_file )
+    build.save_lines_to_file( DIR_PATH, file_save, urls )
+
+    print( f'The { type_file.upper() } file was saved in "{ DIR_PATH }" directory.' )
+
+
 # Main
 def main():
     dict = get_dictionary()
     files = get_files_name( dict )
+    urls = get_urls( files )
 
-    schema = sitemap_xml.get_schema( WEB_URL, files )
-    sitemap_xml.save_file( DIR_PATH, FILE_XML, schema )
+    save_file( urls )
+
+    # Google not loading XML file ( WTF? )
+    # schema = sitemap_xml.get_schema( WEB_URL, files )
+    # sitemap_xml.save_file( DIR_PATH, FILE_XML, schema )
 
 
 
