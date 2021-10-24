@@ -5,7 +5,7 @@ import sitemap_xml
 DIR_PATH = 'docs/static/'
 FILE = 'list.json'
 SAVE_FILE = 'sitemap'
-WEB_URL = 'filipvrba.github.io/graph'
+WEB_URL = 'https://filipvrba.github.io/graph'
 
 # Open JSON file
 def get_path():
