@@ -2,10 +2,13 @@ import json
 import build
 import sitemap_xml
 
+import sys, getopt
+
 DIR_PATH = 'docs/static/'
 FILE = 'list.json'
 SAVE_FILE = 'sitemap'
 WEB_URL = 'https://filipvrba.github.io/graph'
+SAVE_MODE = None
 
 # Open JSON file
 def get_path():
@@ -76,18 +79,37 @@ def save_file( urls ):
 
 
 # Main
-def main():
+def set_arguments( argv ):
+    opts, args = getopt.getopt(argv,"ho:s:",["ofile=", "save="])
+    if ( len( opts ) > 0 ):
+
+        for opt, arg in opts:
+            if opt == '-o':
+                global DIR_PATH
+                DIR_PATH = arg
+
+            if opt == '-s' or opt == '--save':
+                global SAVE_MODE
+                SAVE_MODE = arg
+
+def main( argv ):
+    set_arguments( argv )
+
     dict = get_dictionary()
     files = get_files_name( dict )
     urls = get_urls( files )
 
-    save_file( urls )
-
-    # Google not loading XML file ( WTF? )
-    # schema = sitemap_xml.get_schema( WEB_URL, files )
-    # sitemap_xml.save_file( DIR_PATH, get_file_save( 'xml' ), schema )
+    if SAVE_MODE == 'txt':
+        save_file( urls )
+    elif SAVE_MODE == 'xml':
+        schema = sitemap_xml.get_schema( WEB_URL, files )
+        sitemap_xml.save_file( DIR_PATH, get_file_save( 'xml' ), schema )
+    elif SAVE_MODE == None:
+        print( 'Please set the save mode by -s command.' )
+    else:
+        print( 'Not accepted in this save mode!' )
 
 
 
 if __name__ == "__main__":
-    main()
+    main( sys.argv[1:] )
