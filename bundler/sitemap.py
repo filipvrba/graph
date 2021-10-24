@@ -45,7 +45,8 @@ def get_files_name( dict ):
     files = [ ]
     for file, values in dict[ 'files' ].items():
         if values[ 'visible' ]:  # What files to use.
-            files.append( file )
+            dir = f'{ values[ "dir" ] }/cs/{ values[ "path" ] }'
+            files.append( dir )
     
     return files
 
@@ -53,9 +54,14 @@ def get_files_name( dict ):
 def get_urls( files ):
 
     urls = [ ]
+    new_line = '\n'
 
     for file in files:
-        url = f'{ WEB_URL }/?{ file }\n'
+        url = f'{ WEB_URL }/{ file }.html'
+    
+        if len( urls ) < len( files ) - 1:
+            url += new_line
+
         urls.append( url )
     
     return urls
