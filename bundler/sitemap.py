@@ -76,11 +76,11 @@ def main():
     files = get_files_name( dict )
     urls = get_urls( files )
 
-    # save_file( urls )
+    save_file( urls )
 
     # Google not loading XML file ( WTF? )
-    schema = sitemap_xml.get_schema( WEB_URL, files )
-    sitemap_xml.save_file( DIR_PATH, get_file_save( 'xml' ), schema )
+    # schema = sitemap_xml.get_schema( WEB_URL, files )
+    # sitemap_xml.save_file( DIR_PATH, get_file_save( 'xml' ), schema )
 
 
 
