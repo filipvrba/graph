@@ -25,6 +25,7 @@ const filterValChangeEvent = new CustomEvent( 'filterValChange' );
 const resetContentEvent = new CustomEvent( 'resetContent' );
 const clickMinCircleEvent = new CustomEvent( 'clickMinCircle' );
 const clickPlusCircleEvent = new CustomEvent( 'clickPlusCircle' );
+const menuLogoClickEvent = new CustomEvent( 'menuLogoClick' );
 
 function clickDoc( name ) {
 

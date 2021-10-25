@@ -148,6 +148,7 @@
 .menu #header {
 
     display: block;
+    cursor: pointer;
 
 }
 

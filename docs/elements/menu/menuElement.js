@@ -6,12 +6,14 @@ class MenuElement extends HTMLElement {
 
         super();
 
+        this.menuLogoClickHandler = () => this.menuLogoClick();
+
         this.isVisible;
 
         this.template = `
         <div class="menu" id="menu">
             <div class="scroll">
-                <div id="header">
+                <div id="header" onclick="document.dispatchEvent( menuLogoClickEvent );">
                     <div class="row">
                         <img src="./static/pictures/logo.png"
                             loading="lazy" alt="logo graph">
@@ -74,6 +76,12 @@ class MenuElement extends HTMLElement {
 
     }
 
+    menuLogoClick() {
+
+        this.clickDocument( HOME );
+
+    }
+
     connectedCallback() {
 
         this.clickHomeHandler = () => { this.clickHome() };
@@ -90,6 +98,7 @@ class MenuElement extends HTMLElement {
 
         }
         document.addEventListener('clickDoc', this.clickDocHandler);
+        document.addEventListener( 'menuLogoClick', this.menuLogoClickHandler );
 
     }
 
@@ -101,6 +110,7 @@ class MenuElement extends HTMLElement {
 
         document.removeEventListener( 'closedMenu', this.closeMenuHandler );
         document.removeEventListener('clickDoc', this.clickDocHandler);
+        document.removeEventListener( 'menuLogoClick', this.menuLogoClickHandler );
 
     }
 
