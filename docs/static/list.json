@@ -182,6 +182,14 @@
             "dir": "api",
             "visible": true
 
+        },
+
+        "elements": {
+
+            "path": "elements/index",
+            "dir": "api",
+            "visible": true
+
         }
         
     }
