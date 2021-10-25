@@ -1,8 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
     <head>
         <meta charset="UTF-8">
     </head>
     <body>
+        <article>
+            <h1>Home</h1>
+            <p id="small-desc">
+                👋 Vítám vás na domovské stránkce <e-code>DOCUMENT</e-code>
+                dokumentu. <a href="https://github.com/filipvrba/graph">
+                    <e-code>capitalized( DOCUMENT )</e-code></a> je
+                bezplatný a open-source přístupný pro všechny analytiky,
+                či vývojáře.
+            </p>
+
+            <div class="section" id="description">
+                <h2>Popis</h2>
+                <p>
+                    Veškerý obsah dokumentace, najdete přes navigační panel domečku,
+                    nebo přes referenční <a href="#component">Součást API</a>,
+                    na konci této stránky.
+                </p>
+                <br>
+                <note-info warning>
+                    <p>
+                        Ikonka domečku se nachází v horním navigačním panelu,
+                        která se dá rozkliknout. Nebo pokud vaše zařízení
+                        umožňuje dotykovou manipulaci displeje, tak stačí přejet prstem,
+                        z levého do pravého okraje.
+                        Tímto gestem se otevře domeček.
+                    </p>
+                </note-info>
+            </div>
+            <hr>
+            <div class="section" id="what-graph">
+                <h2>
+                    Co je to <e-code>DOCUMENT</e-code>?
+                </h2>
+                <p>
+                    <e-code>capitalized( DOCUMENT )</e-code> je experimentální
+                    projekt, který dokáže vizualizovat vaše vložená data, pomocí json
+                    formátu. Grafy se vyzualizují pomocí
+                    předem připravených <a href="?elements">elementů</a>,
+                    které jsou aplikovatelné do vašich webových stránek.
+                </p>
+                <br>
+                <p>
+                    Jako ukázku, jsem si připravil PieChart graf z
+                    <a href="?piechartElement">elementu</a>,
+                    který zobrazuje průměrnou rychlost stahování v Mb/s. 
+                </p>
+                <br>
+                <iframe id="graph" src="./examples/piechart.html" frameborder="0"></iframe>
+                <cust-piechart></cust-piechart>
+                <br>
+                <note-info>
+                    PieChart graf je interaktivní a lze jej dynamicky měnit
+                    pomocí tlačítek, které najdete pod grafem.
+                </note-info>
+            </div>
+            <hr>
+            <div class="section" id="engine">
+                <h2>Engine</h2>
+                <p>
+                    Graf je poháněný základním <a href="?core">enginem</a>,
+                    který vytvořil <a href="?author">Filip Vrba</a>, pomocí
+                    vanilla java-scriptu.
+                </p>
+                <br>
+                <br>
+                <note-info name="Pro neznalé">
+                    <p>
+                        <small>
+                            Vanilla se označuje jako základ java-scriptu.
+                            Proto v projektech tímto označení,
+                            nejsou implementováný moduly z třetích stran.
+                        </small>
+                    </p>
+                </note-info>
+                <br>
+                <br>
+                <p>
+                    Lze jej využít na další tvorbu elementů.
+                    Tím vás odkazuji na tuto <a href="?core">součást zdroje</a> API,
+                    která je základem ve čtení této dokumentace.
+                    Pokud vás zajímá jiná část API, tak pod tímto odstavcem
+                    je list referencí.
+                </p>
+            </div>
+            <hr>
+            <div class="section" id="component">
+                <h2>Součást API</h2>
+                <list-pages></list-pages>
+            </div>
+        </article>
     </body>
 </html>

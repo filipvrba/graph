@@ -4,6 +4,7 @@ const INDEX = 'index';
 const ERROR = 'error';
 const STATIC = 'fa fa-flash';
 const AUTHOR = 'Filip Vrba';
+const GITHUB_URL = 'https://github.com/filipvrba/graph';
 
 let language = getLocalLanguage();
 let andURL = '';

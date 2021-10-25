@@ -47,15 +47,11 @@ class ListPagesElement extends HTMLElement {
 
         if ( pathArray.length > 1 && isParent && !isIndex ) {
 
-            template += `
-                <li>
-                    <p>
-                        <a href="?${ nameFile }">
-                            <span>${ capitalized( nameFile ) }</span>
-                        </a>
-                    </p>
-                </li>
-            `;
+            template += this.getCustomTemplate( nameFile );
+
+        } else if ( isIndex && !this.parent  ) {
+
+            template += this.getCustomTemplate( parent );
 
         }
 
@@ -69,6 +65,20 @@ class ListPagesElement extends HTMLElement {
             <ul>
                 ${ template }
             </ul>
+        `;
+
+    }
+
+    getCustomTemplate( name ) {
+
+        return `
+        <li>
+            <p>
+                <a href="?${ name }">
+                    <span>${ capitalized( name ) }</span>
+                </a>
+            </p>
+        </li>
         `;
 
     }

@@ -7,7 +7,7 @@ class FooterElement extends HTMLElement {
         this.author = this.getAttribute( 'author' );
         this.linkedin = this.getAttribute( 'linkedin' );
         this.createYear = 2021;
-        this.github = 'https://github.com/filipvrba/graph';
+        this.github = GITHUB_URL;
 
         this.init();
 

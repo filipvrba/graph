@@ -137,6 +137,8 @@ class CustomizePiechartElement extends HTMLElement {
 
     setCodeData( json ) {
 
+        if ( !this.codeData ) return;
+
         this.codeData.innerHTML = `'${ json }'`;
 
     }
