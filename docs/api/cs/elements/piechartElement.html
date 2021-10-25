@@ -100,6 +100,12 @@
                         Vysílá příkaz eventu, který smaže tento element z DOM dokumentu. 
                     </p>
                 </sign>
+                <sign origin name="isReadyBack" emit="true">
+                    <p>
+                        Vysílá příkaz eventu, který přeposílá boolean vlastnost
+                        škálovatelnosti piechart objektu.
+                    </p>
+                </sign>
             </sign-table>
             <hr>
             <prop-desc name="Popis Vlastností">
@@ -108,7 +114,7 @@
                         <get>remove()</get>
                     </tab>
                     <p>
-                        Anonymní funkce, která je posluchačem
+                        Vlastnost inicializuje anonymní funkci, která je posluchačem
                         <s-c>remove</s-c> <a href="#sign-remove">eventu</a> a 
                         spouští <s-c>remove()</s-c> <a href="#meth-remove">funkci</a>.
                     </p>
@@ -119,7 +125,7 @@
                         <get>hidden()</get>
                     </tab>
                     <p>
-                        Anonymní funkce, která je posluchačem
+                        Vlastnost inicializuje anonymní funkci, která je posluchačem
                         <s-c>hidden</s-c> <a href="#sign-hidden">signálu</a> a 
                         spouští <s-c>hidden()</s-c> <a href="#meth-hidden">funkci</a>.
                     </p>
@@ -130,7 +136,7 @@
                         <get>remove()</get>
                     </tab>
                     <p>
-                        Anonymní funkce, která je posluchačem
+                        Vlastnost inicializuje anonymní funkci, která je posluchačem
                         <s-c>isReadyC</s-c> <a href="#sign-isReadyC">eventu</a> a 
                         spouští <s-c>isReady()</s-c> <a href="#meth-isReady">funkci</a>.
                     </p>
@@ -141,7 +147,7 @@
                         <get>resize()</get>
                     </tab>
                     <p>
-                        Anonymní funkce, která je posluchačem
+                        Vlastnost inicializuje anonymní funkci, která je posluchačem
                         <s-c>resize</s-c> <a href="#sign-resize">eventu</a> a 
                         spouští <s-c>resize()</s-c> <a href="#meth-resize">funkci</a>.
                     </p>
@@ -279,17 +285,100 @@
                     </p>
                 </meth>
                 <hr>
-                <meth type="o:function" name="tick ()"></meth>
+                <meth type="o:function" name="tick ()">
+                    <p>
+                        Je procesem, kdy se spouští na snímkové frekvenci
+                        vašeho cpu.
+                    </p>
+                    <br>
+                    <p>
+                        Je to umožněno <s-c>requestAnimationFrame()</s-c>
+                        funkcí, která je určena pro aktualizaci
+                        animačního vykreslovacího toku, která
+                        spouští opakovaně tuto funkci. Proto je zde vložena
+                        <a href="?TDRenderer#meth-render">vykreslovací funkce</a>
+                        scén, která manipuluje přímo s <s-c>canvas</s-c>
+                        elementem.
+                    </p>
+                    <br>
+                    <p>
+                        
+                    </p>
+                </meth>
                 <hr>
-                <meth type="o:function" name="remove ()"></meth>
+                <meth type="o:function" name="remove ()">
+                    <p>
+                        Spouští proces animace, která postupně schovává graf,
+                        až jej uplně odstraní z DOM dokumentu.
+                    </p>
+                    <br>
+                    <p>
+                        Po ukončení animace, se vyšle <s-c>hidden</s-c>
+                        signál z piechart objektu. Tento
+                        <a href="#sign-hidden">signál</a> je připojen k
+                        <s-c>hiddeHandler</s-c>
+                        <a href="#prop-hiddeHandler">vlastnosti</a>,
+                        která dokončuje tento proces pro odstranění grafu.
+                    </p>
+                </meth>
                 <hr>
-                <meth type="o:function" name="hidden ()"></meth>
+                <meth type="o:function" name="hidden ()">
+                    <p>
+                        Pokračuje v procesu odstranění grafu...
+                    </p>
+                    <br>
+                    <p>
+                        Vytváří novou <s-c>removeInner</s-c>
+                        <a href="#sign-removeInner">událost</a>,
+                        která je přeposlána do <s-c>document</s-c> objektu.
+                    </p>
+                    <br>
+                    <note-info warning>
+                        <p>
+                            Funkce je mostem, pro přechod do jiného
+                            scriptu z třetí strany.
+                        </p>
+                    </note-info>
+                </meth>
                 <hr>
-                <meth type="o:function" name="isReady ()"></meth>
+                <meth type="o:function" name="isReady ()">
+                    <p>
+                        Zjišťuje, jestli je <s-c>piechart</s-c> škálovatelný.
+                    </p>
+                    <br>
+                    <p>
+                        Vytváří novou <s-c>isReadyBack</s-c>
+                        <a href="#sign-isReadyBack">událost</a>,
+                        do které je přidělena boolean vlastnost škálovatelnosti.
+                        S vytvořenou událostí se přistupuje k předávání
+                        do <s-c>document</s-c> objektu.
+                    </p>
+                    <br>
+                    <note-info warning>
+                        <p>
+                            Funkce je mostem, pro přechod do jiného
+                            scriptu z třetí strany.
+                        </p>
+                    </note-info>
+                </meth>
                 <hr>
-                <meth virtual type="o:function" name="connectedCallback ()"></meth>
+                <meth virtual type="o:function" name="connectedCallback ()">
+                    <p>
+                        Virtuální funkce spouští <s-c>initPieChart()</s-c>
+                        <a href="#meth-initPieChart">funkci</a> a <s-c>tick()</s-c>
+                        <a href="#meth-tick">funkci</a>.
+                        Potom připojuje veškeré <a href="#signals">signály</a>.
+                    </p>
+                </meth>
                 <hr>
-                <meth virtual type="o:function" name="disconnectedCallback ()"></meth>
+                <meth virtual type="o:function" name="disconnectedCallback ()">
+                    <p>
+                        Virtuální funkce spouští <s-c>free()</s-c>
+                        <a href="?basicObject#meth-free">funkci</a> u <s-c>scene</s-c>
+                        <a href="#prop-scene">vlastnosti</a>.
+                        Potom odpojuje veškeré <a href="#signals">signály</a>.
+                    </p>
+                </meth>
             </meth-desc>
         </article>
     </body>
