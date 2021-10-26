@@ -6,15 +6,19 @@ from datetime import datetime
 from pathlib import Path
 
 SCHEMAS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
+SCHEMAS_LOCATION = 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'
+XSI = 'http://www.w3.org/2001/XMLSchema-instance'
+
+ENCODING = 'UTF-8'
 
 def prettify( elem ):
     """
     Return a pretty-printed XML string for the Element.
     """
-    rough_string = ElementTree.tostring( elem, 'utf-8' )
+    rough_string = ElementTree.tostring( elem, ENCODING )
     reparsed = minidom.parseString( rough_string,  )
 
-    return reparsed.toprettyxml( indent="  " )
+    return reparsed.toprettyxml( indent="  ", encoding=ENCODING ).decode( ENCODING )
 
 
 def get_time():
@@ -27,7 +31,8 @@ def get_time():
 
 def get_schema( web_url, files ):
 
-    urlset = Element( 'urlset', dict( xmlns=SCHEMAS ) )
+    attr_qname = ElementTree.QName(XSI, "schemaLocation")
+    urlset = Element( 'urlset', { attr_qname: SCHEMAS_LOCATION}, xmlns=SCHEMAS )
 
     for file in files:
         url = SubElement( urlset, 'url' )
@@ -37,7 +42,10 @@ def get_schema( web_url, files ):
 
         lastmod = SubElement( url, 'lastmod' )
         lastmod.text = get_time()
-    
+
+        priority = SubElement( url, 'priority' )
+        priority.text = '0.80'
+
     schema = prettify( urlset )
     return schema
 
@@ -48,8 +56,8 @@ def save_file( directory_path, file_name, text ):
     # Get absolute path for save file
     path = Path( directory_path ).absolute()
 
-    # Create file
-    file = open( f'{ path }/{ file_name }', 'w', encoding = 'utf-8' )
+    # # Create file
+    file = open( f'{ path }/{ file_name }', 'w', encoding = ENCODING )
 
     file.write( text )
 
