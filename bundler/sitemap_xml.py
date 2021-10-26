@@ -5,11 +5,11 @@ from xml.dom import minidom
 from datetime import datetime
 from pathlib import Path
 
+from build import ENCODING
+
 SCHEMAS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
 SCHEMAS_LOCATION = 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'
 XSI = 'http://www.w3.org/2001/XMLSchema-instance'
-
-ENCODING = 'UTF-8'
 
 def prettify( elem ):
     """

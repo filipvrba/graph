@@ -11,6 +11,8 @@ FILE_TYPE = 'js'
 DIR_PATH_BUILD = './dist'
 FILE_NAME = 'graph-engine'
 
+ENCODING = 'UTF-8'
+
 toUpload = False
 
 
@@ -104,7 +106,7 @@ def save_lines_to_file( directory_path, file_name, lines ):
     path = Path( directory_path ).absolute()
 
     # Create file
-    file = open( f'{ path }/{ file_name }', 'w', encoding = 'utf-8' )
+    file = open( f'{ path }/{ file_name }', 'w', encoding = ENCODING )
 
     file.writelines( lines )
 
