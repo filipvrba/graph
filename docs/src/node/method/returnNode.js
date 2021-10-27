@@ -18,7 +18,7 @@ class ReturnNode extends MethodNodes{
 
         return `
         <div class="fix-line">
-            <div class="row">
+            <div class="">
                 <p class="fa fa-sign-out"></p>
                 
             </div>
