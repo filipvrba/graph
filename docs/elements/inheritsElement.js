@@ -4,7 +4,8 @@ class InheritsElement extends HTMLElement {
 
         super();
 
-        this.leftArrow = '&lArr;';
+        this.leftArrow = 'fa-chevron-left';
+        this.leftArrow_strong = 'fa-caret-left';
 
         this.init();
 
@@ -64,7 +65,29 @@ class InheritsElement extends HTMLElement {
 
         }
 
-        return customTemplateNames.join( `<p class="fa fa-chevron-left"></p>` );
+        let customTemplate = customTemplateNames.join(
+            `<p class="fa ${ this.leftArrow }"></p>` );
+        customTemplate = this.changeCustomTemplate(
+            customTemplateNames.length,
+            customTemplate
+        );
+
+        return customTemplate;
+
+    }
+
+    changeCustomTemplate( length, template ) {
+
+        if ( length > 1 ) {
+
+            template = template.replace(
+                this.leftArrow,
+                this.leftArrow_strong
+            );
+
+        }
+
+        return template;
 
     }
 

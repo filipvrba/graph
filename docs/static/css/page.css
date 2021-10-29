@@ -274,10 +274,16 @@ inhe-info .row .fa {
 
 }
 
-inhe-info .row .fa-chevron-left {
+inhe-info .row .fa-chevron-left, inhe-info .row .fa-caret-left {
 
     margin-right: 10px;
     font-size: 11px;
+
+}
+
+inhe-info .row .fa-caret-left {
+
+    font-size: 19px;
 
 }
 
