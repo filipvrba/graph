@@ -5,14 +5,15 @@ import sys, getopt
 from datetime import datetime
 import os
 
+import constants as con
+
 DIR_PATH = './src'
 FILE_TYPE = 'js'
 
 DIR_PATH_BUILD = './dist'
 FILE_NAME = 'graph-engine'
 
-ENCODING = 'UTF-8'
-MODE = 'full'
+MODE = con.FULL
 
 toUpload = False
 
@@ -20,8 +21,8 @@ toUpload = False
 
 def is_unnecessary_path( path ):
 
-    if ( MODE == 'core' ):
-        isCore = str(path).find( f'core/' ) != -1
+    if ( MODE == con.CORE ):
+        isCore = str(path).find( f'{ con.CORE }/' ) != -1
         return isCore
 
     return True
@@ -118,7 +119,7 @@ def save_lines_to_file( directory_path, file_name, lines ):
     path = Path( directory_path ).absolute()
 
     # Create file
-    file = open( f'{ path }/{ file_name }', 'w', encoding = ENCODING )
+    file = open( f'{ path }/{ file_name }', 'w', encoding = con.ENCODING )
 
     file.writelines( lines )
 
@@ -162,7 +163,7 @@ def set_arguments( argv ):
         for opt, arg in opts:
             if opt == '-m' or opt == '--mode':
                 global MODE
-                MODE = 'core'
+                MODE = con.CORE
 
             if opt == '-o':
                 global DIR_PATH_BUILD
