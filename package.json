@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "python3 ./bundler/build.py -o './docs/src/'",
+    "build": "python3 ./bundler/build.py; python3 ./bundler/build.py -o './docs/src/'",
+    "build-core": "python3 ./bundler/build.py -m core",
     "build-netsuit": "python3 ./bundler/build.py -o './warehouse-graph/src/FileCabinet/SuiteScripts' -u",
     "sitemap-txt": "python3 ./bundler/sitemap.py -s txt",
     "sitemap-xml": "python3 ./bundler/sitemap.py -s xml"
