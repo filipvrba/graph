@@ -4,6 +4,7 @@ from pathlib import Path
 import sys, getopt
 from datetime import datetime
 import os
+from typing import List
 
 import constants as con
 
@@ -126,30 +127,55 @@ def save_lines_to_file( directory_path, file_name, lines ):
     file.close()
 
 
-def chnage_priority_files( files: list ):
+def has_index_priority( file ):
+    """"""
+
+    # Get last line for id position
+    lines = get_file_lines( file )
+    end_line = lines[ len( lines ) - 1 ].split( '// ' )
+    
+    return [ len( end_line ) >= 2, end_line ]
+
+
+def change_priority_files( files: list ):
     """ Change priority on the files for the build file, due to class inheritance."""
 
     _files = files.copy()
+    files_add = []
 
     for file in files:
 
         # Find elements file
         if str(file).find( f'Element.{ FILE_TYPE }' ) == -1:
-
-            # Get last line for id position
-            lines = get_file_lines( file )
-            end_line = lines[ len( lines ) - 1 ].split( '// ' )
             
-            if len( end_line ) >= 2:
+            has_index = has_index_priority( file )[ 0 ]
+            if has_index:
 
                 # Remove file from list and add custom line from id position
                 _files.remove( file )
-                _files.insert( int( end_line[ 1 ] ), file )
+                files_add.append( file )
+
+               
         else:
 
             # Remove file from list and add on last position
             _files.remove( file )
-            _files.insert( len( _files ), file )    
+            _files.insert( len( _files ), file )
+    
+    files_add_fix = files_add.copy()
+    
+    for file in files_add:
+
+        index_priority = has_index_priority( file )
+        has_index = index_priority[ 0 ]
+
+        if has_index:
+            end_line = index_priority[ 1 ]
+
+            files_add_fix.remove( file )
+            files_add_fix.insert( int( end_line[ 1 ] ), file )
+    
+    _files = files_add_fix + _files
     
     return _files
 
@@ -205,7 +231,7 @@ def main( argv ):
     set_arguments( argv )
 
     files = find_all_files( DIR_PATH, FILE_TYPE )
-    files = chnage_priority_files( files )
+    files = change_priority_files( files )
 
     new_file_lines = header();
     new_file_lines.extend( read_and_change( files ) )
