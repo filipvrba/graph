@@ -90,6 +90,16 @@ class FilterElement extends HTMLElement {
 
     }
 
+    clickHome( isVisibleMenu ) {
+
+        if ( isVisibleMenu ) {
+
+            this.filterInput.focus();
+
+        }
+
+    }
+
     connectedCallback() {
 
         // ClickSearch
@@ -124,12 +134,16 @@ class FilterElement extends HTMLElement {
         }
         this.filterInput.addEventListener( 'keyup', this.filterKeyUpHandler );
 
+        this.homeFocusHandler = ( event ) => this.clickHome( event.detail.isVisibleMenu );
+        document.addEventListener('homeFocus', this.homeFocusHandler);
+
     }
 
     disconnectedCallback() {
 
         document.removeEventListener( 'clickSearch', this.clickSearchHandler );
         document.removeEventListener( 'resetFilter', this.resetFilterHandler );
+        document.removeEventListener('homeFocus', this.homeFocusHandler);
 
         this.filterInput.removeEventListener( 'input', this.filterInputHandler );
         this.filterInput.removeEventListener( 'keyup', this.filterKeyUpHandler );

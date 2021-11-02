@@ -122,6 +122,13 @@ class MenuElement extends HTMLElement {
         this.isVisible = !this.isVisible;
         this.animation.visible(this.isVisible);
 
+        const event = new CustomEvent( 'homeFocus', {
+            detail: {
+                isVisibleMenu: this.isVisible
+            }
+        } );
+        document.dispatchEvent( event );
+
     }
 
 }
