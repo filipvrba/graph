@@ -105,7 +105,10 @@
 
             <sign-table name="Signály">
                 <sign name="added" emit="true">
-                    <p>Vysílá se, když je objekt připraven.</p>
+                    <p>Vysílá se, když je objekt přidán do stromu <a href="?scene">scény</a> k nadřezenému objektu.</p>
+                </sign>
+                <sign name="ready" emit="true">
+                    <p>Vysílá se, když je objekt připraven a předává <a href="#prop-id">inicializační ID</a>.</p>
                 </sign>
                 <sign name="update">
                     <p>Spouští funci <s-c>update (...)</s-c> v rozšířené třídě.</p>

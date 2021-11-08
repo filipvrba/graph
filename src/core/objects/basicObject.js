@@ -37,7 +37,15 @@ class BasicObject extends Dispatcher {
 
 			}
 
-			object.connect('added', object.ready );
+			object.connect('added', () => {
+
+                object.ready();
+
+                if ( id ) {
+
+                    this.getScene().emitSignal({ type: 'ready', id });
+                }
+            });
 			object.emitSignal({ type: 'added' });
 
 			object.updateHandler = (signal) => {
