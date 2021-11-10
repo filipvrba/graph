@@ -154,12 +154,17 @@ class BasicObject extends Dispatcher {
 		while (true) {
 
 			if (objectParent == null) return this;
-			if (objectParent.constructor.name == NAME_SCENE) return objectParent;
+
+            const extendClass = Object.getPrototypeOf(
+                Object.getPrototypeOf( objectParent )).constructor.name;
+			if (objectParent.constructor.name === NAME_SCENE ||
+                extendClass === NAME_SCENE) {
+
+                return objectParent;
+            }
 
 			objectParent = objectParent.parent;
-
 		}
-
 	}
 
 	findChildren( id ) {
