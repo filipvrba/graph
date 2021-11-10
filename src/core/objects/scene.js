@@ -6,16 +6,17 @@ class Scene extends Object2D {
     constructor() {
         
         super();
-
     }
 
     ready() {
 
-        this.globalPosition = this.position;
+        if ( !this.parent ) {
 
-        this.input = new Input();
-        this.add( this.input );
+            this.globalPosition = this.position;
 
+            this.input = new Input();
+            this.add( this.input );
+        }
     }
 }
 
