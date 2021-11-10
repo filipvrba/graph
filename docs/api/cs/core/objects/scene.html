@@ -24,9 +24,15 @@
                     <br>
                     <img src="./static/pictures/cs/jeviste.png" loading="lazy" alt="jeviště scény">
                     <br>
-                    <p>
+                    <note-info error>
                         Pokud jsme My diváci a chceme vidět scénu,
                         tak je nutné ji předat do atributu funkce <a href="?TDRenderer#meth-render">render</a>.
+                    </note-info>
+                    <br>
+                    <p>
+                        Pokud chceme mít lepší organizaci ve scéně, tak je potřeba
+                        scénu rozdělit do menší scén. Scéna je podobná jako <a href="?basicObject">základní objekt</a>,
+                        a lze jej přidávat do dalších scén.
                     </p>
                 </div>
             </div>
@@ -34,11 +40,28 @@
             <div class="section" id="exaples">
                 <h2>Příklad</h2>
                 <light-code>
+// Vytváříme vlastní scénu
+class Game extends Scene {
+
+    constructor() {
+        super();
+    }
+
+    ready() {
+        super.ready();
+        console.log( 'Hra je připravena.' );
+    }
+}
+
 // Inicializujeme scénu a spustíme funkci ready().
 const scene = new Scene();
 scene.ready();
 
-// Vytváříme loop pro vykreslení scény.
+// Inicializujeme vlastní scénu a přidáváme ji do základní scény, jako podřízený potomek.
+const game = new Game();
+scene.add( game );
+
+// Vytváříme loop pro vykreslení scén.
 function tick() {
     this.renderer.render( scene );
     requestAnimationFrame( () => tick() );
