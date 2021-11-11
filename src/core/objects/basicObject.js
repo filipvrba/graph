@@ -139,9 +139,9 @@ class BasicObject extends Dispatcher {
 
 		}
 
-		if ( this.getScene( true ).input.hasSignal( 'input', this.inputHandler ) ) {
+		if ( this.getScene( true ).hasSignal( 'input', this.inputHandler ) ) {
 
-			this.getScene( true ).input.disconect( 'input', this.inputHandler )
+			this.getScene( true ).disconect( 'input', this.inputHandler )
 
 		}
 
