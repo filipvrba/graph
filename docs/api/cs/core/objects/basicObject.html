@@ -99,7 +99,7 @@
                 <meth type="a:basicObject" name="remove ( object )"></meth>
                 <meth type="o:function" name="free ()"></meth>
                 <meth type="o:function" name="freeSignals ()"></meth>
-                <meth type="a:scene" name="getScene ()"></meth>
+                <meth type="a:scene" name="getScene ( isRoot )"></meth>
                 <meth type="a:basicObject" name="findChildren ( id )"></meth>
             </meth-table>
 
@@ -197,12 +197,13 @@
                     </p>
                 </meth>
                 <hr>
-                <meth type="a:scene" name="getScene ()">
+                <meth type="a:scene" name="getScene ( isRoot )">
+                    <para name="isRoot">je scéna kořenem ve stromové svéře?</para>
                     <p>
-                        Zjistí kde se nachází deklarovaná scéna a
+                        Zjistí kde se nachází deklarovaná scéna ve stromové svéře.
                     </p>
                     <br>
-                    <return>vrací scénu, tohoto objektu.</return>
+                    <return>vrací objekt scény.</return>
                 </meth>
                 <hr>
                 <meth type="a:basicObject" name="findChildren ( id )">

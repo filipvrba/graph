@@ -43,7 +43,7 @@ class BasicObject extends Dispatcher {
 
                 if ( id ) {
 
-                    this.getScene().emitSignal({ type: 'ready', id });
+                    this.getScene( true ).emitSignal({ type: 'ready', id });
                 }
             });
 			object.emitSignal({ type: 'added' });
@@ -57,7 +57,7 @@ class BasicObject extends Dispatcher {
 				}
 
 			}
-			this.getScene().connect( 'update', object.updateHandler );
+			this.getScene( true ).connect( 'update', object.updateHandler );
 
 			object.drawHandler = (signal) => {
 
@@ -68,7 +68,7 @@ class BasicObject extends Dispatcher {
 				}
 
 			}
-			this.getScene().connect( 'draw', object.drawHandler );
+			this.getScene( true ).connect( 'draw', object.drawHandler );
 
 			object.inputHandler = ( signal ) => {
 
@@ -80,7 +80,7 @@ class BasicObject extends Dispatcher {
 
 			}
 
-			this.getScene().input.connect( 'input', object.inputHandler );
+			this.getScene( true ).connect( 'input', object.inputHandler );
 
 		} else {
 			console.error('BasicObject.add: object not an instance of BasicObject.', object);
@@ -127,45 +127,56 @@ class BasicObject extends Dispatcher {
 
 		}
 
-		if ( this.getScene().hasSignal( 'update', this.updateHandler ) ) {
+		if ( this.getScene( true ).hasSignal( 'update', this.updateHandler ) ) {
 
-			this.getScene().disconect( 'update', this.updateHandler );
-
-		}
-
-		if ( this.getScene().hasSignal( 'draw', this.drawHandler ) ) {
-
-			this.getScene().disconect( 'draw', this.drawHandler );
+			this.getScene( true ).disconect( 'update', this.updateHandler );
 
 		}
 
-		if ( this.getScene().input.hasSignal( 'input', this.inputHandler ) ) {
+		if ( this.getScene( true ).hasSignal( 'draw', this.drawHandler ) ) {
 
-			this.getScene().input.disconect( 'input', this.inputHandler )
+			this.getScene( true ).disconect( 'draw', this.drawHandler );
+
+		}
+
+		if ( this.getScene( true ).input.hasSignal( 'input', this.inputHandler ) ) {
+
+			this.getScene( true ).input.disconect( 'input', this.inputHandler )
 
 		}
 
 	}
 
-    getScene() {
+	getScene( isRoot = false ) {
 
-		let objectParent = this.parent;
+        let scene = this;
+        let parent = scene.parent;
 
-		while (true) {
+        while( true ) {
 
-			if (objectParent == null) return this;
+            if ( isRoot ) {
 
-            const extendClass = Object.getPrototypeOf(
-                Object.getPrototypeOf( objectParent )).constructor.name;
-			if (objectParent.constructor.name === NAME_SCENE ||
-                extendClass === NAME_SCENE) {
+                if ( parent === null ) break;
+                
+            } else {
 
-                return objectParent;
+                const extendClass = Object.getPrototypeOf(
+                    Object.getPrototypeOf( parent )).constructor.name;
+
+                if ( parent.constructor.name === NAME_SCENE ||
+                    extendClass === NAME_SCENE ) {
+
+                    scene = parent;
+                    break;
+                }
             }
+            
+            scene = parent;
+            parent = scene.parent;
+        }
 
-			objectParent = objectParent.parent;
-		}
-	}
+        return scene;
+    }
 
 	findChildren( id ) {
 
