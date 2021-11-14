@@ -13,6 +13,7 @@ class PieChart extends Object2D {
         this.endDegrees = 0;
         this.widthRadius = 0;
         this.isScaletable = false;
+        this.colorLabel = '';
 
         this.totalValue = this.countTotalValue();
 
@@ -120,7 +121,8 @@ class PieChart extends Object2D {
                 
                 id: i,
                 text: `${ this.pieArray[ i ].name } (${ this.pieArray[i].value })`,
-                color: color
+                color: color,
+                colorLabel: this.colorLabel
 
             });
 

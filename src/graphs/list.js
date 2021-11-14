@@ -140,6 +140,11 @@ class List extends Object2D {
             (this.circleWidth + this.space) * values.id );
         label.colorStyle = values.color;
 
+        if ( values.colorLabel !== '' ) {
+
+            label.colorLabel = values.colorLabel;
+        }
+
         this.add( label );
 
     }

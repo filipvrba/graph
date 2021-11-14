@@ -10,6 +10,7 @@ class CustomizePiechartElement extends HTMLElement {
         this.clickPlusCircleHandler = () => { this.clickPlusCircle() };
         this.loadHandler = () => this.load();
         this.messageHandler = ( event ) => { this.message( event.data ) };
+        this.mediaChangeHandler = () => this.mediaChange();
 
         this.customObjects = [];
         this.defaultObjects = [
@@ -26,6 +27,7 @@ class CustomizePiechartElement extends HTMLElement {
 
         ];
         this.graph = document.getElementById( 'graph' );
+        this.media = window.matchMedia('(prefers-color-scheme: dark)');
         this.innerHTML = this.getDefaultTemplate();
         this.clickLeftButton = null;
 
@@ -34,8 +36,9 @@ class CustomizePiechartElement extends HTMLElement {
     load() {
 
         this.codeData = document.getElementById( 'code-data' );
-        this.addObj( 2 )  // Add two objects
 
+        this.changeColorLabel();
+        this.defaultAddObj();
     }
 
     getRandomObject() {
@@ -93,6 +96,19 @@ class CustomizePiechartElement extends HTMLElement {
 
     }
 
+    resetObj() {
+
+        this.customObjects = [ ];
+        this.randomBitmask = 0;
+
+        this.defaultAddObj();
+    }
+
+    defaultAddObj() {
+
+        this.addObj( 2 );  // Add two objects
+    }
+
     clickPlusCircle() {
 
         if ( this.customObjects.length >= this.defaultObjects.length / 2 ) return;
@@ -130,7 +146,7 @@ class CustomizePiechartElement extends HTMLElement {
         }
         const json = JSON.stringify( dataArray );
 
-        this.graph.contentWindow.postMessage( json );
+        this.graph.contentWindow.postMessage({ json, colorLabel: this.colorLabel });
         this.setCodeData( json );
 
     }
@@ -165,12 +181,24 @@ class CustomizePiechartElement extends HTMLElement {
 
     }
 
+    mediaChange() {
+
+        this.changeColorLabel();
+        this.resetObj();
+    }
+
+    changeColorLabel() {
+
+        this.colorLabel = getComputedStyle( document.querySelector('p') ).color;
+    }
+
     connectedCallback() {
 
         document.addEventListener( 'clickMinCircle', this.clickMinCircleHandler );
         document.addEventListener( 'clickPlusCircle', this.clickPlusCircleHandler );
 
         this.graph.addEventListener( 'load', this.loadHandler );
+        this.media.addEventListener( 'change', this.mediaChangeHandler );
 
         window.addEventListener( 'message', this.messageHandler );
         
@@ -182,6 +210,7 @@ class CustomizePiechartElement extends HTMLElement {
         document.removeEventListener( 'clickPlusCircle', this.clickPlusCircleHandler );
 
         this.graph.removeEventListener( 'load', this.loadHandler );
+        this.media.removeEventListener( 'change', this.mediaChangeHandler );
 
         window.removeEventListener( 'message', this.messageHandler );
 

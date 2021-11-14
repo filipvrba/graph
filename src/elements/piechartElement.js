@@ -43,6 +43,18 @@ class PieChartElement extends HTMLElement {
 
     }
 
+    get colorLabel() {
+
+        let color = this.getAttribute( 'colorLabel' );
+        
+        if ( color === null ) {
+
+            color = '';
+        }
+
+        return color;
+    }
+
     get globalPosition() {
 
         return new Vector2( (this.renderer.canvas.width / 2 ) - this.widthRadius / 2,
@@ -94,6 +106,7 @@ class PieChartElement extends HTMLElement {
         this.pieChart = new PieChart( this.data );  // There implement object values
         this.pieChart.position = this.globalPosition;
         this.pieChart.widthRadius = this.widthRadius;
+        this.pieChart.colorLabel = this.colorLabel;
 
         this.scene.add( this.pieChart );
 

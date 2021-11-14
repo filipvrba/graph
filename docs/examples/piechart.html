@@ -2,6 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="../static/css/piechart.css">
     </head>
     <body>
         <div id="root"></div>
@@ -36,7 +38,7 @@
                         break;
                     default:
                         template = `
-                        <pie-chart data='${ event.data }' widthRadius="110"></pie-chart>
+                        <pie-chart data='${ event.data.json }' widthRadius="110" colorLabel="${ event.data.colorLabel }"></pie-chart>
                         `;
 
                         if ( !root.innerHTML ) {

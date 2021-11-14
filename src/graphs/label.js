@@ -9,6 +9,7 @@ class Label extends Object2D {
 
         this.text = text;
         this.scene = null;
+        this.colorLabel = 'black';
 
         this.fontSpaceWidth = 20;
 
@@ -34,7 +35,6 @@ class Label extends Object2D {
         }
 
         this.animationPlayer.connect( 'animFinish', this.animFinisHandler );
-
     }
 
     createAnimation() {
@@ -86,17 +86,16 @@ class Label extends Object2D {
 
     }
 
-    draw( renderer ) {
+    draw( renderer = new CanvasRenderingContext2D() ) {
 
         renderer.arc(this.globalPosition.x, this.globalPosition.y, Math.abs( this.widthRadius ),
             0, Math.PI * 2);
         renderer.fillStyle = this.colorStyle;
         renderer.fill();
 
-        renderer.fillStyle = 'black';
+        renderer.fillStyle = this.colorLabel;
         renderer.font = this.fontStyle( this.widthRadius >= this.fontSize ? this.fontSize : this.widthRadius );
         renderer.fillText(this.text, this.globalPosition.x + this.fontSpaceWidth, this.globalPosition.y + 7);
-
     }
 
     free() {
