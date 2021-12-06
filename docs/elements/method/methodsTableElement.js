@@ -25,7 +25,7 @@ class MethodsTableElement extends ChildrenElement {
         const id = this.getID();
 
         const template = `
-        <div class="section" id="${ id }">
+        <div class="section table-responsive" id="${ id }">
             <h2>${ this.getAttribute( 'name' ) }</h2>
             <table>
                 <colgroup>
