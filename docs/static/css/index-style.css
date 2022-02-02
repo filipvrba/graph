@@ -2,7 +2,7 @@
 
     --box-shadow: 0 1px 3px rgba( 0, 0, 0, 0.12 ), 0 1px 2px rgba( 0, 0, 0, 0.24 );
     --norm-radius: 10px;
-
+    --board-pad-top: 30px;
 }
 
 body {
@@ -55,7 +55,7 @@ hr {
     max-width: 800px;
     
     margin: 0 auto;
-    padding: 30px;
+    padding: var( --board-pad-top );
 
     background-color: #fff;
     border-radius: var( --norm-radius );
@@ -111,6 +111,8 @@ img {
     .board {
 
         padding: 15px;
+        padding-top: var( --board-pad-top );
+        border-radius: 0;
     }
 
     #root {
