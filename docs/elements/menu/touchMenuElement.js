@@ -14,7 +14,8 @@ class TouchMenuElement extends MenuElement {
 
         this.delay = 100;
 
-        this.distanceMax = new Vector2( 250, 30 );
+        // X is point start from a left screen.
+        this.distanceMax = new Vector2( 50, 30 );
 
     }
 
