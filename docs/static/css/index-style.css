@@ -7,7 +7,7 @@
 
 body {
 
-    margin: 15px 0px;
+    margin: 0;
     background-color: var( --table-solid );
 
 }
@@ -54,7 +54,7 @@ hr {
     flex-direction: column;
     max-width: 800px;
     
-    margin: 0 auto;
+    margin: 15px auto;
     padding: var( --board-pad-top );
 
     background-color: #fff;
@@ -110,6 +110,7 @@ img {
 
     .board {
 
+        margin: 0 auto;
         padding: 15px;
         padding-top: var( --board-pad-top );
         border-radius: 0;
