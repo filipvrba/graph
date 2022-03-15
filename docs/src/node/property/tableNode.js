@@ -29,7 +29,7 @@ class TableNode extends MethodNodes {
     getDefaultTemplate() {
 
         return `
-        <div class="table-responsive">
+        <div class="prop-tab-desc table-responsive">
             <table>
                 *
             </table>
