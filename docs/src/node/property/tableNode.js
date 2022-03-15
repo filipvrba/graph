@@ -29,11 +29,12 @@ class TableNode extends MethodNodes {
     getDefaultTemplate() {
 
         return `
-        <table>
-            *
-        </table>
+        <div class="table-responsive">
+            <table>
+                *
+            </table>
+        </div>
         `;
-
     }
 
     // Virtual function
