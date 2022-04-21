@@ -148,8 +148,23 @@
 .menu #header {
 
     display: block;
-    cursor: pointer;
+}
 
+.menu .graphName {
+
+    cursor: pointer;
+}
+
+.menu version-p {
+
+    margin-top: auto;
+    font-size: 85%;
+    font-family: var( --code-font );
+}
+
+.menu #header .id {
+
+    justify-content: space-between;
 }
 
 .menu img {

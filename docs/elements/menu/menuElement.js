@@ -13,11 +13,14 @@ class MenuElement extends HTMLElement {
         this.template = `
         <div class="menu" id="menu">
             <div class="scroll">
-                <div id="header" onclick="document.dispatchEvent( menuLogoClickEvent );">
-                    <div class="row">
-                        <img src="./static/pictures/logo.png"
-                            loading="lazy" alt="logo graph">
-                        <h1>${DOCUMENT}</h1>
+                <div id="header">
+                    <div class="row id">
+                        <div class="row graphName" onclick="document.dispatchEvent( menuLogoClickEvent );">
+                            <img src="./static/pictures/logo.png"
+                                loading="lazy" alt="logo graph">
+                            <h1>${DOCUMENT}</h1>
+                        </div>
+                        <version-p></version-p>
                     </div>
                 </div>
                 <hr>
