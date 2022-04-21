@@ -21,9 +21,9 @@ class SignalTableElement extends MethodsTableElement {
 
     }
 
-    getIcon( isEmit ) {
+    getIcon( emit ) {
 
-        if ( isEmit ) {
+        if ( emit.isEmit ) {
 
             return 'rss';
 
@@ -37,12 +37,13 @@ class SignalTableElement extends MethodsTableElement {
 
         child = new SignalNode( child.get() );
         this.childTemplate += this.createChildTemplate( child );
-
     }
+
+
 
     createChildTemplate( child ) {
 
-        const icon = this.getIcon( child.emit );
+        const icon = this.getIcon( child );
 
         const name = `
         <th class="row">

@@ -16,6 +16,14 @@
 
         },
 
+        "help": {
+
+            "path": "help",
+            "dir": "root",
+            "visible": true
+
+        },
+
         "error": {
 
             "path": "error",

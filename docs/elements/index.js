@@ -15,6 +15,9 @@ import { MethodsTableElement } from './method/methodsTableElement.js';
 // Signal
 import { SignalTableElement } from './signal/signalTableElemen.js';
 
+// Symbol
+import { SymbolTableElement } from './symbol/symbolTableElement.js';
+
 // Types
 import { ObjectsElement } from "./types/objectsElement.js";
 import { ClassesElement } from "./types/classesElement.js"
@@ -63,6 +66,9 @@ window.customElements.define( 'cust-piechart', CustomizePiechartElement );
 
 // Signal
 window.customElements.define( 'sign-table', SignalTableElement );
+
+// Symbol
+window.customElements.define( 'symbol-table', SymbolTableElement );
 
 import { PagesElements } from "./pagesElement.js";
 window.customElements.define( 'root-page', PagesElements );

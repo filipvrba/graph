@@ -90,12 +90,12 @@ class ChildNode {
 
     }
 
-    getLambdaTemplate() {
+    getLambdaTemplate( isSymbol = false ) {
 
         const symbol = '&#955;';
         let template = '';
 
-        if ( this.hasLambda ) {
+        if ( this.hasLambda || isSymbol ) {
 
             template = `
             <p id="lambda" class="fa" title="Anonymous function">
