@@ -10,8 +10,8 @@ on:
   pull_request:
     branches: [ master ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+env:
+  GRAPH_DIR: graph
   
 jobs:
   build:
@@ -23,7 +23,8 @@ jobs:
         with:
           repository: filipvrba/graph
           token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ env.GRAPH_DIR }}
 
       - name: Run a autogenerate graph engine
-        run: npm run build
+        run: python3 ${{ env.GRAPH_DIR }}/bundler/build.py -o '${{ env.GRAPH_DIR }}/docs/src/'
         shell: sh
