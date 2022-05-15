@@ -35,6 +35,10 @@ import { InheritsElement } from "./inheritsElement.js";
 import { StrongCodeElement } from './strongCodeElement.js';
 import { CustomizePiechartElement } from './customizePiechartElement.js';
 
+// Exemple
+import { ExampleElement } from './exampleElement.js';
+window.customElements.define( 'example-custom', ExampleElement );
+
 
 /**
  * Defines
