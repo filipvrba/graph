@@ -19,7 +19,7 @@ class ListPagesElement extends HTMLElement {
         // Find the same parent on an files.
         files.forEach( ( file, name ) => {
 
-            if ( file.dir === 'api' ) {
+            if ( file.dir === 'api' || file.dir === 'root' ) {
 
                 const path = file.path;
                 template += this.createTemplate( name, path );

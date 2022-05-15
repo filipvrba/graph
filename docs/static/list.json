@@ -40,6 +40,22 @@
 
         },
 
+        "exemples": {
+
+            "path": "exemples/index",
+            "dir": "root",
+            "visible": true
+
+        },
+
+        "circles": {
+
+            "path": "exemples/circles",
+            "dir": "root",
+            "visible": true
+
+        },
+
         "vector2": {
 
             "path": "core/math/vector2",

@@ -7,7 +7,8 @@ class FooterElement extends HTMLElement {
         this.author = this.getAttribute( 'author' );
         this.linkedin = this.getAttribute( 'linkedin' );
         this.createYear = 2021;
-        this.github = GITHUB_URL;
+        this.github = GITHUB_URL + DOCUMENT;
+        this.circles = GITHUB_URL + CIRCLES;
 
         this.init();
 
@@ -19,6 +20,9 @@ class FooterElement extends HTMLElement {
 
         const isIndex = page.path.indexOf( INDEX ) > -1;
         const isApi = page.dir === 'api' ;
+
+        const isExemples = page.path.indexOf( "exemples" ) > -1;
+
         if ( isApi ) {
 
             const pageName = getPageName();
@@ -28,12 +32,20 @@ class FooterElement extends HTMLElement {
             this.innerHTML = this.getTemplate( `${ this.github}/tree/master/src/${ apiPath }`,
                 `${ pageName } - ${ this.getLinkDescription( !isIndex ) }` );
 
+        } else if ( isExemples && !isIndex ) {
+
+            const pageName = getPageName().toLowerCase();
+            this.innerHTML = this.getLinkTemplate( GITHUB_URL + pageName, pageName, isApi );
+
         } else {
 
-            this.innerHTML = this.getTemplate( this.github, `${ capitalized( DOCUMENT ) } - ${ this.getLinkDescription( isApi ) }` );
-
+            this.innerHTML = this.getLinkTemplate( this.github, DOCUMENT, isApi );
         }
+    }
 
+    getLinkTemplate( uri, name, isApi ) {
+
+        return this.getTemplate( uri, `${ capitalized( name ) } - ${ this.getLinkDescription( isApi ) }` );
     }
 
     getLinkDescription( isApi ) {
